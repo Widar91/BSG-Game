@@ -57,7 +57,7 @@
      <None Include="Assets\Neighbourhood-Scene\Unity3dx Free City01\PRO Assets\Image Effects (Pro Only)\_Sources\Shaders\_BloomAndFlares\BlendOneOne.shader" />
      <None Include="Assets\Neighbourhood-Scene\Unity3dx Free City01\PRO Assets\Image Effects (Pro Only)\_Sources\Shaders\NoiseEffectShaderRGB.shader" />
      <None Include="Assets\Neighbourhood-Scene\Unity3dx Free City01\PRO Assets\Image Effects (Pro Only)\_Sources\Shaders\_DepthOfField\SeparableWeightedBlurDof34.shader" />
-     <None Include="Assets\Neighbourhood-Scene\RoadTool\Example\Texture\Texture Credits.txt" />
+     <None Include="Assets\Neighbourhood-Scene\Model-Tests\RoadTool\Example\Texture\Texture Credits.txt" />
      <None Include="Assets\Neighbourhood-Scene\Unity3dx Free City01\PRO Assets\Image Effects (Pro Only)\_Sources\Shaders\ShowAlphaChannel.shader" />
      <None Include="Assets\Neighbourhood-Scene\Unity3dx Free City01\PRO Assets\Image Effects (Pro Only)\_Sources\Shaders\GlowConeTap.shader" />
      <None Include="Assets\Neighbourhood-Scene\Unity3dx Free City01\PRO Assets\Image Effects (Pro Only)\_Sources\Shaders\SunShaftsComposite.shader" />
@@ -67,7 +67,7 @@
      <None Include="Assets\Neighbourhood-Scene\Unity3dx Free City01\PRO Assets\Image Effects (Pro Only)\_Sources\Shaders\_DepthOfField\DepthOfFieldScatter.shader" />
      <None Include="Assets\Neighbourhood-Scene\Unity3dx Free City01\PRO Assets\Image Effects (Pro Only)\_Sources\Shaders\MotionBlur.shader" />
      <None Include="Assets\OfficeView\Chairs and sofas pack\Readme.txt" />
-     <None Include="Assets\Neighbourhood-Scene\RoadTool\README.txt" />
+     <None Include="Assets\Neighbourhood-Scene\Model-Tests\RoadTool\README.txt" />
      <None Include="Assets\Neighbourhood-Scene\Unity3dx Free City01\PRO Assets\Image Effects (Pro Only)\_Sources\Shaders\GlowCompose.shader" />
      <None Include="Assets\Neighbourhood-Scene\Unity3dx Free City01\PRO Assets\Image Effects (Pro Only)\_Sources\Shaders\Contrast Stretch\MinMaxReduction.shader" />
      <None Include="Assets\Neighbourhood-Scene\Unity3dx Free City01\PRO Assets\Image Effects (Pro Only)\_Sources\Shaders\_Antialiasing\SSAA.shader" />

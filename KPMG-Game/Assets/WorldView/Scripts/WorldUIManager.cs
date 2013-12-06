@@ -15,10 +15,18 @@ public class WorldUIManager : MonoBehaviour {
 		
 		RaycastHit hit;
 		if (Physics.Raycast(camera.ScreenPointToRay(Input.mousePosition), out hit)) {
-			if (hit.collider.gameObject.name.Equals("Earth"))
+			if (hit.collider.gameObject.name.Equals("Earth")) {
 				tooltip = "";
-			else
+			} else {
 				tooltip = hit.collider.gameObject.transform.parent.name;
+
+				//This instruction loads the neighbourhood view
+				//when a city is clicked. Later it will have to
+				//be adapted to distinguish between player's city
+				//or an external one.
+				if(Input.GetMouseButtonDown(0))
+					Application.LoadLevel("Neighbourhood");
+			}
 		} else {
 			tooltip = "";
 		}
