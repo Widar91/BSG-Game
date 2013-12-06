@@ -49,6 +49,7 @@ function OnGUI() {
 			buttonstyle(button1,button1_h);
 			if(GUI.Button (Rect (Screen.width-100,73,30,32), "")){
 				print("World down button");
+				Application.LoadLevel("WorldView");
 				}
 			// Make Second button and switch to second skin.
 			buttonstyle(button2,button2_h);
