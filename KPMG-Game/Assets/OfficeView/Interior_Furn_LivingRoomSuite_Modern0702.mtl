@@ -1,0 +1,99 @@
+# Alias Wavefront MTL File Exported from SketchUp
+# with OBJexporter (c) 2013 TIG
+# Made for 'Interior_Furn_LivingRoomSuite_Modern0702.obj'
+
+newmtl Default_Material
+Ka 1 1 1
+Kd 1 1 1
+Ks 0.333 0.333 0.333
+Ns 0
+d 1
+Tr 1
+
+newmtl 0137_Black
+Ka 0 0 0
+Kd 0 0 0
+Ks 0.333 0.333 0.333
+Ns 0
+d 1
+Tr 1
+
+newmtl 0135_DarkGray
+Ka 0.317647 0.317647 0.317647
+Kd 0.317647 0.317647 0.317647
+Ks 0.333 0.333 0.333
+Ns 0
+d 1
+Tr 1
+
+newmtl 0134_DimGray
+Ka 0.411765 0.411765 0.411765
+Kd 0.411765 0.411765 0.411765
+Ks 0.333 0.333 0.333
+Ns 0
+d 1
+Tr 1
+
+newmtl Textile_Maroon
+Ka 0.8 0.0666667 0.0823529
+Kd 0.8 0.0666667 0.0823529
+Ks 0.333 0.333 0.333
+Ns 0
+d 1
+Tr 1
+map_Kd Interior_Furn_LivingRoomSuite_Modern0702_Textures/Textile_Maroon.PNG
+
+newmtl Carpet_Plush_LtGray
+Ka 0.580392 0.580392 0.580392
+Kd 0.580392 0.580392 0.580392
+Ks 0.333 0.333 0.333
+Ns 0
+d 1
+Tr 1
+map_Kd Interior_Furn_LivingRoomSuite_Modern0702_Textures/Carpet_Plush_LtGray.PNG
+
+newmtl Carpet_Plush_Charcoal
+Ka 0.341176 0.341176 0.341176
+Kd 0.341176 0.341176 0.341176
+Ks 0.333 0.333 0.333
+Ns 0
+d 1
+Tr 1
+map_Kd Interior_Furn_LivingRoomSuite_Modern0702_Textures/Carpet_Plush_Charcoal.PNG
+
+newmtl Carpet_Frieze_Smoke
+Ka 0.0901961 0.0941176 0.0980392
+Kd 0.0901961 0.0941176 0.0980392
+Ks 0.333 0.333 0.333
+Ns 0
+d 1
+Tr 1
+map_Kd Interior_Furn_LivingRoomSuite_Modern0702_Textures/Carpet_Frieze_Smoke.PNG
+
+newmtl 0136_Charcoal
+Ka 0.137255 0.137255 0.137255
+Kd 0.137255 0.137255 0.137255
+Ks 0.333 0.333 0.333
+Ns 0
+d 0.49
+Tr 0.49
+
+newmtl 00_TaME_MetalBrushedAluminum01
+Ka 0.780392 0.784314 0.784314
+Kd 0.780392 0.784314 0.784314
+Ks 0.333 0.333 0.333
+Ns 0
+d 1
+Tr 1
+map_Kd Interior_Furn_LivingRoomSuite_Modern0702_Textures/00_TaME_MetalBrushedAluminum01.PNG
+
+newmtl 00_TaME_AluminumFoil06
+Ka 0.207843 0.180392 0.176471
+Kd 0.207843 0.180392 0.176471
+Ks 0.333 0.333 0.333
+Ns 0
+d 1
+Tr 1
+map_Kd Interior_Furn_LivingRoomSuite_Modern0702_Textures/00_TaME_AluminumFoil06.PNG
+
+#EOF
