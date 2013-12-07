@@ -5,10 +5,10 @@ public class MouseRTS : MonoBehaviour
 	public int LevelArea = 100;
 	
 	public int ScrollArea = 25;
-	public int ScrollSpeed = 25;
-	public int DragSpeed = 100;
+	public int ScrollSpeed = 50;
+	public int DragSpeed = 300;
 	
-	public int ZoomSpeed = 25;
+	public int ZoomSpeed = 50;
 	public int ZoomMin = 20;
 	public int ZoomMax = 100;
 	
@@ -28,7 +28,8 @@ public class MouseRTS : MonoBehaviour
 		{
 			translation -= Vector3.up * ZoomSpeed * zoomDelta;
 		}
-		
+
+		/*
 		// Start panning camera if zooming in close to the ground or if just zooming out.
 		var pan = camera.transform.eulerAngles.x - zoomDelta * PanSpeed;
 		pan = Mathf.Clamp(pan, PanAngleMin, PanAngleMax);
@@ -36,7 +37,8 @@ public class MouseRTS : MonoBehaviour
 		{
 			camera.transform.eulerAngles = new Vector3(pan, 0, 0);
 		}
-		
+		*/
+
 		// Move camera with arrow keys
 		translation += new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 		
