@@ -2,6 +2,13 @@ using UnityEngine;
 using System.Collections;
 
 public class GUIScript : MonoBehaviour {
+
+	public Texture2D button1;
+	public Texture2D button1h;
+	public Texture2D button1a;
+	public Texture2D button2;
+	public Texture2D button2h;
+	public Texture2D button2a;
 	
 	private int buildingindex;
 	private string buildingname;
@@ -9,6 +16,8 @@ public class GUIScript : MonoBehaviour {
 
 	private int buildingIndex;
 	private int buildingRotation;
+	public static int confirmFlag = 0;
+	public static int winFlag = 0;
 	
 	// Use this for initialization
 	void Start () {
@@ -38,10 +47,34 @@ public class GUIScript : MonoBehaviour {
 		buildingname = bm.Building[buildingindex].name;
 		buildingrotation = bm.SelectedBuildingRotation;
 	}
+
+
 	
 	void OnGUI()
 	{
 		
 		GUILayout.TextArea("Selected Building Index: " + buildingindex + " Name: " + buildingname + " Rotation:" + buildingrotation);
+
+		if (winFlag == 1) {
+						GUI.Window (0, new Rect (Screen.width/2-150, Screen.height/2-100, 600, 100), confirmWindow, "Are you sure?");
+
+				}
+	}
+
+	//Confirmation window called from BuildManager.
+	void confirmWindow (int windowID) {
+
+
+
+		ButtonstyleGUI_CS.buttonstyle(button1, button1h);
+		if(GUI.Button(new Rect(20, 20, 184, 39),"YES"))
+		   {
+			confirmFlag = 1;
+		}
+		ButtonstyleGUI_CS.buttonstyle(button2, button2h);
+		if(GUI.Button(new Rect(240, 20, 184, 39),"NO"))
+		        {
+			confirmFlag = 0;
+		}
 	}
 }

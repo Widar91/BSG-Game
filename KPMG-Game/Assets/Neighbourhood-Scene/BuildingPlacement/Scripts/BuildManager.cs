@@ -74,6 +74,9 @@ public class BuildManager: MonoBehaviour
 
 				if (Input.GetMouseButtonDown(0) && collided.Count == 0 && isFlat )
 				{
+					//Call to confirmation window.
+					GUIScript.winFlag = 1;
+
 					BuildingList bl = new BuildingList();
 
 					bl.buildingGameObject = (GameObject)Instantiate(Building[SelectedBuilding], 
@@ -88,13 +91,19 @@ public class BuildManager: MonoBehaviour
 					string s = bl.buildingGameObject.name.Replace("(Clone)", "");
 					bl.buildingGameObject.name = s;
 					bl.buildingName = s;
-					
+
+					if(GUIScript.confirmFlag == 1){
 					buildings.Add(bl);
 				
 					ghostOn = false;
 				
 					collided.Clear();
 					break;
+					}
+					else
+					{
+						DestroyImmediate(bl.buildingGameObject);
+					}
 				}
 				
 				if (ghost != null)
