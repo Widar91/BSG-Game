@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEditor;
 
 public class GUIScript : MonoBehaviour {
 
@@ -16,8 +17,7 @@ public class GUIScript : MonoBehaviour {
 
 	private int buildingIndex;
 	private int buildingRotation;
-	public static int confirmFlag = 0;
-	public static int winFlag = 0;
+
 	
 	// Use this for initialization
 	void Start () {
@@ -52,29 +52,14 @@ public class GUIScript : MonoBehaviour {
 	
 	void OnGUI()
 	{
-		
 		GUILayout.TextArea("Selected Building Index: " + buildingindex + " Name: " + buildingname + " Rotation:" + buildingrotation);
-
-		if (winFlag == 1) {
-						GUI.Window (0, new Rect (Screen.width/2-150, Screen.height/2-100, 600, 100), confirmWindow, "Are you sure?");
-
-				}
 	}
 
 	//Confirmation window called from BuildManager.
-	void confirmWindow (int windowID) {
-
-
-
-		ButtonstyleGUI_CS.buttonstyle(button1, button1h);
-		if(GUI.Button(new Rect(20, 20, 184, 39),"YES"))
-		   {
-			confirmFlag = 1;
-		}
-		ButtonstyleGUI_CS.buttonstyle(button2, button2h);
-		if(GUI.Button(new Rect(240, 20, 184, 39),"NO"))
-		        {
-			confirmFlag = 0;
-		}
+	public static bool confirmPlacement () {
+		return EditorUtility.DisplayDialog ("Place Selection On Surface?",
+		                                   "Are you sure you want to place the building on the surface?", 
+		                                   "Place", 
+		                                   "Do Not Place");
 	}
 }

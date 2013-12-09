@@ -74,8 +74,6 @@ public class BuildManager: MonoBehaviour
 
 				if (Input.GetMouseButtonDown(0) && collided.Count == 0 && isFlat )
 				{
-					//Call to confirmation window.
-					GUIScript.winFlag = 1;
 
 					BuildingList bl = new BuildingList();
 
@@ -86,24 +84,23 @@ public class BuildManager: MonoBehaviour
 						hit[i].point.z), 
 					ghost.transform.rotation);
 
-					DestroyImmediate(ghost);
+
 
 					string s = bl.buildingGameObject.name.Replace("(Clone)", "");
 					bl.buildingGameObject.name = s;
 					bl.buildingName = s;
 
-					if(GUIScript.confirmFlag == 1){
-					buildings.Add(bl);
-				
-					ghostOn = false;
-				
+					//Call to confirmation window.
+					if(!GUIScript.confirmPlacement()) {
+						DestroyImmediate(bl.buildingGameObject);
+					} else {
+						DestroyImmediate(ghost);
+						buildings.Add(bl);
+						ghostOn = false;
+					}
+					
 					collided.Clear();
 					break;
-					}
-					else
-					{
-						DestroyImmediate(bl.buildingGameObject);
-					}
 				}
 				
 				if (ghost != null)
