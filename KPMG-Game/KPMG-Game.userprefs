@@ -1,8 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Neighbourhood-Scene/Scripts/Buildings/BuildingHoveringHighlight.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Neighbourhood-Scene/Scripts/MainCamera/WorldCamera.cs">
     <Files>
-      <File FileName="Assets/Neighbourhood-Scene/Scripts/Buildings/BuildingHoveringHighlight.cs" Line="26" Column="3" />
+      <File FileName="Assets/Neighbourhood-Scene/Scripts/Buildings/Topic Buildings/DynamicBuildingHeight.cs" Line="21" Column="41" />
+      <File FileName="Assets/Neighbourhood-Scene/Scripts/MainCamera/WorldCamera.cs" Line="107" Column="9" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

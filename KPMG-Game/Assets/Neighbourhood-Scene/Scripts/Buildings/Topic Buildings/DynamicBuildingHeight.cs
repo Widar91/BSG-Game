@@ -7,7 +7,12 @@ public class DynamicBuildingHeight : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		Vector3 localScale = this.transform.localScale;
-		this.transform.localScale = new Vector3 (localScale.x, 100f + getTopicScore(), localScale.z);
+		Vector3 position = this.transform.position;
+
+		this.transform.localScale = new Vector3 (localScale.x, localScale.y + getTopicScore(), localScale.z);
+
+		float posY = (localScale.y + getTopicScore ()) * position.y / localScale.y;
+		this.transform.position = new Vector3 (position.x, posY, position.z);
 	}
 	
 	// Update is called once per frame
