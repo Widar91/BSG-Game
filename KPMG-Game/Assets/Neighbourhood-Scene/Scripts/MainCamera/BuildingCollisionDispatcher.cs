@@ -17,7 +17,7 @@ public class BuildingCollisionDispatcher : MonoBehaviour {
 				string collidedObject = hit.collider.gameObject.name;
 
 				switch(collidedObject) {
-					case "Skyscraper":
+					case "Office":
 						Application.LoadLevel("Office");
 						break;
 					case "Shop":

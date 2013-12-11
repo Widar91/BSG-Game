@@ -54,7 +54,7 @@
      <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
      <None Include="Assets\WorldView\PlanetEarthShader\Earth.shader" />
      <None Include="Assets\OfficeView\archibase.net.txt" />
-     <None Include="Assets\Neighbourhood-Scene\BuildingPlacement\Setup Guide.txt" />
+     <None Include="Assets\Neighbourhood-Scene\Scripts\RTS-Scripts\Setup Guide.txt" />
  <Reference Include="Library\ScriptAssemblies\Assembly-UnityScript-firstpass">
  <HintPath>Library\ScriptAssemblies\Assembly-UnityScript-firstpass.dll</HintPath>
  </Reference>
