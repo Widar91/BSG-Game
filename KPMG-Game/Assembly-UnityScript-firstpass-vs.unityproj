@@ -51,14 +51,11 @@
      <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\PlatformInputController.js" />
      <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\ThirdPersonCamera.js" />
      <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\ThirdPersonController.js" />
-     <None Include="Assets\Neighbourhood-Scene\Model-Tests\RoadTool\Example\Texture\Texture Credits.txt" />
-     <None Include="Assets\Neighbourhood-Scene\Model-Tests\serpertine city\serpentine city.fbx.txt" />
      <None Include="Assets\OfficeView\Chairs and sofas pack\Readme.txt" />
-     <None Include="Assets\Neighbourhood-Scene\Model-Tests\RoadTool\README.txt" />
      <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
      <None Include="Assets\WorldView\PlanetEarthShader\Earth.shader" />
      <None Include="Assets\OfficeView\archibase.net.txt" />
-     <None Include="Assets\Neighbourhood-Scene\BuildingPlacement\Setup Guide.txt" />
+     <None Include="Assets\Neighbourhood-Scene\Scripts\RTS-Scripts\Setup Guide.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

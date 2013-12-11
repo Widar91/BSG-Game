@@ -5,8 +5,6 @@ Project("{D98F042C-B402-9AD0-DF15-744E98C8557C}") = "KPMG-Game", "Assembly-CShar
 EndProject
 Project("{D98F042C-B402-9AD0-DF15-744E98C8557C}") = "KPMG-Game", "Assembly-CSharp.csproj", "{7CD1EDE0-B580-BDEF-75DC-3C94C994C7E6}"
 EndProject
-Project("{D98F042C-B402-9AD0-DF15-744E98C8557C}") = "KPMG-Game", "Assembly-CSharp-Editor.csproj", "{02274A86-69FF-5B6C-13FA-ED37FE272D71}"
-EndProject
 Project("{D98F042C-B402-9AD0-DF15-744E98C8557C}") = "KPMG-Game", "Assembly-UnityScript-firstpass.unityproj", "{DB434E31-6273-E030-808F-EC24387C6043}"
 EndProject
 Project("{D98F042C-B402-9AD0-DF15-744E98C8557C}") = "KPMG-Game", "Assembly-UnityScript.unityproj", "{9387207D-19C3-2E93-5CA1-05883A49D609}"
@@ -25,10 +23,6 @@ Global
 		{7CD1EDE0-B580-BDEF-75DC-3C94C994C7E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7CD1EDE0-B580-BDEF-75DC-3C94C994C7E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7CD1EDE0-B580-BDEF-75DC-3C94C994C7E6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{02274A86-69FF-5B6C-13FA-ED37FE272D71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{02274A86-69FF-5B6C-13FA-ED37FE272D71}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{02274A86-69FF-5B6C-13FA-ED37FE272D71}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{02274A86-69FF-5B6C-13FA-ED37FE272D71}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DB434E31-6273-E030-808F-EC24387C6043}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DB434E31-6273-E030-808F-EC24387C6043}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DB434E31-6273-E030-808F-EC24387C6043}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -41,8 +35,7 @@ Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-<<<<<<< HEAD
-																																					GlobalSection(MonoDevelopProperties) = preSolution
+																																																				GlobalSection(MonoDevelopProperties) = preSolution
 =======
 																																											GlobalSection(MonoDevelopProperties) = preSolution
 >>>>>>> Confirmation-Window

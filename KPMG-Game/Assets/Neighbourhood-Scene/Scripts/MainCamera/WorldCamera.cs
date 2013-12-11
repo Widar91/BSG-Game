@@ -104,7 +104,7 @@ public class WorldCamera : MonoBehaviour {
 	public void HandleMouseRotation () {
 	
 		float easeFactor = 5f;
-		if (Input.GetMouseButton (1) /* && Input.GetKey (KeyCode.LeftControl)*/) 
+		if (/*Input.GetMouseButton (1) &&*/ Input.GetKey (KeyCode.LeftControl)) 
 		{
 			//Horizontal Rotation
 			if(Input.mousePosition.x != mouseX)
