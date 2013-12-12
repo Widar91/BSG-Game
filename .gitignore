@@ -4,10 +4,10 @@
 *.pidb
 *.unityproj
 .DS_Store
-BSG-Game/KPMG-Game/Library/FailedAssetImports.txt
-BSG-Game/KPMG-Game/Library/cache/
-BSG-Game/KPMG-Game/Library/previews/
-BSG-Game/KPMG-Game/Library/ScriptAssemblies
-BSG-Game/KPMG-Game/Library/metadata
-BSG-Game/KPMG-Game/obj
-BSG-Game/KPMG-Game/Temp
+KPMG-Game/Library/FailedAssetImports.txt
+KPMG-Game/Library/cache/
+KPMG-Game/Library/previews/
+KPMG-Game/Library/ScriptAssemblies
+KPMG-Game/Library/metadata
+KPMG-Game/obj
+KPMG-Game/Temp
