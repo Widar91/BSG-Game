@@ -11,7 +11,7 @@ public class DynamicBuildingHeight : MonoBehaviour {
 
 		this.transform.localScale = new Vector3 (localScale.x, localScale.y + getTopicScore(), localScale.z);
 
-		float posY = (localScale.y + getTopicScore ()) * position.y / localScale.y;
+		float posY = ((this.transform.localScale.y) * position.y) / localScale.y;
 		this.transform.position = new Vector3 (position.x, posY, position.z);
 	}
 	
