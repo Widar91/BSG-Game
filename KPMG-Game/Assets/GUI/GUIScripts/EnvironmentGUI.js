@@ -30,12 +30,31 @@ function OnGUI() {
 			// Make the first button and first skin. 
 			ButtonstyleGUI_JS.buttonstyle(button1,button1_h);
 			if(GUI.Button (Rect (Screen.width-100,73,30,32), "")){
+			
+				if(Application.loadedLevelName == "Office"){
+					Application.LoadLevel("Neighbourhood");	
+				}
+				
+				if(Application.loadedLevelName == "Neighbourhood"){
+					Application.LoadLevel("WorldView");	
+				}
+				
+				
 				print("World down button");
-				Application.LoadLevel("WorldView");
 			}
 			// Make Second button and switch to second skin.
 			ButtonstyleGUI_JS.buttonstyle(button2,button2_h);
 			if(GUI.Button (Rect (Screen.width-100,33,30,32), "")){
+			
+			if(Application.loadedLevelName == "Neighbourhood"){
+					Application.LoadLevel("Office");	
+				}
+				
+				if(Application.loadedLevelName == "WorldView"){
+					Application.LoadLevel("Neighbourhood");	
+				}
+			
+			
 				print("World up button");
 			}
 
