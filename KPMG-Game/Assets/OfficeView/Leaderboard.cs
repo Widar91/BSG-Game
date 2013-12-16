@@ -52,7 +52,7 @@ public class Leaderboard : MonoBehaviour {
 
 		if (toggleLeader == 1) {
 						Time.timeScale = 0; //Remember to set 1 for resuming.
-						GUI.Window (0, new Rect (Screen.width/2-450, 100, Screen.width - 920, Screen.height - 250), leaderWindow, "Leader Boards");
+						GUI.Window (0, new Rect (Screen.width/2-450, 100, Screen.width - 360, Screen.height - 250), leaderWindow, "Leader Boards");
 						
 				}
 
@@ -64,7 +64,7 @@ public class Leaderboard : MonoBehaviour {
 	void leaderWindow (int windowID) {
 
 
-		GUI.BeginGroup (new Rect (10, 50, Screen.width - 920, Screen.height - 250), "");
+		GUI.BeginGroup (new Rect (10, 50, Screen.width - 360, Screen.height - 250), "");
 
 		//Titles
 		GUI.Label (new Rect (0, 0, 60, 50), "Rank");

@@ -9,9 +9,13 @@ var toggle1_h : Texture;
 var midtex : Texture;
 var kpmg : Texture;
 var scores : String = "All stuff here";
+public static var currentLevel : String;
+public static var previousLevel : String;
 
 function OnGUI() {
-	
+		
+		currentLevel = Application.loadedLevelName;
+		
 		GUI.BeginGroup (Rect (10,Screen.height-130,Screen.width-20,120), "");
 		
 			//Call HUD skin.
@@ -29,33 +33,40 @@ function OnGUI() {
 
 			// Make the first button and first skin. 
 			ButtonstyleGUI_JS.buttonstyle(button1,button1_h);
+			
+			if(currentLevel != "WorldView")
+			{
 			if(GUI.Button (Rect (Screen.width-100,73,30,32), "")){
 			
-				if(Application.loadedLevelName == "Office"){
+				if(currentLevel == "Office"){
 					Application.LoadLevel("Neighbourhood");	
 				}
 				
-				if(Application.loadedLevelName == "Neighbourhood"){
+				if(currentLevel == "Neighbourhood"){
 					Application.LoadLevel("WorldView");	
 				}
 				
 				
 				print("World down button");
 			}
+			}
 			// Make Second button and switch to second skin.
 			ButtonstyleGUI_JS.buttonstyle(button2,button2_h);
+			if(currentLevel != "Office")
+			{
 			if(GUI.Button (Rect (Screen.width-100,33,30,32), "")){
 			
-			if(Application.loadedLevelName == "Neighbourhood"){
+			if(currentLevel == "Neighbourhood"){
 					Application.LoadLevel("Office");	
 				}
 				
-				if(Application.loadedLevelName == "WorldView"){
+				if(currentLevel == "WorldView"){
 					Application.LoadLevel("Neighbourhood");	
 				}
 			
 			
 				print("World up button");
+			}
 			}
 
 		GUI.EndGroup();	

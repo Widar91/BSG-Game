@@ -91,13 +91,13 @@ public class BuildManager: MonoBehaviour
 					bl.buildingName = s;
 
 					//Call to confirmation window.
-					if(!RTSGUIScript.confirmPlacement()) {
-						DestroyImmediate(bl.buildingGameObject);
-					} else {
+					//if(!RTSGUIScript.confirmPlacement()) {
+					//	DestroyImmediate(bl.buildingGameObject);
+					//} else {
 						DestroyImmediate(ghost);
 						buildings.Add(bl);
 						ghostOn = false;
-					}
+					//}
 					
 					collided.Clear();
 					break;
