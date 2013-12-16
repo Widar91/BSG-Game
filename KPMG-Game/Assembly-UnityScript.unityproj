@@ -47,8 +47,6 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\CityView\CityGenerator1.5\Scripts\MENUSWEBPLAYER.js" />
-     <Compile Include="Assets\GUI\GUIScripts\ButtonstyleGUI_JS.js" />
-     <Compile Include="Assets\GUI\GUIScripts\EnvironmentGUI.js" />
      <None Include="Assets\OfficeView\Chairs and sofas pack\Readme.txt" />
      <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
      <None Include="Assets\WorldView\PlanetEarthShader\Earth.shader" />
