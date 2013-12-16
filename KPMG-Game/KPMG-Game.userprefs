@@ -1,9 +1,15 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Neighbourhood-Scene/Scripts/MainCamera/WorldCamera.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/GUI/GUIScripts/EnvironmentGUI.js">
     <Files>
-      <File FileName="Assets/Neighbourhood-Scene/Scripts/Buildings/Topic Buildings/DynamicBuildingHeight.cs" Line="21" Column="41" />
-      <File FileName="Assets/Neighbourhood-Scene/Scripts/MainCamera/WorldCamera.cs" Line="107" Column="9" />
+      <File FileName="Assets/GUI/GUIScripts/EnvironmentGUI.js" Line="1" Column="1" />
+      <File FileName="Assets/Neighbourhood-Scene/Scripts/MainCamera/WorldCamera.cs" Line="1" Column="1" />
+      <File FileName="Assets/Neighbourhood-Scene/Scripts/Buildings/Topic Buildings/DynamicBuildingHeight.cs" Line="1" Column="1" />
+      <File FileName="Assets/CityView/Scripts/OnDistrictHovering.cs" Line="1" Column="1" />
+      <File FileName="Assets/Neighbourhood-Scene/Scripts/Buildings/BuildingHoveringHighlight.cs" Line="1" Column="1" />
+      <File FileName="Assets/CityView/Scripts/CityCamera.cs" Line="1" Column="1" />
+      <File FileName="Assets/Neighbourhood-Scene/Scripts/MainCamera/BuildingCollisionDispatcher.cs" Line="1" Column="1" />
+      <File FileName="Assets/GUI/GUIScripts/EnvironmentGUI.js" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
