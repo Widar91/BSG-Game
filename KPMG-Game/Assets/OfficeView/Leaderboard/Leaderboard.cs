@@ -108,6 +108,7 @@ public class Leaderboard : MonoBehaviour {
 		//Close Button
 		ButtonstyleGUI_CS.buttonstyle(Close,Close_h);
 		if(GUI.Button(new Rect(950,10,40,40),"")){
+			Time.timeScale = 1;
 			toggleLeader = 0;
 		}
 
