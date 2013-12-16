@@ -19,7 +19,7 @@
 	<DebugType>full</DebugType>
 	<Optimize>false</Optimize>
 	<OutputPath>Temp\bin\Debug\</OutputPath>
-	<DefineConstants>DEBUG;TRACE;UNITY_STANDALONE_OSX;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_MONO;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_GENERICS;ENABLE_SUBSTANCE;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_GAMECENTER;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;UNITY_4_3_1;UNITY_4_3;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_OSX</DefineConstants>
+	<DefineConstants>DEBUG;TRACE;UNITY_WEBPLAYER;WEBPLUG;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_AUDIO_FMOD;ENABLE_MONO;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_GENERICS;ENABLE_SUBSTANCE;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;UNITY_4_3_0;UNITY_4_3;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN</DefineConstants>
 	<ErrorReport>prompt</ErrorReport>
 	<WarningLevel>4</WarningLevel>
 	<NoWarn>0169</NoWarn>
@@ -39,13 +39,43 @@
 	<Reference Include="System.Core" />
 	<Reference Include="System.Xml.Linq" />
 	<Reference Include="UnityEngine">
-	  <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEngine.dll</HintPath>
+	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
 	</Reference>
 	<Reference Include="UnityEditor">
-	  <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEditor.dll</HintPath>
+	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\CityView\CityGenerator1.5\Scripts\BuildBuilding.cs" />
+     <Compile Include="Assets\CityView\CityGenerator1.5\Scripts\BuildBuildingCustom.cs" />
+     <Compile Include="Assets\CityView\CityGenerator1.5\Scripts\BuildBuildingHighPoly.cs" />
+     <Compile Include="Assets\CityView\CityGenerator1.5\Scripts\BuildBuildingLowPoly.cs" />
+     <Compile Include="Assets\CityView\CityGenerator1.5\Scripts\BuildPark.cs" />
+     <Compile Include="Assets\CityView\CityGenerator1.5\Scripts\BuildParking.cs" />
+     <Compile Include="Assets\CityView\CityGenerator1.5\Scripts\BuildRoadScheme.cs" />
+     <Compile Include="Assets\CityView\CityGenerator1.5\Scripts\BuildingGenerator.cs" />
+     <Compile Include="Assets\CityView\CityGenerator1.5\Scripts\BuildingGeneratorCustom.cs" />
+     <Compile Include="Assets\CityView\CityGenerator1.5\Scripts\BuildingGeneratorHighPoly.cs" />
+     <Compile Include="Assets\CityView\CityGenerator1.5\Scripts\BuildingGeneratorLowPoly.cs" />
+     <Compile Include="Assets\CityView\CityGenerator1.5\Scripts\CityGenerator.cs" />
+     <Compile Include="Assets\CityView\CityGenerator1.5\Scripts\CityGeneratorCustom.cs" />
+     <Compile Include="Assets\CityView\CityGenerator1.5\Scripts\CityGeneratorHighPoly.cs" />
+     <Compile Include="Assets\CityView\CityGenerator1.5\Scripts\CityGeneratorLowPoly.cs" />
+     <Compile Include="Assets\CityView\CityGenerator1.5\Scripts\CityTexture.cs" />
+     <Compile Include="Assets\CityView\CityGenerator1.5\Scripts\DestroyAtStart.cs" />
+     <Compile Include="Assets\CityView\CityGenerator1.5\Scripts\ExtendedFlycam.cs" />
+     <Compile Include="Assets\CityView\CityGenerator1.5\Scripts\FacadeGenerator.cs" />
+     <Compile Include="Assets\CityView\CityGenerator1.5\Scripts\FacadeGeneratorHighPoly.cs" />
+     <Compile Include="Assets\CityView\CityGenerator1.5\Scripts\FacadeGeneratorMain.cs" />
+     <Compile Include="Assets\CityView\CityGenerator1.5\Scripts\FacadeGeneratorMainHighPoly.cs" />
+     <Compile Include="Assets\CityView\CityGenerator1.5\Scripts\GenerateButton.cs" />
+     <Compile Include="Assets\CityView\CityGenerator1.5\Scripts\ParkGenerator.cs" />
+     <Compile Include="Assets\CityView\CityGenerator1.5\Scripts\RoofGenerator.cs" />
+     <Compile Include="Assets\CityView\CityGenerator1.5\Scripts\SelectionButtons.cs" />
+     <Compile Include="Assets\CityView\CityGenerator1.5\Scripts\SelectionButtonsCustom.cs" />
+     <Compile Include="Assets\CityView\CityGenerator1.5\Scripts\SelectionButtonsHighPoly.cs" />
+     <Compile Include="Assets\CityView\CityGenerator1.5\Scripts\SelectionButtonsLowPoly.cs" />
+     <Compile Include="Assets\CityView\CityGenerator1.5\Scripts\trigger.cs" />
      <Compile Include="Assets\GUI\GUIScripts\ButtonstyleGUI_CS.cs" />
      <Compile Include="Assets\Neighbourhood-Scene\BuildingPlacement\Scripts\BuildManager.cs" />
      <Compile Include="Assets\Neighbourhood-Scene\BuildingPlacement\Scripts\BuildingCollision.cs" />
@@ -63,6 +93,7 @@
      <Compile Include="Assets\OfficeView\TrophyManager.cs" />
      <Compile Include="Assets\WorldView\Scripts\WorldCameraManager.cs" />
      <Compile Include="Assets\WorldView\Scripts\WorldCityManager.cs" />
+     <Compile Include="Assets\WorldView\Scripts\WorldData.cs" />
      <Compile Include="Assets\WorldView\Scripts\WorldUIManager.cs" />
      <None Include="Assets\Neighbourhood-Scene\Model-Tests\RoadTool\Example\Texture\Texture Credits.txt" />
      <None Include="Assets\Neighbourhood-Scene\Model-Tests\serpertine city\serpentine city.fbx.txt" />
@@ -72,7 +103,7 @@
      <None Include="Assets\WorldView\PlanetEarthShader\Earth.shader" />
      <None Include="Assets\OfficeView\archibase.net.txt" />
      <None Include="Assets\Neighbourhood-Scene\BuildingPlacement\Setup Guide.txt" />
- <Reference Include="Library\ScriptAssemblies\Assembly-UnityScript-firstpass">
+ <Reference Include="Assembly-UnityScript-firstpass">
  <HintPath>Library\ScriptAssemblies\Assembly-UnityScript-firstpass.dll</HintPath>
  </Reference>
   </ItemGroup>
