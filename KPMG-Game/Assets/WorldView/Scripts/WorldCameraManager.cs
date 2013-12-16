@@ -35,15 +35,34 @@ public class WorldCameraManager : MonoBehaviour {
 		}
 		
 		// Zoom in or out on Earth
-		float newCamPos = camera.transform.position.z - Input.GetAxis("Mouse ScrollWheel");
+		float newCamPos = camera.transform.position.z + Input.GetAxis("Mouse ScrollWheel");
 		if (newCamPos < -3f)
 			newCamPos = -3f;
 		else if (newCamPos > -2f)
 			newCamPos = -2f;
 		camera.transform.position = new Vector3(0f, 0f, newCamPos);
 			
-			
 		
+		GameObject test = GameObject.FindGameObjectWithTag("CoordCity");
+		if (test != null) {
+			Vector3 euler = test.transform.localEulerAngles;
+			Vector3 change = Vector3.zero;
+			if (Input.GetKey(KeyCode.RightArrow)) {
+				change.y = -0.2f;
+			}
+			if (Input.GetKey(KeyCode.LeftArrow)) {
+				change.y = 0.2f;
+			}		
+			if (Input.GetKey(KeyCode.UpArrow)) {
+				change.x = 0.2f;
+			}
+			if (Input.GetKey(KeyCode.DownArrow)) {
+				change.x = -0.2f;
+			}
+			test.transform.localEulerAngles = new Vector3(euler.x + change.x,
+														  euler.y + change.y,
+														  euler.z + change.z);
+	  }		
 	}
 
 	Vector3 getTouchedPoint()
