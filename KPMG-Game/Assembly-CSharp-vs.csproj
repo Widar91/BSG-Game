@@ -80,6 +80,7 @@
      <Compile Include="Assets\CityView\Scripts\OnDistrictHovering.cs" />
      <Compile Include="Assets\GUI\GUIScripts\ButtonstyleGUI_CS.cs" />
      <Compile Include="Assets\GUI\GUIScripts\EnvironmentGUI_CS.cs" />
+     <Compile Include="Assets\MiniGames\MultiplayerChallenge\QuestionsScript.cs" />
      <Compile Include="Assets\Neighbourhood-Scene\Scripts\Buildings\BuildingHoveringHighlight.cs" />
      <Compile Include="Assets\Neighbourhood-Scene\Scripts\Buildings\Topic Buildings\DynamicBuildingHeight.cs" />
      <Compile Include="Assets\Neighbourhood-Scene\Scripts\MainCamera\BuildingCollisionDispatcher.cs" />

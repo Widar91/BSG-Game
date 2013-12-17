@@ -19,5 +19,7 @@ public class ButtonstyleGUI_CS : MonoBehaviour {
 		GUI.skin.toggle.onActive.background = norm;
 		GUI.skin.toggle.onHover.background = hov;
 		GUI.skin.toggle.onNormal.background = norm;
+
+		GUI.skin.button.fontSize = 25;
 	}
 }

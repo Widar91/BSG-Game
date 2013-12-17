@@ -1,8 +1,11 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/GUI/GUIScripts/EnvironmentGUI_CS.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/MiniGames/MultiplayerChallenge/QuestionsScript.cs">
     <Files>
       <File FileName="Assets/GUI/GUIScripts/EnvironmentGUI_CS.cs" Line="73" Column="1" />
+      <File FileName="Assets/OfficeView/Leaderboard/Leaderboard.cs" Line="46" Column="1" />
+      <File FileName="Assets/MiniGames/MultiplayerChallenge/QuestionsScript.cs" Line="21" Column="27" />
+      <File FileName="Assets/GUI/GUIScripts/ButtonstyleGUI_CS.cs" Line="23" Column="32" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
