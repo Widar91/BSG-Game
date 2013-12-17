@@ -27,6 +27,8 @@
                 <property name="c3p0.timeout">3605</property> <!-- seconds -->
                 <property name="hibernate.c3p0.preferredTestQuery">select 1;</property>
                 <mapping class="nl.tudelft.bsg.kpmgcities.model.Player"/>
+                <mapping class="nl.tudelft.bsg.kpmgcities.model.ChallengeQuestion"/>
+                <mapping class="nl.tudelft.bsg.kpmgcities.model.ChallengeAnswer"/>
                 
         </session-factory>
 </hibernate-configuration>

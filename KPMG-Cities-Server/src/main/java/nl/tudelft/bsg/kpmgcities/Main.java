@@ -72,7 +72,8 @@ public class Main {
 						+ "%sapplication.wadl\nHit enter to stop it...",
 				BASE_URI));
 		System.in.read();
-
+		
+		DBConnector.getInstance().close();
 		server.stop();
 	}
 }
