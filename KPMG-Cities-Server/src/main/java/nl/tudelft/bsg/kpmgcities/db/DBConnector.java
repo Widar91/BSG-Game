@@ -3,6 +3,7 @@ package nl.tudelft.bsg.kpmgcities.db;
 import java.io.Serializable;
 import java.util.List;
 
+import nl.tudelft.bsg.kpmgcities.model.ChallengeQuestion;
 import nl.tudelft.bsg.kpmgcities.model.Player;
 
 import org.hibernate.HibernateException;
@@ -63,8 +64,8 @@ public class DBConnector {
     }
     
     public void save(Serializable obj) {
-    	if(!session.isOpen())
-    		openSession();
+    	closeSession();
+    	Session session = openSession();
     	
     	Transaction transaction = null;
     	try {
@@ -78,8 +79,7 @@ public class DBConnector {
                     transaction.rollback();
     	}
     	finally {
-    		if(session != null && session.isOpen())
-    			session.close();
+    		session.close();
     	}
     }
     
@@ -94,6 +94,13 @@ public class DBConnector {
 	public List<Player> getPlayers() {
 		return getSession()
 				.createQuery("from Player")
+				.list();
+	}
+    
+    @SuppressWarnings("unchecked")
+	public List<ChallengeQuestion> getChallengeQuestions() {
+		return getSession()
+				.createQuery("from ChallengeQuestion")
 				.list();
 	}
     
