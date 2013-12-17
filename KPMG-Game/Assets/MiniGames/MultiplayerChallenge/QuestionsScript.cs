@@ -13,8 +13,9 @@ public class QuestionsScript : MonoBehaviour {
 
 	private bool [] answers;
 
-	void OnStart() {
+	void Start() {
 		answers = new bool[6];
+		print("Start: " + ServerConnector.getInstance().getNewChallengeQuestion());
 	}
 	
 	void OnGUI() {

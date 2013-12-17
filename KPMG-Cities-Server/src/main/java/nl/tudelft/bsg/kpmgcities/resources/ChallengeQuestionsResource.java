@@ -9,6 +9,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import com.mysql.jdbc.log.Log;
+
 import nl.tudelft.bsg.kpmgcities.db.DBConnector;
 import nl.tudelft.bsg.kpmgcities.model.ChallengeQuestion;
 
@@ -18,6 +20,7 @@ public class ChallengeQuestionsResource {
 	@GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<ChallengeQuestion> getChallengeQuestions() {
+			System.err.println("ChallengeQuestion request received");
 			return getRandomChallengeQuestions();
     }
 	
