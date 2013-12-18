@@ -73,6 +73,7 @@ public class WorldUIManager : MonoBehaviour {
 		if (searchResponse.Equals("")) {
 			int top = 75;
 			foreach (KeyValuePair<string, Vector3> entry in searchResults) {
+				//ButtonstyleGUI_CS.buttonstyle(null, null);
 				if (GUI.Button (new Rect(25, top, 200, 25), entry.Key)) {
 					earth.transform.localEulerAngles = entry.Value;
 				}

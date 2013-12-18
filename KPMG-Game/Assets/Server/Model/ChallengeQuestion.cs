@@ -3,9 +3,9 @@
 public class ChallengeQuestion {
 
 	private string question;
-	private List<string> answers;
+	private string[] answers;
 
-	public ChallengeQuestion (string question, List<string> answers) {
+	public ChallengeQuestion (string question, string[] answers) {
 		this.question = question;
 		this.answers = answers;
 	}
@@ -14,7 +14,7 @@ public class ChallengeQuestion {
 		return this.question;
 	}
 
-	public List<string> getAnswers() {
+	public string[] getAnswers() {
 		return this.answers;
 	}
 	

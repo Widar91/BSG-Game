@@ -30,19 +30,19 @@ public class ChallengeQuestionsResource {
 		ChallengeQuestion question;
 		List<ChallengeQuestion> rndQuestions = new ArrayList<ChallengeQuestion>();
 		List<ChallengeQuestion> challengeQuestions = DBConnector.getInstance().getChallengeQuestions();
-		
+		System.err.println("questions taken from db");
 		if(challengeQuestions.isEmpty()) 
 			return rndQuestions;
-		
+		System.err.println("questions not empty");
 		while(rndQuestions.size() < 5) {
-			
+
 			question = challengeQuestions.get(rnd.nextInt(challengeQuestions.size()));
-			
+			System.err.println("taken question");
 			if(!rndQuestions.contains(question))
 				rndQuestions.add(rndQuestions.size(), question);
 		}
 		
-		System.out.println(rndQuestions.toString());
+		System.err.println("questions"+rndQuestions.toString());
 		return rndQuestions;
 	}
 	
