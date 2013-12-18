@@ -4,7 +4,7 @@ using System.Collections;
 public class ButtonstyleGUI_CS : MonoBehaviour {
 
 	//Function for formatting button styles
-	public static void buttonstyle(Texture2D norm, Texture2D hov){
+	public static void buttonstyle(Texture2D norm, Texture2D hov) {
 		
 		GUI.skin.button.normal.background = norm;
 		GUI.skin.button.hover.background = hov;
@@ -20,6 +20,15 @@ public class ButtonstyleGUI_CS : MonoBehaviour {
 		GUI.skin.toggle.onHover.background = hov;
 		GUI.skin.toggle.onNormal.background = norm;
 
+		GUI.skin.button.fontSize = 12;
+
+	}
+
+	public static void ChallengeButtonStyle(Texture2D norm, Texture2D hov) {
+
+		buttonstyle(norm, hov);
+
 		GUI.skin.button.fontSize = 25;
+		
 	}
 }

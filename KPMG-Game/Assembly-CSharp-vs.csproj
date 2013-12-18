@@ -98,6 +98,7 @@
      <Compile Include="Assets\OfficeView\Scripts\Trophy.cs" />
      <Compile Include="Assets\OfficeView\Scripts\TrophyManager.cs" />
      <Compile Include="Assets\OfficeView\Scripts\Window.cs" />
+     <Compile Include="Assets\Server\JSONPlugin\SimpleJSON.cs" />
      <Compile Include="Assets\Server\Model\ChallengeQuestion.cs" />
      <Compile Include="Assets\Server\ServerConnector.cs" />
      <Compile Include="Assets\WorldView\Scripts\WorldCameraManager.cs" />
