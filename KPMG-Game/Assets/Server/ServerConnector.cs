@@ -22,9 +22,7 @@ public class ServerConnector {
 		KeyValuePair<string, bool>[] answers;
 		ChallengeQuestion[] questions;
 
-		//string url = "http://ec2-54-201-204-95.us-west-2.compute.amazonaws.com:8080/kpmgcities/challengequestions";
-		string url = "http://ec2-54-201-204-95.us-west-2.compute.amazonaws.com:8080/kpmgcities/application.wadl";
-		//string url = "http://localhost:8080/kpmgcities/challengequestions";
+		string url = "http://ec2-54-201-204-95.us-west-2.compute.amazonaws.com:8080/kpmgcities/challengequestions";
 		string jsonResponse = sendRequest(url);
 		JSONNode json = JSON.Parse(jsonResponse);
 		JSONArray jsonQuestionsArray = json.AsArray;
