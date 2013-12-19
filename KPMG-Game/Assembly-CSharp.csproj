@@ -94,6 +94,7 @@
      <Compile Include="Assets\OfficeView\Leaderboard\Leaderboard.cs" />
      <Compile Include="Assets\OfficeView\Scripts\CameraBehaviour.cs" />
      <Compile Include="Assets\OfficeView\Scripts\GUITextBehaviour.cs" />
+     <Compile Include="Assets\OfficeView\Scripts\MinigameStarter.cs" />
      <Compile Include="Assets\OfficeView\Scripts\OfficeObjectManager.cs" />
      <Compile Include="Assets\OfficeView\Scripts\OfficeSceneLoader.cs" />
      <Compile Include="Assets\OfficeView\Scripts\TicklesBehaviour.cs" />
