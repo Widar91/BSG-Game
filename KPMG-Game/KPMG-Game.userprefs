@@ -1,10 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/MiniGames/MultiplayerChallenge/QuestionsScript.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Server/ServerConnector.cs">
     <Files>
-      <File FileName="Assets/server/ServerConnector.cs" Line="51" Column="16" />
-      <File FileName="Assets/MiniGames/MultiplayerChallenge/QuestionsScript.cs" Line="24" Column="71" />
-      <File FileName="Assets/Server/Model/ChallengeQuestion.cs" Line="17" Column="9" />
+      <File FileName="Assets/Server/Model/ChallengeQuestion.cs" Line="17" Column="34" />
+      <File FileName="Assets/Server/ServerConnector.cs" Line="14" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

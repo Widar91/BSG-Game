@@ -3,9 +3,9 @@
 public class ChallengeQuestion {
 
 	private string question;
-	private string[] answers;
+	private KeyValuePair<string, bool>[] answers;
 
-	public ChallengeQuestion (string question, string[] answers) {
+	public ChallengeQuestion (string question, KeyValuePair<string, bool>[] answers) {
 		this.question = question;
 		this.answers = answers;
 	}
@@ -14,7 +14,7 @@ public class ChallengeQuestion {
 		return this.question;
 	}
 
-	public string[] getAnswers() {
+	public KeyValuePair<string, bool>[] getAnswers() {
 		return this.answers;
 	}
 	

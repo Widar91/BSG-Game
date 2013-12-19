@@ -15,6 +15,7 @@ public class ChallengeAnswer implements Serializable {
 	@GeneratedValue
 	private int id;
 	private String answer;
+	private boolean correct;
 
 	
 	
@@ -34,6 +35,14 @@ public class ChallengeAnswer implements Serializable {
 		this.answer = answer;
 	}
 	
+	public boolean isCorrect() {
+		return correct;
+	}
+
+	public void setCorrect(boolean correct) {
+		this.correct = correct;
+	}
+
 	@Override
 	public String toString() {
 		return "Answer [answer=" + answer + "]";

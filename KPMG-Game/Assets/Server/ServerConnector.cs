@@ -5,7 +5,7 @@ using System.IO;
 using System.Collections.Generic;
 using SimpleJSON;
 
-public class ServerConnector : MonoBehaviour{
+public class ServerConnector {
 
 	private static ServerConnector instance;
 
@@ -19,15 +19,16 @@ public class ServerConnector : MonoBehaviour{
 	public ChallengeQuestion[] getNewChallengeQuestions() {
 
 		string question;
-		string[] answers;
+		KeyValuePair<string, bool>[] answers;
 		ChallengeQuestion[] questions;
 
-
-		string url = "http://localhost:8080/kpmgcities/challengequestions";
+		//string url = "http://ec2-54-201-204-95.us-west-2.compute.amazonaws.com:8080/kpmgcities/challengequestions";
+		string url = "http://ec2-54-201-204-95.us-west-2.compute.amazonaws.com:8080/kpmgcities/application.wadl";
+		//string url = "http://localhost:8080/kpmgcities/challengequestions";
 		string jsonResponse = sendRequest(url);
 		JSONNode json = JSON.Parse(jsonResponse);
 		JSONArray jsonQuestionsArray = json.AsArray;
-		print ("JSON: " + jsonQuestionsArray.ToString());
+		Debug.Log ("JSON: " + jsonQuestionsArray.ToString());
 
 		int qcount = (int)jsonQuestionsArray.Count;
 		questions = new ChallengeQuestion[qcount];
@@ -36,13 +37,16 @@ public class ServerConnector : MonoBehaviour{
 		for(int i = 0; i < questions.Length; i++) {
 
 			question = jsonQuestionsArray[i]["question"].Value;
-			answers = new string[5];
+			answers = new KeyValuePair<string, bool>[5];
 
 			for(int j = 0; j < answers.Length; j++) {
-				if(jsonQuestionsArray[i]["answers"].Count > j)
-					answers[j] = jsonQuestionsArray[i]["answers"][j]["answer"].ToString();
+				if(jsonQuestionsArray[i]["answers"].Count > j) {
+					var ans = jsonQuestionsArray[i]["answers"][j]["answer"].ToString();
+					bool correct = jsonQuestionsArray[i]["answers"][j]["correct"].AsInt == 0? false : true;
+					answers[j] = new KeyValuePair<string, bool> (ans, correct);
+				}
 				else 
-					answers[j] = "N/A";
+					answers[j] = new KeyValuePair<string, bool> ("N/A", false);
 			}
 
 			questions[i] = new ChallengeQuestion(question, answers);
@@ -50,9 +54,9 @@ public class ServerConnector : MonoBehaviour{
 
 		//debug print
 		foreach(ChallengeQuestion cq in questions) {
-			print ("q: " + cq.getQuestion() + "\n");
-			foreach(string a in cq.getAnswers())
-				print ("\t" + a + "\n" );
+			Debug.Log  ("q: " + cq.getQuestion() + "\n");
+			foreach(KeyValuePair<string, bool> a in cq.getAnswers())
+				Debug.Log  ("\t" + a.Key + "\n" );
 		}
 
 
@@ -61,18 +65,22 @@ public class ServerConnector : MonoBehaviour{
 	}
 
 	private string sendRequest(string url) {
+
+		string result = "";
+		Debug.Log ("Callig method");
+
 		WebClient client = new WebClient ();
-		
-		//client.Headers.Add ("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.2; .NET CLR 1.0.3705;)");
-		//exceptions here?
 		Stream data = client.OpenRead (url);
 		StreamReader reader = new StreamReader (data);
-		string s = reader.ReadToEnd ();
-		//Console.WriteLine (s);
-		print ("data:" + s);
+
+		Debug.Log ("Before reading");
+		result = reader.ReadToEnd ();
+		Debug.Log("Server data: " + result);
+
 		data.Close ();
 		reader.Close ();
-		return s;
+
+		return result;
 	}
 
 }

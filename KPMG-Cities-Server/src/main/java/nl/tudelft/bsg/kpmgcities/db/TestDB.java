@@ -11,6 +11,8 @@ public class TestDB {
 	
 	public static void populateTestDB() {
 		if(DBConnector.getInstance().getPlayers().size() == 0) {
+			
+			//Create 2 mock players
 			Player pl = new Player();
 			pl.setName("Eddy");
 			pl.setOffice("Amsterdam");
@@ -24,39 +26,51 @@ public class TestDB {
 			DBConnector.getInstance().save(pl2);
 			
 			
+			//Create 10 mock answers
 			ChallengeAnswer a1 = new ChallengeAnswer();
 			a1.setAnswer("a1");
+			a1.setCorrect(true);
 			DBConnector.getInstance().save(a1);
 			ChallengeAnswer a2 = new ChallengeAnswer();
 			a2.setAnswer("a2");
+			a2.setCorrect(true);
 			DBConnector.getInstance().save(a2);
 			ChallengeAnswer a3 = new ChallengeAnswer();
 			a3.setAnswer("a3");
+			a3.setCorrect(true);
 			DBConnector.getInstance().save(a3);
 			ChallengeAnswer a4 = new ChallengeAnswer();
 			a4.setAnswer("a4");
+			a4.setCorrect(true);
 			DBConnector.getInstance().save(a4);
 			ChallengeAnswer a5 = new ChallengeAnswer();
 			a5.setAnswer("a5");
+			a5.setCorrect(true);
 			DBConnector.getInstance().save(a5);
 			ChallengeAnswer a6 = new ChallengeAnswer();
 			a6.setAnswer("a6");
+			a6.setCorrect(false);
 			DBConnector.getInstance().save(a6);
 			ChallengeAnswer a7 = new ChallengeAnswer();
 			a7.setAnswer("a7");
+			a7.setCorrect(false);
 			DBConnector.getInstance().save(a7);
 			ChallengeAnswer a8 = new ChallengeAnswer();
 			a8.setAnswer("a8");
+			a8.setCorrect(false);
 			DBConnector.getInstance().save(a8);
 			ChallengeAnswer a9 = new ChallengeAnswer();
 			a9.setAnswer("a9");
+			a9.setCorrect(false);
 			DBConnector.getInstance().save(a9);
 			ChallengeAnswer a10 = new ChallengeAnswer();
 			a10.setAnswer("a10");
+			a10.setCorrect(false);
 			DBConnector.getInstance().save(a10);
 			
 			List<ChallengeAnswer> ans = new ArrayList<ChallengeAnswer>(); 
 			
+			//create 8 questions (2 with answers)
 			ChallengeQuestion q1 = new ChallengeQuestion();
 			q1.setQuestion("wtf?");
 			ans.add(a1);
@@ -78,6 +92,7 @@ public class TestDB {
 			q2.setAnswers(ans);
 			DBConnector.getInstance().save(q2);
 			ans = new ArrayList<ChallengeAnswer>(); 
+			
 			ChallengeQuestion q3 = new ChallengeQuestion();
 			q3.setQuestion("wtf3?");
 			ans.add(a9);
