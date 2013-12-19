@@ -52,4 +52,11 @@ public class OnDistrictHovering : MonoBehaviour {
 			GUI.Label(position, name, hoveringMessageStyle);		
 		}
 	}
+	
+	void Update() {
+		
+		if(Input.GetMouseButtonDown(0))
+			Application.LoadLevel("Neighbourhood");
+		
+	}
 }
