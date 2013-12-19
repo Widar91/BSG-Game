@@ -1,15 +1,18 @@
 package nl.tudelft.bsg.kpmgcities;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 
 import javax.ws.rs.ext.ContextResolver;
 
 import nl.tudelft.bsg.kpmgcities.db.DBConnector;
 import nl.tudelft.bsg.kpmgcities.db.TestDB;
 
+import org.eclipse.persistence.sessions.server.Server;
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.moxy.json.MoxyJsonConfig;
@@ -20,9 +23,29 @@ import org.glassfish.jersey.server.ResourceConfig;
  * 
  */
 public class Main {
+	
+	public static final Properties Configuration = loadProperties();
+	
 	// Base URI the Grizzly HTTP server will listen on
-	public static final String BASE_URI = "http://localhost:8080/kpmgcities/";
+	public static final String BASE_URI = (String) Configuration.get("BASE_URI"); 
 
+
+	public static void main(String[] args) throws IOException {
+		final HttpServer server = startServer();
+
+		DBConnector.getInstance();
+		TestDB.populateTestDB();
+
+		System.out.println(String.format(
+				"Jersey app started with WADL available at "
+						+ "%sapplication.wadl\nHit enter to stop it...",
+				BASE_URI));
+		System.in.read();
+		
+		DBConnector.getInstance().close();
+		server.stop();
+	}
+	
 	/**
 	 * Starts Grizzly HTTP server exposing JAX-RS resources defined in this
 	 * application.
@@ -42,6 +65,7 @@ public class Main {
 		return GrizzlyHttpServerFactory.createHttpServer(URI.create(BASE_URI),
 				rc);
 	}
+	
 
 	public static ContextResolver<MoxyJsonConfig> createMoxyJsonResolver() {
 		final MoxyJsonConfig moxyJsonConfig = new MoxyJsonConfig();
@@ -54,26 +78,23 @@ public class Main {
 		
 		return moxyJsonConfig.resolver();
 	}
+	
+	
+    private static Properties loadProperties() {
+        Properties properties = new Properties();
 
-	/**
-	 * Main method.
-	 * 
-	 * @param args
-	 * @throws IOException
-	 */
-	public static void main(String[] args) throws IOException {
-		final HttpServer server = startServer();
-
-		DBConnector.getInstance();
-		TestDB.populateTestDB();
-
-		System.out.println(String.format(
-				"Jersey app started with WADL available at "
-						+ "%sapplication.wadl\nHit enter to stop it...",
-				BASE_URI));
-		System.in.read();
-		
-		DBConnector.getInstance().close();
-		server.stop();
-	}
+        try {
+                properties.load(new FileInputStream(System.getProperty("user.dir") + "/KPMG-Cities-Server.properties"));
+        
+                for(String key : properties.stringPropertyNames()) {
+                        String value = properties.getProperty(key);
+                }
+                
+        } catch (IOException e) {
+        	System.err.println("Loading properties: " + e);
+        }
+        
+        return properties;
+        
+}
 }
