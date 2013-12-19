@@ -44,7 +44,7 @@ public class WorldUIManager : MonoBehaviour {
 				//be adapted to distinguish between player's city
 				//or an external one.
 				if(Input.GetMouseButtonDown(0))
-					Application.LoadLevel("Neighbourhood");
+					Application.LoadLevel("CityView");
 			}
 		} else {
 			tooltip = "";
