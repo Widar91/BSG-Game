@@ -17,8 +17,6 @@ using System.Collections;
 [AddComponentMenu("Camera-Control/Mouse Look")]
 public class MouseLook : MonoBehaviour {
 
-	public int ZoomSpeed = 30;
-
 	public enum RotationAxes { MouseXAndY = 0, MouseX = 1, MouseY = 2 }
 	public RotationAxes axes = RotationAxes.MouseXAndY;
 	public float sensitivityX = 15F;
@@ -33,20 +31,7 @@ public class MouseLook : MonoBehaviour {
 	float rotationY = 0F;
 
 	void Update ()
-	{	
-
-		// Init camera translation for this frame.
-		var translation = Vector3.zero;
-		
-		// Zoom in or out
-		var zoomDelta = Input.GetAxis("Mouse ScrollWheel")*ZoomSpeed*Time.deltaTime;
-		if (zoomDelta!=0)
-		{
-			translation -= Vector3.up * ZoomSpeed * zoomDelta;
-			//if() check for collision with the ground
-				transform.position += translation;
-		}
-
+	{
 		if (axes == RotationAxes.MouseXAndY)
 		{
 			float rotationX = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * sensitivityX;
