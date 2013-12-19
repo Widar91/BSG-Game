@@ -1,28 +1,40 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class TrophyManager : MonoBehaviour {
 
-	public int trophiesPerRow = 14;
+	//public int trophiesPerRow = 14;
 	public float distanceBetweenTrophies = 2.7f;
-	public GameObject defaultModel;
-	Vector3 startngPosition;
+	//public GameObject defaultModel;
+	public Vector3 startingPosition;
+	public int showCount = 0;
 
-	public class OfficeTrophy
+
+	public class OfficeTrophy : Item
 	{
-		long type;
+		public OfficeTrophy(Vector3 position)
+			: base("TrophyCup", position, 0.01f)
+		{
+		}
 	}
 
 	
 	GUITextBehaviour gui;
-	GameObject lastTrophy = null;
+	OfficeObjectManager manager;
+	//GameObject lastTrophy = null;
 	
 	// Use this for initialization
 	void Start () {
 		GameObject ogo = GameObject.Find ("GUI Text");
 		gui = ogo.GetComponent<GUITextBehaviour> ();
 
-		lastTrophy = GameObject.Find ("TrophyCup");
+		GameObject deamon = GameObject.Find ("Deamon");
+		manager = deamon.GetComponent<OfficeObjectManager> ();
+
+		//lastTrophy = GameObject.Find ("TrophyCup");
+
+		this.displayTrophies (showCount);
 	}
 	
 	// Update is called once per frame
@@ -30,15 +42,28 @@ public class TrophyManager : MonoBehaviour {
 	
 	}
 
-	public void displayTrophies(OfficeTrophy[] trophies)
+	public void displayTrophies(IEnumerable<OfficeTrophy> trophies)
 	{
+		manager.LoadItems (trophies);
+	}
 
+	public void displayTrophies(int count)
+	{
+		Vector3 pos = startingPosition;
+		ICollection<OfficeTrophy> trophies = new List<OfficeTrophy>();
+		for (int i=0; i<count; i++) 
+		{
+			OfficeTrophy trophy = new OfficeTrophy(pos);
+			trophies.Add(trophy);
+			pos.x += distanceBetweenTrophies;
+		}
+		displayTrophies (trophies);
 	}
 
 	public void createAnother()
 	{
-		Vector3 newpos = lastTrophy.transform.position;
-		newpos.x += 0.27f;
-		lastTrophy = (GameObject) GameObject.Instantiate(lastTrophy, newpos, lastTrophy.transform.rotation);
+//		Vector3 newpos = lastTrophy.transform.position;
+//		newpos.x += 0.27f;
+//		lastTrophy = (GameObject) GameObject.Instantiate(lastTrophy, newpos, lastTrophy.transform.rotation);
 	}
 }
