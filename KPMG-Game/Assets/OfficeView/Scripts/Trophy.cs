@@ -22,7 +22,7 @@ public class Trophy : MonoBehaviour {
 
 	void OnMouseDown()
 	{
-		trophyManager.createAnother ();
+		//trophyManager.createAnother ();
 
 	}
 }
