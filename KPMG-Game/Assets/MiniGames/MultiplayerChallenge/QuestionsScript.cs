@@ -33,54 +33,55 @@ public class QuestionsScript : MonoBehaviour {
 	}
 	
 	void OnGUI() {
+		if (PreGUI.preFlag) {
 
-		if(questions == null) {
-			ButtonstyleGUI_CS.ChallengeButtonStyle(QuestionButton, QuestionButton_h);
-			GUI.Button( new Rect(Screen.width/2 - 250, 50, 500, 50), "Error: No connection to the server");
-		}
+						if (questions == null) {
+								ButtonstyleGUI_CS.ChallengeButtonStyle (QuestionButton, QuestionButton_h);
+								GUI.Button (new Rect (Screen.width / 2 - 250, 50, 500, 50), "Error: No connection to the server");
+						}
 
-		if(challengeEnded) 
-			return;
+						if (challengeEnded) 
+								return;
 
-		if(round == 5) {
+						if (round == 5) {
 
-			challengeEnded = true;
-			//end timer
+								challengeEnded = true;
+								//end timer
 
-			handleResults();
-		}
-
-
-		GUI.skin = ChallengeSkin;
-
-		//Question Button
-		ButtonstyleGUI_CS.ChallengeButtonStyle(QuestionButton, QuestionButton_h);
-		GUI.Button( new Rect(Screen.width/2 - 250, 50, 500, 50), questions[round].getQuestion());
-
-		KeyValuePair<string, bool>[] answers = questions[round].getAnswers();
-
-		//Answers Buttons
-		ButtonstyleGUI_CS.ChallengeButtonStyle(AnswerButton,AnswerButton);
-		if(GUI.Button( new Rect(Screen.width/2 - 250, 200, 500, 50), answers[0].Key ))
-			handleAnswer(answers[0].Value);
+								handleResults ();
+						}
 
 
-		if(GUI.Button( new Rect(Screen.width/2 - 250, 275, 500, 50), answers[1].Key ))
-			handleAnswer(answers[1].Value);
+						GUI.skin = ChallengeSkin;
+
+						//Question Button
+						ButtonstyleGUI_CS.ChallengeButtonStyle (QuestionButton, QuestionButton_h);
+						GUI.Button (new Rect (Screen.width / 2 - 250, 50, 500, 50), questions [round].getQuestion ());
+
+						KeyValuePair<string, bool>[] answers = questions [round].getAnswers ();
+
+						//Answers Buttons
+						ButtonstyleGUI_CS.ChallengeButtonStyle (AnswerButton, AnswerButton);
+						if (GUI.Button (new Rect (Screen.width / 2 - 250, 200, 500, 50), answers [0].Key))
+								handleAnswer (answers [0].Value);
 
 
-		if(GUI.Button( new Rect(Screen.width/2 - 250, 350, 500, 50), answers[2].Key ))
-			handleAnswer(answers[2].Value);
+						if (GUI.Button (new Rect (Screen.width / 2 - 250, 275, 500, 50), answers [1].Key))
+								handleAnswer (answers [1].Value);
 
 
-		if(GUI.Button( new Rect(Screen.width/2 - 250, 425, 500, 50), answers[3].Key ))
-			handleAnswer(answers[3].Value);
+						if (GUI.Button (new Rect (Screen.width / 2 - 250, 350, 500, 50), answers [2].Key))
+								handleAnswer (answers [2].Value);
 
 
-		if(GUI.Button( new Rect(Screen.width/2 - 250, 500, 500, 50), answers[4].Key ))
-			handleAnswer(answers[4].Value);
+						if (GUI.Button (new Rect (Screen.width / 2 - 250, 425, 500, 50), answers [3].Key))
+								handleAnswer (answers [3].Value);
 
 
+						if (GUI.Button (new Rect (Screen.width / 2 - 250, 500, 500, 50), answers [4].Key))
+								handleAnswer (answers [4].Value);
+
+				}
 	}
 
 	private void handleAnswer(bool answer) {
