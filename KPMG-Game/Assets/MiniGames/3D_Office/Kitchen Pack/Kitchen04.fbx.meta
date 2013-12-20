@@ -1,0 +1,106 @@
+fileFormatVersion: 2
+guid: c3d42a70deb4e4a408c466ff58d80ffa
+ModelImporter:
+  serializedVersion: 15
+  fileIDToRecycleName:
+    100000: Blue_Metal_
+    100002: Ceramic_hob
+    100004: Crystal
+    100006: //RootNode
+    100008: Metal_
+    100010: Microwave
+    100012: Oven
+    100014: White
+    100016: WhiteCrystal_
+    100018: Wood
+    400000: Blue_Metal_
+    400002: Ceramic_hob
+    400004: Crystal
+    400006: //RootNode
+    400008: Metal_
+    400010: Microwave
+    400012: Oven
+    400014: White
+    400016: WhiteCrystal_
+    400018: Wood
+    2300000: Blue_Metal_
+    2300002: Ceramic_hob
+    2300004: Crystal
+    2300006: Metal_
+    2300008: Microwave
+    2300010: Oven
+    2300012: White
+    2300014: WhiteCrystal_
+    2300016: Wood
+    3300000: Blue_Metal_
+    3300002: Ceramic_hob
+    3300004: Crystal
+    3300006: Metal_
+    3300008: Microwave
+    3300010: Oven
+    3300012: White
+    3300014: WhiteCrystal_
+    3300016: Wood
+    4300000: Ceramic_hob
+    4300002: Microwave
+    4300004: Oven
+    4300006: Crystal
+    4300008: White
+    4300010: Blue_Metal_
+    4300012: Metal_
+    4300014: WhiteCrystal_
+    4300016: Wood
+    7400000: Take 001
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  userData: 
