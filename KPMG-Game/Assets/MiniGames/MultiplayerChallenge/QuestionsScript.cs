@@ -42,15 +42,21 @@ public class QuestionsScript : MonoBehaviour {
 								GUI.Button (new Rect (Screen.width / 2 - 250, 50, 500, 50), "Error: No connection to the server");
 						}
 
-						if (challengeEnded) 
-								return;
+						if (challengeEnded) {
+								ButtonstyleGUI_CS.ChallengeButtonStyle (QuestionButton, QuestionButton_h);
+								GUI.Button (new Rect (Screen.width / 2 - 250, 50, 500, 50), "Correct answers: " + correctAnswers + " (" + challengeTime + " s)");
+								
+								ButtonstyleGUI_CS.ChallengeButtonStyle (QuestionButton, QuestionButton_h);
+								if(GUI.Button (new Rect (Screen.width / 2 - 250, 500, 500, 50), "Return to Office"))
+									Application.LoadLevel("Office");
 
-<<<<<<< HEAD
+					
+								return;
+						}
+
 						if (round == 5) {
-=======
-			challengeEnded = true;
-			challengeTime = Time.time - challengeTime;
->>>>>>> 733c01cb0889e07da4603897adce553fcfb4dcb8
+								challengeEnded = true;
+								challengeTime = Time.time - challengeTime;
 
 								challengeEnded = true;
 								//end timer
