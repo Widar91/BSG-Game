@@ -55,7 +55,7 @@ public class OnDistrictHovering : MonoBehaviour {
 	
 	void Update() {
 		
-		if(Input.GetMouseButtonDown(0))
+		if(Input.GetMouseButtonDown(0) && highlightBuilding)
 			Application.LoadLevel("Neighbourhood");
 		
 	}

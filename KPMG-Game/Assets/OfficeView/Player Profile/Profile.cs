@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System;
 using System.Collections;
-using UnityEditor;
+//using UnityEditor;
 
 public class myscore
 {
@@ -190,7 +190,7 @@ public class Profile : MonoBehaviour {
 
 		GUI.DrawTexture (new Rect (Screen.width * 0.1f, 20, 100, 100), avatar);
 		ButtonstyleGUI_CS.buttonstyle(browse,browse_h);
-		if(GUI.Button (new Rect (Screen.width * 0.1f, 120, 100, 30), "Change Avatar")){
+		/*if(GUI.Button (new Rect (Screen.width * 0.1f, 120, 100, 30), "Change Avatar")){
 			
 			Texture2D texture = avatar;
 			if (texture == null) {
@@ -209,7 +209,7 @@ public class Profile : MonoBehaviour {
 				www.LoadImageIntoTexture (texture);
 				
 			}
-		}
+		}*/
 		
 		//Titles
 		GUI.Label (new Rect (Screen.width*0.1f+180, 0, 100, 50),"Name : " + fname );
