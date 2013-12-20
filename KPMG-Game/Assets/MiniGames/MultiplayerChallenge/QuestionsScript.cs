@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections.Generic;
 
 public class QuestionsScript : MonoBehaviour {
@@ -13,6 +14,7 @@ public class QuestionsScript : MonoBehaviour {
 
 	private int round;
 	private int correctAnswers;
+	private float challengeTime;
 	private bool challengeEnded;
 
 	private ChallengeQuestion[] questions;
@@ -22,7 +24,7 @@ public class QuestionsScript : MonoBehaviour {
 		round = 0;
 		correctAnswers = 0;
 		challengeEnded = false;
-		//init timer
+		challengeTime = Time.time;
 
 		try {
 			questions = ServerConnector.getInstance().getNewChallengeQuestions();
@@ -45,7 +47,7 @@ public class QuestionsScript : MonoBehaviour {
 		if(round == 5) {
 
 			challengeEnded = true;
-			//end timer
+			challengeTime = Time.time - challengeTime;
 
 			handleResults();
 		}
@@ -93,7 +95,9 @@ public class QuestionsScript : MonoBehaviour {
 
 	private void handleResults() {
 
-
+		Debug.Log("Sending challenge results to the Server: " + correctAnswers.ToString());
+		Debug.Log("Sending challenge time to the Server: " + challengeTime);
+		//send to server answers + challenge time
 		
 	}
 

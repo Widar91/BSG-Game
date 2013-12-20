@@ -3,8 +3,8 @@ package nl.tudelft.bsg.kpmgcities.db;
 import java.io.Serializable;
 import java.util.List;
 
-import nl.tudelft.bsg.kpmgcities.model.ChallengeQuestion;
 import nl.tudelft.bsg.kpmgcities.model.Player;
+import nl.tudelft.bsg.kpmgcities.model.minigames.multiplayerchallenge.ChallengeQuestion;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
