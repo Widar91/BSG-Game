@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections;
-using UnityEditor;
 
 public class RTSGUIScript : MonoBehaviour {
 
@@ -57,9 +56,10 @@ public class RTSGUIScript : MonoBehaviour {
 
 	//Confirmation window called from BuildManager.
 	public static bool confirmPlacement () {
-		return EditorUtility.DisplayDialog ("Place Selection On Surface?",
-		                                   "Are you sure you want to place the building on the surface?", 
-		                                   "Place", 
-		                                   "Do Not Place");
+		return false;
+		//return EditorUtility.DisplayDialog ("Place Selection On Surface?",
+		 //                                  "Are you sure you want to place the building on the surface?", 
+		  //                                 "Place", 
+		    //                               "Do Not Place");
 	}
 }
