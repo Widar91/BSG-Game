@@ -190,7 +190,7 @@ public class Profile : MonoBehaviour {
 
 		GUI.DrawTexture (new Rect (Screen.width * 0.1f, 20, 100, 100), avatar);
 		ButtonstyleGUI_CS.buttonstyle(browse,browse_h);
-		if(GUI.Button (new Rect (Screen.width * 0.081f, 80, 150, 100), "Change Avatar")){
+		if(GUI.Button (new Rect (Screen.width * 0.1f, 120, 100, 30), "Change Avatar")){
 			
 			Texture2D texture = avatar;
 			if (texture == null) {
