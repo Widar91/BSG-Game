@@ -1,4 +1,4 @@
-package nl.tudelft.bsg.kpmgcities.model;
+package nl.tudelft.bsg.kpmgcities.model.minigames.multiplayerchallenge;
 
 import java.io.Serializable;
 import java.util.List;

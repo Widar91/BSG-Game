@@ -3,9 +3,9 @@ package nl.tudelft.bsg.kpmgcities.db;
 import java.util.ArrayList;
 import java.util.List;
 
-import nl.tudelft.bsg.kpmgcities.model.ChallengeAnswer;
-import nl.tudelft.bsg.kpmgcities.model.ChallengeQuestion;
 import nl.tudelft.bsg.kpmgcities.model.Player;
+import nl.tudelft.bsg.kpmgcities.model.minigames.multiplayerchallenge.ChallengeAnswer;
+import nl.tudelft.bsg.kpmgcities.model.minigames.multiplayerchallenge.ChallengeQuestion;
 
 public class TestDB {
 	
