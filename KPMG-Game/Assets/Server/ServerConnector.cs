@@ -54,7 +54,7 @@ public class ServerConnector {
 		foreach(ChallengeQuestion cq in questions) {
 			Debug.Log  ("q: " + cq.getQuestion() + "\n");
 			foreach(KeyValuePair<string, bool> a in cq.getAnswers())
-				Debug.Log  ("\t" + a.Key + "\n" );
+				Debug.Log  ("\t" + a.Key + ": " + a.Value + "\n" );
 		}
 
 
