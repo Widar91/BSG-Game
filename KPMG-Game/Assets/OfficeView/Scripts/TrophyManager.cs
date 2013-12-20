@@ -10,6 +10,9 @@ public class TrophyManager : MonoBehaviour {
 	public Vector3 startingPosition;
 	public int showCount = 0;
 
+	public GameObject deamon = null;
+	public GameObject devgui = null;
+
 
 	public class OfficeTrophy : Item
 	{
@@ -26,10 +29,10 @@ public class TrophyManager : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-		GameObject ogo = GameObject.Find ("GUI Text");
-		gui = ogo.GetComponent<GUITextBehaviour> ();
+		//GameObject ogo = GameObject.Find ("GUI Text");
+		gui = devgui.GetComponent<GUITextBehaviour> ();
 
-		GameObject deamon = GameObject.Find ("Deamon");
+		//GameObject deamon = GameObject.Find ("Deamon");
 		manager = deamon.GetComponent<OfficeObjectManager> ();
 
 		//lastTrophy = GameObject.Find ("TrophyCup");

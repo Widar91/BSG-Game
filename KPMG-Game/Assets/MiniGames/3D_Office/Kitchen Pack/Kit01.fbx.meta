@@ -1,0 +1,238 @@
+fileFormatVersion: 2
+guid: b6a511d77808bbf49a74545d68cd9ac4
+ModelImporter:
+  serializedVersion: 15
+  fileIDToRecycleName:
+    100000: Base
+    100002: Blade
+    100004: Blade 1
+    100006: Blade 2
+    100008: Blade 3
+    100010: Blade 4
+    100012: Blade 5
+    100014: Blade 6
+    100016: Bottle
+    100018: Bottle 1
+    100020: Bottle 2
+    100022: Bottle 3
+    100024: Bottle 4
+    100026: Bottle02
+    100028: Bottle03
+    100030: Bottle04
+    100032: Cap
+    100034: Cap 1
+    100036: Cap 2
+    100038: Cap 3
+    100040: Content
+    100042: Content 1
+    100044: Content 2
+    100046: Content 3
+    100048: Handle
+    100050: Handle 1
+    100052: Handle 2
+    100054: Handle 3
+    100056: Handle 4
+    100058: Handle 5
+    100060: Handle 6
+    100062: //RootNode
+    100064: Kitchen_Roll
+    100066: Knife01
+    100068: Knife02
+    100070: Knife03
+    100072: Knife04
+    100074: Knife05
+    100076: Knife06
+    100078: Knife07
+    100080: Knife_Support
+    100082: Roll
+    100084: Shelf
+    100086: Shelf 1
+    100088: Support
+    400000: Base
+    400002: Blade
+    400004: Blade 1
+    400006: Blade 2
+    400008: Blade 3
+    400010: Blade 4
+    400012: Blade 5
+    400014: Blade 6
+    400016: Bottle
+    400018: Bottle 1
+    400020: Bottle 2
+    400022: Bottle 3
+    400024: Bottle 4
+    400026: Bottle02
+    400028: Bottle03
+    400030: Bottle04
+    400032: Cap
+    400034: Cap 1
+    400036: Cap 2
+    400038: Cap 3
+    400040: Content
+    400042: Content 1
+    400044: Content 2
+    400046: Content 3
+    400048: Handle
+    400050: Handle 1
+    400052: Handle 2
+    400054: Handle 3
+    400056: Handle 4
+    400058: Handle 5
+    400060: Handle 6
+    400062: //RootNode
+    400064: Kitchen_Roll
+    400066: Knife01
+    400068: Knife02
+    400070: Knife03
+    400072: Knife04
+    400074: Knife05
+    400076: Knife06
+    400078: Knife07
+    400080: Knife_Support
+    400082: Roll
+    400084: Shelf
+    400086: Shelf 1
+    400088: Support
+    2300000: Base
+    2300002: Blade
+    2300004: Blade 1
+    2300006: Blade 2
+    2300008: Blade 3
+    2300010: Blade 4
+    2300012: Blade 5
+    2300014: Blade 6
+    2300016: Bottle 1
+    2300018: Bottle 2
+    2300020: Bottle 3
+    2300022: Bottle 4
+    2300024: Cap
+    2300026: Cap 1
+    2300028: Cap 2
+    2300030: Cap 3
+    2300032: Content
+    2300034: Content 1
+    2300036: Content 2
+    2300038: Content 3
+    2300040: Handle
+    2300042: Handle 1
+    2300044: Handle 2
+    2300046: Handle 3
+    2300048: Handle 4
+    2300050: Handle 5
+    2300052: Handle 6
+    2300054: Roll
+    2300056: Shelf 1
+    2300058: Support
+    3300000: Base
+    3300002: Blade
+    3300004: Blade 1
+    3300006: Blade 2
+    3300008: Blade 3
+    3300010: Blade 4
+    3300012: Blade 5
+    3300014: Blade 6
+    3300016: Bottle 1
+    3300018: Bottle 2
+    3300020: Bottle 3
+    3300022: Bottle 4
+    3300024: Cap
+    3300026: Cap 1
+    3300028: Cap 2
+    3300030: Cap 3
+    3300032: Content
+    3300034: Content 1
+    3300036: Content 2
+    3300038: Content 3
+    3300040: Handle
+    3300042: Handle 1
+    3300044: Handle 2
+    3300046: Handle 3
+    3300048: Handle 4
+    3300050: Handle 5
+    3300052: Handle 6
+    3300054: Roll
+    3300056: Shelf 1
+    3300058: Support
+    4300000: Roll
+    4300002: Support
+    4300004: Bottle
+    4300006: Content
+    4300008: Cap
+    4300010: Bottle
+    4300012: Content
+    4300014: Cap
+    4300016: Bottle
+    4300018: Content
+    4300020: Cap
+    4300022: Bottle
+    4300024: Content
+    4300026: Cap
+    4300028: Shelf
+    4300030: Handle
+    4300032: Blade
+    4300034: Handle
+    4300036: Blade
+    4300038: Handle
+    4300040: Blade
+    4300042: Handle
+    4300044: Blade
+    4300046: Handle
+    4300048: Blade
+    4300050: Handle
+    4300052: Blade
+    4300054: Handle
+    4300056: Blade
+    4300058: Base
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  userData: 
