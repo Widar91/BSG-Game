@@ -1,8 +1,9 @@
-*.sln
-*.userprefs
-*.csproj
-*.pidb
-*.unityproj
+KPMG-Game/*.sln
+KPMG-Game/*.user
+KPMG-Game/*.csproj
+KPMG-Game/*.pidb
+KPMG-Game/*.unityproj
+KPMG-Game/*.suo
 .DS_Store
 KPMG-Game/Library/FailedAssetImports.txt
 KPMG-Game/Library/cache/
