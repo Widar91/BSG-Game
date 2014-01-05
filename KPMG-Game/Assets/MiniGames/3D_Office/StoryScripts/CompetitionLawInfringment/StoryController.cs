@@ -7,6 +7,7 @@ public class StoryController : MonoBehaviour {
 	// Character variables
 	private GameObject player;
 	private PlayerController playerController;
+	private bool playerLocked;
 
 	private GameObject pierre;
 	private PierreController pierreController;
@@ -15,9 +16,7 @@ public class StoryController : MonoBehaviour {
 	private SteveController steveController;
 
 	// Story tracking variables
-	private List<Action> story;
 	private string objective;
-	private int currentAction;
 
 	// Question variables
 	private bool questionAsked = false;
@@ -25,11 +24,19 @@ public class StoryController : MonoBehaviour {
 	private List<string> qAnswers;
 	private List<Action> qCallbacks;
 
+	// Message variables
+	private bool messageAsked = false;
+	private string mMessage;
+	private Action mCallback;
+
 	// Use this for initialization
 	void Start () {
 
+		// set the current objetice to nothing
 		objective = "";
+		playerLocked = false;
 
+		// get all character controllers
 		player = GameObject.FindGameObjectWithTag("Player");
 		playerController = player.GetComponent<PlayerController> ();
 
@@ -39,22 +46,9 @@ public class StoryController : MonoBehaviour {
 		steve = GameObject.Find ("Steve");
 		steveController = steve.GetComponent<SteveController> ();
 
-		currentAction = -1;
+		// start first action
+		GoToAction ("player", 0);
 
-		// Story
-		story = new List<Action> () {
-			new Action("pierre", 1),
-			new Action("pierre", 2),
-			new Action("pierre", 3),
-			new Action("pierre", 4),
-			new Action("pierre", 5),
-			new Action("player", 1),
-			new Action("player", 2),
-			new Action("steve",  1),
-			new Action("steve",  2)
-		};
-
-		ActionReady ("", 1);
 
 	}
 
@@ -65,12 +59,16 @@ public class StoryController : MonoBehaviour {
 
 		// shows question
 		if (questionAsked)
-			GUI.Window (0, new Rect (Screen.width/2-150, 100, Screen.width - 360, Screen.height - 250), leaderWindow, "Question");
+			GUI.Window (0, new Rect (Screen.width/2-150, 100, Screen.width - 360, Screen.height - 250), questionWindow, "Question");
+
+		// shows message
+		if (messageAsked)
+			GUI.Window (0, new Rect (Screen.width/2-150, 100, Screen.width - 360, Screen.height - 250), messageWindow, "Message");
 		
 	}
 
 	//GUI Window Questions
-	void leaderWindow (int windowID) {
+	void questionWindow (int windowID) {
 
 			GUI.BeginGroup (new Rect (10, 50, Screen.width - 360, Screen.height - 250), "");
 	
@@ -79,40 +77,73 @@ public class StoryController : MonoBehaviour {
 			int top = 40;
 
 			//Content
-			for (int i=0; i<qAnswers.Count; i++) {
-		
-				if (GUI.Button(new Rect(10, top, 300, 25), qAnswers[i])) {
-					GoToAction(qCallbacks[i]);
-					questionAsked = false;
-					qQuestion = "";
-					qAnswers = null;	
-					qCallbacks= null;
+			if (qAnswers != null) {
+				for (int i=0; i<qAnswers.Count; i++) {
+			
+					if (GUI.Button(new Rect(10, top, 300, 25), qAnswers[i])) {
+						GoToAction(qCallbacks[i]);
+						questionAsked = false;
+						qQuestion = "";
+						qAnswers = null;	
+						qCallbacks= null;
+					}
+					
+					top+= 30;
+				}
 			}
-				
-				top+= 30;
+	}
+
+	//GUI Window Message
+	void messageWindow (int windowID) {
 		
-			}
+		GUI.BeginGroup (new Rect (10, 50, Screen.width - 360, Screen.height - 250), "");
+		
+		//Titles
+		GUI.Label (new Rect (0, 60, 500, 50), mMessage);
+			
+		if (GUI.Button(new Rect(10, 40, 300, 25), "Close Message")) {
+			GoToAction(mCallback);
+			messageAsked = false;
+			mMessage = "";
+			mCallback = null;
+		}
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
-			
+
+		if (messageAsked || questionAsked || playerLocked)
+			playerController.LockMovementAndMouse (true);
+		else
+			playerController.LockMovementAndMouse (false);
+		
 	}
 
-	public void ActionReady(string controller, int action) {
-		currentAction++;
-		if (currentAction < story.Count)
-			GoToAction (story[currentAction]);
+	public void LockPlayerMovement(bool doLock) {
+		playerLocked = doLock;	
 	}
 
-	private void GoToAction(Action action) {
+	public void GoToAction(Action action, float delay) {
 
 		switch (action.person) {
-			case "player": playerController.GoToAction(action.action); break;
-			case "pierre": pierreController.GoToAction(action.action); break;
-			case "steve":  steveController.GoToAction(action.action); break;
+			case "player": playerController.GoToAction(action.action, delay); break;
+			case "pierre": pierreController.GoToAction(action.action, delay); break;
+			case "steve":  steveController.GoToAction(action.action, delay); break;
 		}
 
+	}
+
+	public void GoToAction(Action action) {
+		GoToAction (action, 0f);
+	}
+	
+	public void GoToAction(string person, int action, float delay) {
+		GoToAction(new Action (person, action), delay);
+	}
+
+	public void GoToAction(string person, int action) {
+		GoToAction(new Action (person, action), 0f);
 	}
 	
 	public void setObjective(string obj) {
@@ -122,18 +153,20 @@ public class StoryController : MonoBehaviour {
 	public void askQuestion(string question, List<string> answers, List<Action> callbacks) {
 
 		if (answers.Count == callbacks.Count) {
-
-				qQuestion = question;
-				qAnswers = answers;
-				qCallbacks = callbacks;
-				questionAsked = true;
-
+			qQuestion = question;
+			qAnswers = answers;
+			qCallbacks = callbacks;
+			questionAsked = true;
 		}
 
 	}
 
-	public void toggleCameraPosition() {
-		//TODO
+	public void showMessage(string message, Action callback) {
+
+			mMessage = message;
+			mCallback = callback;
+			messageAsked = true;
+		
 	}
 
 }
