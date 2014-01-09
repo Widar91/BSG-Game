@@ -29,7 +29,13 @@ public class login_GUI : MonoBehaviour {
 		if (GUI.Button (new Rect (130, 120, 70, 23), "Login") || Input.GetKeyDown (KeyCode.Return)) {
 			//Do Something
 			print("Logging in");
-				}
+			if (ServerConnector.getInstance().Login(uname, upass)){
+				Application.LoadLevel("OfficeView");
+			}
+			else {
+				UnityEditor.EditorUtility.DisplayDialog("Login failed", "The user does not exit", "OK", "Cancel");
+			}
+		}
 
 		GUI.EndGroup ();
 		}

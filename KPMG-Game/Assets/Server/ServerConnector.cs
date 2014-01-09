@@ -18,13 +18,20 @@ public class ServerConnector {
 		return instance;
 	}
 
-	private string playerName = "Eddy"; 
+	private string playerName; 
 	private string loginname;
 	private string loginpass;
 
 
 	public bool Login(string name, string pass) {
-		throw new NotImplementedException ("Login");
+		string url = makeURL("/player/" + playerName);
+		string jsonResponse = sendRequest(url);
+		if (jsonResponse == "")
+			return false;
+		JSONNode json = JSON.Parse(jsonResponse);
+		playerName = json ["name"].Value;
+		Debug.Log (playerName);
+		return true;
 	}
 
 	public int getOffice3DScore() {
