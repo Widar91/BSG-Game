@@ -3,7 +3,10 @@ package nl.tudelft.bsg.kpmgcities.db;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.Hibernate;
+
 import nl.tudelft.bsg.kpmgcities.model.Player;
+import nl.tudelft.bsg.kpmgcities.model.SceneObj;
 import nl.tudelft.bsg.kpmgcities.model.minigames.multiplayerchallenge.ChallengeAnswer;
 import nl.tudelft.bsg.kpmgcities.model.minigames.multiplayerchallenge.ChallengeQuestion;
 
@@ -12,20 +15,59 @@ public class TestDB {
 	public static void populateTestDB() {
 		if(DBConnector.getInstance().getPlayers().size() == 0) {
 			
+			//Mock 2 scene objects
+			SceneObj o1 = new SceneObj();
+			o1.setName("o1");
+			o1.setPosx(0);
+			o1.setPosy(0);
+			o1.setPosz(0);
+			o1.setRotx(0);
+			o1.setRoty(0);
+			o1.setRotz(0);
+			o1.setSclx(1);
+			o1.setScly(1);
+			o1.setSclz(1);
+			DBConnector.getInstance().save(o1);
+			
+			SceneObj o2 = new SceneObj();
+			o2.setName("o2");
+			o2.setPosx(1);
+			o2.setPosy(1);
+			o2.setPosz(1);
+			o2.setRotx(1);
+			o2.setRoty(1);
+			o2.setRotz(1);
+			o2.setSclx(10);
+			o2.setScly(10);
+			o2.setSclz(10);
+			DBConnector.getInstance().save(o2);
+			
+			
 			//Create 2 mock players
+			List<SceneObj> l= new ArrayList<SceneObj>();
+			l.add(o1);
+			l.add(o2);
+			
 			Player pl = new Player();
 			pl.setName("Eddy");
 			pl.setOffice("Amsterdam");
 			pl.setDepartment("IT");
 			pl.setOffice3DScore(90);
+			pl.setSceneObjs(l);
 			DBConnector.getInstance().save(pl);
 			
 			Player pl2 = new Player();
 			pl2.setName("Rambo");
 			pl2.setOffice("Amsterdam");
 			pl2.setDepartment("IT");
-			pl.setOffice3DScore(10);
+			pl2.setOffice3DScore(10);
+			pl2.setSceneObjs(new ArrayList<SceneObj>());
 			DBConnector.getInstance().save(pl2);
+			
+			
+			
+			
+			
 			
 			
 			//Create 10 mock answers

@@ -1,4 +1,4 @@
-package nl.tudelft.bsg.kpmgcities.resources;
+package nl.tudelft.bsg.kpmgcities.resources.minigames.multiplayerchallenge;
 
 import java.util.ArrayList;
 import java.util.List;
