@@ -27,13 +27,11 @@ public class login_GUI : MonoBehaviour {
 		upass = GUI.PasswordField (new Rect (90, 70, 200, 22), upass, "*"[0], 25);
 
 		if (GUI.Button (new Rect (130, 120, 70, 23), "Login") || Input.GetKeyDown (KeyCode.Return)) {
-			//Do Something
-			print("Logging in");
 			if (ServerConnector.getInstance().Login(uname, upass)){
-				Application.LoadLevel("OfficeView");
+				Application.LoadLevel("Office");
 			}
 			else {
-				UnityEditor.EditorUtility.DisplayDialog("Login failed", "The user does not exit", "OK", "Cancel");
+				UnityEditor.EditorUtility.DisplayDialog("Login failed", "The user does not exit", "OK", null);
 			}
 		}
 
