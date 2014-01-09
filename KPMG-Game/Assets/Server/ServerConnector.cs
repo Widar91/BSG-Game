@@ -22,25 +22,29 @@ public class ServerConnector {
 	private string loginname;
 	private string loginpass;
 
+	private ServerConnector () {
+		this.playerName = "Eddy";
+	}
+
 
 	public bool Login(string name, string pass) {
-		string url = makeURL("/player/" + playerName);
+		string url = createURL("/player/" + name);
 		string jsonResponse = sendRequest(url);
+
 		if (jsonResponse == "")
 			return false;
+
 		JSONNode json = JSON.Parse(jsonResponse);
 		playerName = json ["name"].Value;
-		Debug.Log (playerName);
 		return true;
 	}
 
 	public int getOffice3DScore() {
 	
-		string url = makeURL("/player/" + playerName);
-		Debug.Log(url);
+		string url = createURL("/player/" + playerName);
 		string jsonResponse = sendRequest(url);
 		JSONNode json = JSON.Parse(jsonResponse);
-		Debug.Log("returning" + json["office3DScore"].AsInt);
+
 		return json["office3DScore"].AsInt;
 
 	}
@@ -82,7 +86,7 @@ public class ServerConnector {
 		KeyValuePair<string, bool>[] answers;
 		ChallengeQuestion[] questions;
 
-		string url = "http://ec2-54-201-204-95.us-west-2.compute.amazonaws.com:8080/kpmgcities/challengequestions";
+		string url = createURL("/challengequestions");
 		string jsonResponse = sendRequest(url);
 		JSONNode json = JSON.Parse(jsonResponse);
 		JSONArray jsonQuestionsArray = json.AsArray;
@@ -141,7 +145,7 @@ public class ServerConnector {
 		return result;
 	}
 
-	private string makeURL(string url) {
+	private string createURL(string url) {
 		if (url.StartsWith ("/"))
 			return BASE_URL + url;
 		else
