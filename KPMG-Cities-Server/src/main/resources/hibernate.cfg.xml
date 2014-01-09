@@ -27,6 +27,9 @@
                 <property name="c3p0.timeout">3605</property> <!-- seconds -->
                 <property name="hibernate.c3p0.preferredTestQuery">select 1;</property>
                 <mapping class="nl.tudelft.bsg.kpmgcities.model.Player"/>
+                <mapping class="nl.tudelft.bsg.kpmgcities.model.SceneObj"/>
+                <mapping class="nl.tudelft.bsg.kpmgcities.model.Achievement"/>
+                <mapping class="nl.tudelft.bsg.kpmgcities.model.Trophy"/>
                 <mapping class="nl.tudelft.bsg.kpmgcities.model.minigames.multiplayerchallenge.ChallengeQuestion"/>
                 <mapping class="nl.tudelft.bsg.kpmgcities.model.minigames.multiplayerchallenge.ChallengeAnswer"/>
                 

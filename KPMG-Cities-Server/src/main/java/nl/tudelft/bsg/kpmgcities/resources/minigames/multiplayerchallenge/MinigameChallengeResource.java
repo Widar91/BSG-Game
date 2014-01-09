@@ -1,4 +1,4 @@
-package nl.tudelft.bsg.kpmgcities.resources;
+package nl.tudelft.bsg.kpmgcities.resources.minigames.multiplayerchallenge;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
