@@ -18,4 +18,5 @@ public class PlayerResource {
     public Player getPlayer(@PathParam("username") String username) {
         return DBConnector.getInstance().getPlayer(username, "");
     }
+    
 }
