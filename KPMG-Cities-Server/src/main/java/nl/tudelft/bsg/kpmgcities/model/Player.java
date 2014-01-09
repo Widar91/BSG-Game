@@ -14,7 +14,7 @@ public class Player implements Serializable {
 	@Id
 	@GeneratedValue
 	int id;
-	int [] scores;
+	int office3DScore;
 	String name;
 	String office;
 	String department;
@@ -28,11 +28,11 @@ public class Player implements Serializable {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int[] getScores() {
-		return scores;
+	public int getOffice3DScore() {
+		return office3DScore;
 	}
-	public void setScores(int[] scores) {
-		this.scores = scores;
+	public void setOffice3DScore(int office3DScore) {
+		this.office3DScore = office3DScore;
 	}
 	public String getName() {
 		return name;

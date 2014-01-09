@@ -7,13 +7,66 @@ using SimpleJSON;
 
 public class ServerConnector {
 
-	private static ServerConnector instance;
+	private static string BASE_URL = "http://localhost:8080/kpmgcities";
+	//private static string BASE_URL = "http://ec2-54-201-204-95.us-west-2.compute.amazonaws.com:8080";
 
+	private static ServerConnector instance;
 	public static ServerConnector getInstance() {
 		if(instance == null)
 			instance = new ServerConnector();
 
 		return instance;
+	}
+
+	private string playerName = "Eddy"; 
+	private string loginname;
+	private string loginpass;
+
+
+	public bool Login(string name, string pass) {
+		throw new NotImplementedException ("Login");
+	}
+
+	public int getOffice3DScore() {
+	
+		string url = makeURL("/player/" + playerName);
+		Debug.Log(url);
+		string jsonResponse = sendRequest(url);
+		JSONNode json = JSON.Parse(jsonResponse);
+		Debug.Log("returning" + json["office3DScore"].AsInt);
+		return json["office3DScore"].AsInt;
+
+	}
+
+	public bool RemoveOfficeObject(long id) {
+		throw new NotImplementedException ("Remove office object");
+	}
+
+	public bool RemoveNeighbourhoodObject(long id) {
+		throw new NotImplementedException ("Remove neighbourhood object");
+	}
+
+	// public [objects] AddOfficeObject(Item item)
+	//{
+	//}
+	// public [objects] AddNeighbourhoodObject(Item item)
+	//{
+	//}
+
+	public IEnumerable<String> GetAchievements() {
+		throw new NotImplementedException ("GetAchievements");
+	}
+
+	public bool SetAchievements(IEnumerable<String> newAchievements) {
+		throw new NotImplementedException("Set achievements");
+	}
+
+	public int GetScore() {
+		throw new NotImplementedException ("get score");
+	}
+
+	public int SetScore(int inScore) {
+		throw new NotImplementedException ("set score");
 	}
 
 	public ChallengeQuestion[] getNewChallengeQuestions() {
@@ -79,6 +132,13 @@ public class ServerConnector {
 		reader.Close ();
 
 		return result;
+	}
+
+	private string makeURL(string url) {
+		if (url.StartsWith ("/"))
+			return BASE_URL + url;
+		else
+			return BASE_URL + "/" + url;
 	}
 
 }

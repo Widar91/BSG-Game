@@ -20,10 +20,7 @@ public class DynamicBuildingHeight : MonoBehaviour {
 	
 	}
 
-	float getTopicScore () {
-		//Mock function for building height
-		System.Random random = new System.Random();
-		float randomNumber = random.Next(0, 150);
-		return randomNumber;
+	int getTopicScore () {
+		return ServerConnector.getInstance().getOffice3DScore();
 	}
 }

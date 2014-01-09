@@ -17,12 +17,14 @@ public class TestDB {
 			pl.setName("Eddy");
 			pl.setOffice("Amsterdam");
 			pl.setDepartment("IT");
+			pl.setOffice3DScore(90);
 			DBConnector.getInstance().save(pl);
 			
 			Player pl2 = new Player();
 			pl2.setName("Rambo");
 			pl2.setOffice("Amsterdam");
 			pl2.setDepartment("IT");
+			pl.setOffice3DScore(10);
 			DBConnector.getInstance().save(pl2);
 			
 			
