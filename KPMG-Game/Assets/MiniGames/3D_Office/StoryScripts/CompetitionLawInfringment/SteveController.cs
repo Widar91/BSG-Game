@@ -5,62 +5,47 @@ using System.Collections.Generic;
 public class SteveController : PersonController {
 
 	// Audio variables
-	public AudioClip HiHowAreYouDoing;
-	public AudioClip LetsDoTheMeeting;
-	public AudioClip MaybeYouShouldGoHome;
+	public AudioClip steve1; // steve talks about CleanIt
+	public AudioClip steve2; // did you hear about Dina and the superbowl
+	public AudioClip steve3; // how was the birthday yesterday
+	public AudioClip steve4; // we will not bid on the new contract
 
 	protected override void Start() {
 		base.Start ();
 		storyName = "steve";
+
+		Sit ();
 	}
 
 	// ------------ Actions ---------------
 	
-	// Put pierre in the office and tell the player to go meet
+	// 
 	public void Action1() {
 		
-		this.audio.PlayOneShot (HiHowAreYouDoing);
-		GoToAction(2, 3f);
+		this.audio.PlayOneShot (steve1);
+		GoToAction("pierre", 9, 15f);
 		
 	}
 	
 	public void Action2() {
-
-		string question = "How are you doing?";
-		List<string> answers = new List<string> ()
-		{
-			"Fine, thank you how are you doing?",
-			"I'm oke, could be better"
-		};
-		List<Action> callbacks = new List<Action> ()
-		{
-			new Action("steve", 3),
-			new Action("steve", 4)
-		};
-
-		storyController.askQuestion (question, answers, callbacks);
-
-	}
+		
+		this.audio.PlayOneShot (steve2);
+		GoToAction ("john", 8, 11f);
+		
+	} 
 
 	public void Action3() {
 		
-		this.audio.PlayOneShot (LetsDoTheMeeting);
-		GoToAction (5, 4f);
+		this.audio.PlayOneShot (steve3);
+		//do nothing
 		
-	}
-
+	} 
+	
 	public void Action4() {
 		
-		this.audio.PlayOneShot (MaybeYouShouldGoHome);
-		GoToAction (5, 4f);
-		
-	}
-	
-	public void Action5() {
-		
-		//TODO: show scores; for now: close the training
-		Application.LoadLevel("Office");
-		
+		this.audio.PlayOneShot (steve4);
+		GoToAction ("pierre", 17, 20f);
+
 	}
 	
 	

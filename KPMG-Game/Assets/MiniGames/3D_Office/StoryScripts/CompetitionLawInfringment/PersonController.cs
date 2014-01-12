@@ -8,21 +8,38 @@ public class PersonController : MonoBehaviour {
 	protected StoryController storyController;
 	protected string storyName = "";
 	protected string currentCollideCallback = "";
+
 	
 	// Movement variables
 	protected Vector3 targetPoint = Vector3.zero;
-	protected float 	moveSpeed = 5f;
+	protected float 	moveSpeed = 4f;
 	
 	protected int wpTarget = -1;
 	protected List<Vector3> wpWaypoints;
 	protected string wpCallback;
-		
+
+
+	// Animation variables
+	protected bool isAnimated = false;
+	protected bool isStanding = false;
+	protected bool isSitting = false;
+	protected bool isWalking = false;
+
+
 	protected virtual void Start() {
 		
 		// get the game controller
 		GameObject CLI = GameObject.Find ("CompetitionLawInfringeMent");
 		storyController = CLI.GetComponent<StoryController> ();
-		
+
+		// set the animations to loop
+		animation["walk"].wrapMode = WrapMode.Loop;
+		animation["sit"].wrapMode = WrapMode.Loop;
+		animation["stand"].wrapMode = WrapMode.Loop;
+
+		// set the walking animation speed
+		animation["walk"].speed = 1.4f;
+
 	}
 	
 	protected void Update() {
@@ -36,13 +53,18 @@ public class PersonController : MonoBehaviour {
 		}
 
 		// movement
-		if (targetPoint != Vector3.zero && Vector3.Distance(targetPoint, Position) >= 1f) {
+		if (targetPoint != Vector3.zero && Vector3.Distance (targetPoint, Position) >= 1f) {
 			Vector3 targetDirection = targetPoint - Position;
-			Quaternion targetRotation = Quaternion.LookRotation(new Vector3(targetDirection.x, 0, targetDirection.z));
-			transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * moveSpeed);
+			Quaternion targetRotation = Quaternion.LookRotation (new Vector3 (targetDirection.x, 0, targetDirection.z));
+			transform.rotation = Quaternion.Slerp (transform.rotation, targetRotation, Time.deltaTime * moveSpeed);
 			transform.position = Vector3.MoveTowards (transform.position, targetPoint, Time.deltaTime * moveSpeed);
+			if (isAnimated)
+				Walk ();
+		} else {
+			if (isAnimated)
+				Stand ();
 		}
-		
+
 	}
 	
 	protected void OnGUI() {
@@ -73,6 +95,7 @@ public class PersonController : MonoBehaviour {
 			if (!wpCallback.Equals(""))
 				Invoke (wpCallback, 0f);
 			wpCallback = "";
+			targetPoint = Vector3.zero;
 		}
 	}
 
@@ -82,6 +105,46 @@ public class PersonController : MonoBehaviour {
 				temp.y = 0f;
 				return temp;
 			}
+	}
+
+	protected void Walk() {
+		if (!isWalking) {
+			animation.Play ("walk");
+			isWalking = true;
+			isStanding = false;
+			isSitting = false;
+		}
+	}
+
+	protected void Stand() {
+		if (!isStanding) {
+			animation.Play ("stand");
+			isWalking = false;
+			isStanding = true;
+			isSitting = false;
+		}
+	}
+
+	protected void Sit() {
+		if (!isSitting) {
+			animation.Play ("sit");
+			isWalking = false;
+			isStanding = false;
+			isSitting = true;
+		}
+	}
+
+	// ------------ Trigger Functions ---------------
+	
+	void OnTriggerEnter(Collider col) {
+		
+		if (!currentCollideCallback.Equals(""))
+			Invoke (currentCollideCallback, 0f);
+		
+	}
+	
+	void OnTriggerExit(Collider col) {
+		
 	}
 	
 	// ------------ Actions Functions ---------------
