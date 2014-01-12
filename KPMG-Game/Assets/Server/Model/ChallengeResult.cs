@@ -2,18 +2,18 @@
 
 public class ChallengeResult {
 
-	private long time;
+	private float time;
 	private int correctAnswers;
 
-	public ChallengeResult (long time, int correctAnswers) {
+	public ChallengeResult (float time, int correctAnswers) {
 		this.time = time;
 		this.correctAnswers = correctAnswers;
 	}
 
-	public long getTime() {
+	public float getTime() {
 		return time;
 	}
-	public void setTime(long t) {
+	public void setTime(float t) {
 		time = t,
 	}
 	public int getCorrectAnswers() {

@@ -34,7 +34,6 @@ public class MinigameChallenge {
 	public ChallengeResult getChallengeResult2() {
 		return result2;
 	}
-
 	public void setId(int i) {
 		id = i;
 	}

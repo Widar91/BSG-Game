@@ -150,6 +150,7 @@
     <None Include="Assets\Neighbourhood-Scene\Scripts\RTS-Scripts\Setup Guide.txt" />
     <Compile Include="Assets\Server\Model\MinigameChallenge.cs" />
     <Compile Include="Assets\Server\Model\ChallengeResult.cs" />
+    <Compile Include="Assets\Server\JSONConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
