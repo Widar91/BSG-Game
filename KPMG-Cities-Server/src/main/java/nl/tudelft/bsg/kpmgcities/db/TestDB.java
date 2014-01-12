@@ -9,6 +9,8 @@ import nl.tudelft.bsg.kpmgcities.model.Player;
 import nl.tudelft.bsg.kpmgcities.model.SceneObj;
 import nl.tudelft.bsg.kpmgcities.model.minigames.multiplayerchallenge.ChallengeAnswer;
 import nl.tudelft.bsg.kpmgcities.model.minigames.multiplayerchallenge.ChallengeQuestion;
+import nl.tudelft.bsg.kpmgcities.model.minigames.multiplayerchallenge.MinigameChallenge;
+import nl.tudelft.bsg.kpmgcities.model.minigames.multiplayerchallenge.MinigameChallengeStatus;
 
 public class TestDB {
 	
@@ -201,6 +203,20 @@ public class TestDB {
 			ans.add(a1);
 			//q8.setAnswers(ans);
 			DBConnector.getInstance().save(q8);
+			
+			
+			
+			//Create 1 challenge
+			MinigameChallenge c = new MinigameChallenge();
+			c.setPlayer1(pl.getName());
+			c.setPlayer2(pl2.getName());
+			
+			List<ChallengeQuestion> qs = new ArrayList<ChallengeQuestion>();
+			qs.add(q1); qs.add(q2); qs.add(q3); qs.add(q4); qs.add(q5);
+			c.setQuestions(qs);
+			c.setStatus(MinigameChallengeStatus.WAITING_FOR_OPPONENT);
+			
+			DBConnector.getInstance().save(c);
 		}
 	}
 	

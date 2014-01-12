@@ -1,6 +1,7 @@
 package nl.tudelft.bsg.kpmgcities.model.minigames.multiplayerchallenge;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
@@ -9,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import nl.tudelft.bsg.kpmgcities.utils.MinigameChallengeStatus;
+import nl.tudelft.bsg.kpmgcities.model.Player;
 
 @Entity
 public class MinigameChallenge implements Serializable {
@@ -19,10 +20,12 @@ public class MinigameChallenge implements Serializable {
 	@Id
 	@GeneratedValue
 	private int id;
+	private String player1;
+	private String player2;
 	@Enumerated
 	private MinigameChallengeStatus status;
 	@OneToMany
-	private ChallengeQuestion[] question;
+	private List<ChallengeQuestion> questions;
 	@ManyToOne
 	private ChallengeResult result1;
 	@ManyToOne
@@ -35,17 +38,29 @@ public class MinigameChallenge implements Serializable {
 	public void setId(int id) {
 		this.id = id;
 	}
+	public String getPlayer1() {
+		return player1;
+	}
+	public void setPlayer1(String player1) {
+		this.player1 = player1;
+	}
+	public String getPlayer2() {
+		return player2;
+	}
+	public void setPlayer2(String player2) {
+		this.player2 = player2;
+	}
 	public MinigameChallengeStatus getStatus() {
 		return status;
 	}
 	public void setStatus(MinigameChallengeStatus status) {
 		this.status = status;
 	}
-	public ChallengeQuestion[] getQuestion() {
-		return question;
+	public List<ChallengeQuestion> getQuestions() {
+		return questions;
 	}
-	public void setQuestion(ChallengeQuestion[] question) {
-		this.question = question;
+	public void setQuestions(List<ChallengeQuestion> questions) {
+		this.questions = questions;
 	}
 	public ChallengeResult getResult1() {
 		return result1;

@@ -5,6 +5,7 @@ import java.util.List;
 
 import nl.tudelft.bsg.kpmgcities.model.Player;
 import nl.tudelft.bsg.kpmgcities.model.minigames.multiplayerchallenge.ChallengeQuestion;
+import nl.tudelft.bsg.kpmgcities.model.minigames.multiplayerchallenge.MinigameChallenge;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -102,6 +103,21 @@ public class DBConnector {
 		return getSession()
 				.createQuery("from ChallengeQuestion")
 				.list();
+	}
+    
+    @SuppressWarnings("unchecked")
+	public List<MinigameChallenge> getMinigameChallenges(String player) {
+		return getSession()
+				.createQuery("from MinigameChallenge where player1 = :player or player2 = :player")
+				.setParameter("player", player)
+				.list();
+	}
+
+	public MinigameChallenge getMinigameChallenge(int cid) {
+		return (MinigameChallenge) getSession()
+									.createQuery("from MinigameChallenge where id = :cid")
+									.setParameter("cid", cid)
+									.uniqueResult();
 	}
     
 }

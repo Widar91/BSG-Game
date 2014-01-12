@@ -14,7 +14,6 @@ public class ChallengeResult implements Serializable {
 	@Id
 	@GeneratedValue
 	private int id;
-	private int playerId;
 	private float time;
 	private int correctAnswers;
 	
@@ -24,12 +23,6 @@ public class ChallengeResult implements Serializable {
 	}
 	public void setId(int id) {
 		this.id = id;
-	}
-	public int getPlayerId() {
-		return playerId;
-	}
-	public void setPlayerId(int playerId) {
-		this.playerId = playerId;
 	}
 	public float getTime() {
 		return time;
