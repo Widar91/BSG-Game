@@ -49,7 +49,7 @@ public class ServerConnector {
 
 	}
 
-	public bool RemoveOfficeObject(long id) {
+	public bool RemoveOfficeObject(string itemName) {
 		throw new NotImplementedException ("Remove office object");
 	}
 
@@ -57,15 +57,18 @@ public class ServerConnector {
 		throw new NotImplementedException ("Remove neighbourhood object");
 	}
 
-	// public [objects] AddOfficeObject(Item item)
-	//{
-	//}
+	public void AddOfficeObject(string itemname)
+	{
+		throw new NotImplementedException ("Add office object");
+	}
+
 	// public [objects] AddNeighbourhoodObject(Item item)
 	//{
 	//}
 
-	public IList<Item> GetOfficeObjects() {
-		IList<Item> items = new List<Item> ();
+	public IList<string> GetOfficeObjects() {
+		//IList<Item> items = new List<Item> ();
+		IList<string> items = new List<string> ();
 
 		string url = createURL ("/player/" + this.playerName);
 		string jsonResponseString = sendRequest (url);
@@ -75,10 +78,13 @@ public class ServerConnector {
 		JSONNode jsonPlayer = JSON.Parse (jsonResponseString);
 		JSONArray jsonObjects = jsonPlayer ["sceneObjs"].AsArray;
 		foreach (JSONNode obj in jsonObjects) {
-			Vector3 position = new Vector3(obj["posx"].AsFloat, obj["posy"].AsFloat, obj["posz"].AsFloat);
-			string name = obj["name"].Value;
-			float scale = obj["sclx"].AsFloat;
-			items.Add(new Item(name, position, scale));
+//			Vector3 position = new Vector3(obj["posx"].AsFloat, obj["posy"].AsFloat, obj["posz"].AsFloat);
+//			string name = obj["name"].Value;
+//			float scale = obj["sclx"].AsFloat;
+//			items.Add(new Item(name, position, scale));
+
+			string itemname = obj.Value;
+			items.Add(itemname);
 		}
 
 		return items;
