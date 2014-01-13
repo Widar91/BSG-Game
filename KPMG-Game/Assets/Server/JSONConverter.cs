@@ -37,7 +37,7 @@ public class JSONConverter {
 		
 		MinigameChallenge c = new MinigameChallenge();
 		c.setId(challenge["id"].AsInt);
-		c.setStatus(challenge["status"].AsInt);
+		c.setStatus(challenge["status"].Value);
 		c.setPlayer1(challenge["player1"].Value);
 		c.setPlayer2(challenge["player2"].Value);
 		c.setChallengeQuestions(convertChallengeQuestions(challenge["questions"].ToString()));
@@ -72,9 +72,15 @@ public class JSONConverter {
 			
 			result.Add(new ChallengeQuestion(question, answers));
 		}
+
+		return result;
+
 	}
 
 	public ChallengeResult convertChallengeResult(string response) {
+
+		if(response.Equals(""))
+			return new ChallengeResult(0, 0);
 
 		JSONNode result = JSON.Parse(response);
 
@@ -82,6 +88,21 @@ public class JSONConverter {
 		int correctAnswers = result["correctAnswers"].AsInt;
 
 		return new ChallengeResult(time, correctAnswers);
+
+	}
+
+	public List<string> convertPlayersNames(string response){
+
+		JSONNode json = JSON.Parse(response);
+		JSONArray players = json.AsArray;
+		
+		List<string> result = new List<string>();
+		
+		for(int i = 0; i < (int)players.Count; i++) 
+			result.Add(players[i]["value"].Value);
+		
+		return result;
+
 	}
 
 

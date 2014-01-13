@@ -208,11 +208,12 @@ public class TestDB {
 			
 			//Create 1 challenge
 			MinigameChallenge c = new MinigameChallenge();
-			c.setPlayer1(pl.getName());
-			c.setPlayer2(pl2.getName());
+			c.setPlayer1(pl2.getName());
+			c.setPlayer2(pl.getName());
 			
 			List<ChallengeQuestion> qs = new ArrayList<ChallengeQuestion>();
 			qs.add(q1); qs.add(q2); qs.add(q3); qs.add(q4); qs.add(q5);
+			
 			c.setQuestions(qs);
 			c.setStatus(MinigameChallengeStatus.WAITING_FOR_OPPONENT);
 			

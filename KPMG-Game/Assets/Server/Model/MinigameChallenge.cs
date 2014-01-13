@@ -3,7 +3,7 @@ using System.Collections.Generic;
 public class MinigameChallenge {
 
 	private int id;
-	private int status;
+	private string status;
 
 	private string player1;
 	private string player2;
@@ -16,7 +16,7 @@ public class MinigameChallenge {
 	public int getId() {
 		return id;
 	}
-	public int getStatus() {
+	public string getStatus() {
 		return status;
 	}
 	public string getPlayer1() {
@@ -37,7 +37,7 @@ public class MinigameChallenge {
 	public void setId(int i) {
 		id = i;
 	}
-	public void setStatus(int s) {
+	public void setStatus(string s) {
 		status = s;
 	}
 	public void setPlayer1(string p) {

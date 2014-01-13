@@ -37,6 +37,8 @@ public class MinigameChallengeResource extends Resource{
     public Response requestMinigameChallenge(@QueryParam(value = "players") final List<String> players) {
 			MinigameChallenge c = new MinigameChallenge();
 			
+			System.err.println("creating Challenge");
+			
 			Player p1 = DBConnector.getInstance().getPlayer(players.get(0), "");
 			Player p2 = DBConnector.getInstance().getPlayer(players.get(1), "");
 			
@@ -57,7 +59,7 @@ public class MinigameChallengeResource extends Resource{
     @POST
     @Path("/result/{cid}/{pl}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response updateResult(@PathParam("cid") int cid, @PathParam("pl") String pl, ChallengeResult r) {
+    public MinigameChallenge updateResult(@PathParam("cid") int cid, @PathParam("pl") String pl, ChallengeResult r) {
     		
     		ChallengeResult cr = new ChallengeResult();
     		cr.setTime(r.getTime());
@@ -76,7 +78,7 @@ public class MinigameChallengeResource extends Resource{
     			c.setStatus(MinigameChallengeStatus.TERMINATED);
     		
             DBConnector.getInstance().save(c);
-            return simpleResponse(200);
+            return c;
     }
 	
 	

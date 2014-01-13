@@ -1,9 +1,11 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Server/ServerConnector.cs">
     <Files>
-      <File FileName="Assets/Server/ServerConnector.cs" Line="32" Column="29" />
-      <File FileName="Assets/Login/Scripts/login_GUI.cs" Line="32" Column="17" />
+      <File FileName="Assets/Server/ServerConnector.cs" Line="124" Column="29" />
+      <File FileName="Assets/Server/JSONConverter.cs" Line="102" Column="32" />
+      <File FileName="Assets/MiniGames/MultiplayerChallenge/MenuGUI.cs" Line="118" Column="59" />
+      <File FileName="Assets/MiniGames/MultiplayerChallenge/QuestionsScript.cs" Line="105" Column="11" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

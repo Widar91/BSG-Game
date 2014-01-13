@@ -14,7 +14,7 @@ public class ChallengeResult {
 		return time;
 	}
 	public void setTime(float t) {
-		time = t,
+		time = t;
 	}
 	public int getCorrectAnswers() {
 		return correctAnswers;
