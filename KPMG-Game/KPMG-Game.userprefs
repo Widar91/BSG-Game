@@ -1,9 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Server/ServerConnector.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\CityView\CityGenerator1.5\Scripts\CityGeneratorLowPoly.cs">
     <Files>
-      <File FileName="Assets/Server/ServerConnector.cs" Line="32" Column="29" />
-      <File FileName="Assets/Login/Scripts/login_GUI.cs" Line="32" Column="17" />
+      <File FileName="Assets\CityView\CityGenerator1.5\Scripts\CityGeneratorLowPoly.cs" Line="168" Column="2" />
+      <File FileName="Assets\Server\ServerConnector.cs" Line="32" Column="29" />
+      <File FileName="Assets\Login\Scripts\login_GUI.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

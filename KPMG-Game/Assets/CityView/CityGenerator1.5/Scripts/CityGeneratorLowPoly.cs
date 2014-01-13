@@ -4,8 +4,8 @@ using System.Collections;
 public class CityGeneratorLowPoly : MonoBehaviour {
 
 	
-public int column = 10;
-public int row = 10;
+public int column = 16;
+public int row = 16;
 	
 public Transform button3D;
 	
