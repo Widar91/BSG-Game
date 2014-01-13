@@ -6,7 +6,7 @@ using System.Linq;
 public class WorldData : MonoBehaviour {
 
 	private Dictionary<string, WorldCountry> countries;
-	private string[] colors;
+	private string[] categories;
 
 	void Start() {
 	
@@ -17,12 +17,12 @@ public class WorldData : MonoBehaviour {
 		
 		//TODO: this needs to be replaced by a real loading function
 		//begin: data to be loaded
-		colors = new string[] {
-			"Blue", 
-			"Green", 
-			"Pink", 
-			"Red", 
-			"Yellow"
+		categories = new string[] {
+			"Risk", 
+			"Compliance", 
+			"Management", 
+			"Tax", 
+			"Audit"
 		};
 		
 		List<string> countryNames = new List<string>();
@@ -76,7 +76,7 @@ public class WorldData : MonoBehaviour {
 		// Create and store the cities from the loaded data
 		countries = new Dictionary<string, WorldCountry>();
 		for (int i = 0; i < countryNames.Count; i++)
-			countries.Add(countryNames[i], new WorldCountry(countryNames[i], cities[i], rotations[i], earthCoords[i], colors, scores[i]));
+			countries.Add(countryNames[i], new WorldCountry(countryNames[i], cities[i], rotations[i], earthCoords[i], categories, scores[i]));
 		
 	}
 	
@@ -84,8 +84,8 @@ public class WorldData : MonoBehaviour {
 		get { return countries; }
 	}
 	
-	public string[] Colors {
-		get { return colors; }
+	public string[] Categories {
+		get { return categories; }
 	}
 	
 	public Dictionary<string, Vector3> findPlaces(string keyword) {
@@ -111,15 +111,15 @@ public class WorldCountry {
 	private Vector3 earthCoords;
 	private Dictionary<string, WorldBuilding> buildings;
 	
-	public WorldCountry(string lName, List<string> lCities, Vector3 lRotation, Vector3 lEarth, string[] lColors, int[] lScores) {
+	public WorldCountry(string lName, List<string> lCities, Vector3 lRotation, Vector3 lEarth, string[] lCategories, int[] lScores) {
 		name = lName;
 		cities = lCities;
 		rotation = lRotation;
 		earthCoords = lEarth;
 		buildings = new Dictionary<string, WorldBuilding>();
-		if (lColors.Length == lScores.Length)
-			for (int i = 0; i < lColors.Length; i++)
-				buildings.Add(lColors[i], new WorldBuilding(lColors[i], lScores[i]));
+		if (lCategories.Length == lScores.Length)
+			for (int i = 0; i < lCategories.Length; i++)
+				buildings.Add(lCategories[i], new WorldBuilding(lCategories[i], lScores[i]));
 	}
 	
 	public string Name {
@@ -140,10 +140,10 @@ public class WorldCountry {
 	
 	public List<string> BuildingColors {
 		get { 
-			List<string> colors = new List<string>();
+			List<string> categories = new List<string>();
 			foreach (string key in buildings.Keys)
-				colors.Add(key);
-			return colors; 
+				categories.Add(key);
+			return categories; 
 		}
 	}
 	
@@ -155,16 +155,16 @@ public class WorldCountry {
 
 public class WorldBuilding {
 	
-	private string color;
+	private string category;
 	private int score;
 	
-	public WorldBuilding(string lColor, int lScore) {
-		color = lColor;
+	public WorldBuilding(string lCategory, int lScore) {
+		category = lCategory;
 		score = lScore;
 	}
 	
-	public string Color {
-		get { return color; }
+	public string Category {
+		get { return category; }
 	}
 	
 	public int Score {

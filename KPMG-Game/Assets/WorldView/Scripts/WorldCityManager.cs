@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -41,7 +41,7 @@ public class WorldCityManager : MonoBehaviour {
 				newCity.transform.localEulerAngles = entry.Value.Rotation; 
 					
 				foreach (Transform building in newCity.transform)
-					foreach (string color in data.Colors)
+					foreach (string color in data.Categories)
 						if (building.name.Equals(color))
 							building.localScale = new Vector3(0.01f, 0.01f, entry.Value.Buildings[color].Scale);
 				
