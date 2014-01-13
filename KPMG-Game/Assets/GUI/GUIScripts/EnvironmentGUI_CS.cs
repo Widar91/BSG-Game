@@ -16,7 +16,6 @@ public class EnvironmentGUI_CS : MonoBehaviour {
 	public Texture2D toggle1_h;
 	public Texture2D midtex;
 	public Texture2D kpmg;
-	public string scores = "All stuff here";
 
 	public static string currentLevel;
 	public static string previousLevel;
@@ -32,10 +31,6 @@ public class EnvironmentGUI_CS : MonoBehaviour {
 		//Call HUD skin.
 		GUI.skin = hudskin;
 		GUI.Box(new Rect(0,20,Screen.width-20,100),"");
-		
-		//Text area for scores
-		GUI.TextArea (new Rect (10, 30, 200, 80), scores, 200);
-		
 		
 		//Additive images
 		GUI.DrawTexture(new Rect(Screen.width/2-50,0,100,109), midtex, ScaleMode.StretchToFill, true, 0);
