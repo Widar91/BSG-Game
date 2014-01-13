@@ -59,7 +59,7 @@ public class OfficeObjectManager : MonoBehaviour
 		var instance = CreateGameObject (item);
 
 		// Place uner another gameobject, if provided
-		PositionGameObject (item, inParent, instance);
+		PositionGameObject (item, instance, inParent);
 
 	}
 
@@ -69,7 +69,7 @@ public class OfficeObjectManager : MonoBehaviour
 		{
 			Vector3 p = item.position;
 			item.position = new Vector3(p.x + shift.x, p.y + shift.y, p.z + shift.z);
-			PositionGameObject(item, inParent);
+			LoadItem(item, inParent);
 		}
 	}
 

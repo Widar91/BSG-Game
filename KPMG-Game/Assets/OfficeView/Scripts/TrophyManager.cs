@@ -33,10 +33,10 @@ public class TrophyManager : MonoBehaviour {
 	void Start () 
 	{
 		gui = devgui.GetComponent<GUITextBehaviour> ();
-
 		manager = deamon.GetComponent<OfficeObjectManager> ();
 
-		//this.displayTrophies (new string[]{"Trophy1", "Trophy2"});
+		IEnumerable<string> trophies = ServerConnector.getInstance ().GetTrophies ();
+		this.displayTrophies (trophies);
 	}
 	
 	// Update is called once per frame
