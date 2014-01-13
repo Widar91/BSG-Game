@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
+using UnityEditor;
 using System;
+using System.Text;
 using System.Net;
 using System.IO;
 using System.Collections.Generic;
@@ -18,7 +20,7 @@ public class ServerConnector {
 		return instance;
 	}
 
-	private string playerName; 
+	public string playerName; 
 	private string loginname;
 	private string loginpass;
 
@@ -29,20 +31,22 @@ public class ServerConnector {
 
 	public bool Login(string name, string pass) {
 		string url = createURL("/player/" + name);
-		string jsonResponse = sendRequest(url);
+		string jsonResponse = sendRequest("GET", url, "");
 
-		if (jsonResponse == "")
+		if (jsonResponse.Equals(""))
 			return false;
 
 		JSONNode json = JSON.Parse(jsonResponse);
 		playerName = json ["name"].Value;
+
 		return true;
 	}
 
 	public int getOffice3DScore() {
 	
 		string url = createURL("/player/" + playerName);
-		string jsonResponse = sendRequest(url);
+		string jsonResponse = sendRequest("GET", url, "");
+
 		JSONNode json = JSON.Parse(jsonResponse);
 
 		return json["office3DScore"].AsInt;
@@ -80,69 +84,106 @@ public class ServerConnector {
 		throw new NotImplementedException ("set score");
 	}
 
-	public ChallengeQuestion[] getNewChallengeQuestions() {
+	public List<MinigameChallenge> getMinigameChallenges() {
 
-		string question;
-		KeyValuePair<string, bool>[] answers;
-		ChallengeQuestion[] questions;
+		string url = createURL("/minigamechallenge/" + playerName);
+		string jsonResponse = sendRequest("GET", url, "");
 
-		string url = createURL("/challengequestions");
-		string jsonResponse = sendRequest(url);
-		JSONNode json = JSON.Parse(jsonResponse);
-		JSONArray jsonQuestionsArray = json.AsArray;
-		Debug.Log ("JSON: " + jsonQuestionsArray.ToString());
+		if(jsonResponse.Equals(""))
+			return null;
 
-		int qcount = (int)jsonQuestionsArray.Count;
-		questions = new ChallengeQuestion[qcount];
-
-
-		for(int i = 0; i < questions.Length; i++) {
-
-			question = jsonQuestionsArray[i]["question"].Value;
-			answers = new KeyValuePair<string, bool>[5];
-
-			for(int j = 0; j < answers.Length; j++) {
-				if(jsonQuestionsArray[i]["answers"].Count > j) {
-					var ans = jsonQuestionsArray[i]["answers"][j]["answer"].ToString();
-					bool correct = jsonQuestionsArray[i]["answers"][j]["correct"].AsInt == 0? false : true;
-					answers[j] = new KeyValuePair<string, bool> (ans, correct);
-				}
-				else 
-					answers[j] = new KeyValuePair<string, bool> ("N/A", false);
-			}
-
-			questions[i] = new ChallengeQuestion(question, answers);
-		}
-
-		//debug print
-		foreach(ChallengeQuestion cq in questions) {
-			Debug.Log  ("q: " + cq.getQuestion() + "\n");
-			foreach(KeyValuePair<string, bool> a in cq.getAnswers())
-				Debug.Log  ("\t" + a.Key + ": " + a.Value + "\n" );
-		}
-
-
-		return questions;
+		return JSONConverter.getInstance().convertMinigameChallenges(jsonResponse);
 
 	}
 
-	private string sendRequest(string url) {
+	public List<string> getPlayersNames(){
 
-		string result = "";
-		Debug.Log ("Callig method");
-
-		WebClient client = new WebClient ();
-		Stream data = client.OpenRead (url);
-		StreamReader reader = new StreamReader (data);
-
-		Debug.Log ("Before reading");
-		result = reader.ReadToEnd ();
-		Debug.Log("Server data: " + result);
-
-		data.Close ();
-		reader.Close ();
-
+		string url = createURL("/player/list/all");
+		string jsonResponse = sendRequest("GET", url, "");
+		
+		if(jsonResponse.Equals(""))
+			return null;
+		
+		List<string> result = JSONConverter.getInstance().convertPlayersNames(jsonResponse);
+		result.Remove(playerName);
 		return result;
+
+	}
+
+	public string newMinigameChallenge(string p2) {
+
+		string url = createURL("/minigamechallenge/new?players=" + playerName + "&players=" + p2);
+		string jsonResponse = sendRequest("PUT", url, "");
+
+		return jsonResponse;
+
+	}
+
+	public void sendMinigameResult(int cid, int ans, float time) {
+
+		string url = createURL("/minigamechallenge/result/"+ cid + "/" + playerName);
+
+		string jsonResponse = sendRequest("POST", url, "[{\"id\":1,\"time\":"+ time +",\"correctAnswers\":"+ ans +"}]");
+
+	}
+	
+
+
+
+
+	/*--- UTILITY METHODS ---*/
+
+	private string sendRequest(string method, string url, string parameters) {
+
+		HttpWebRequest http = (HttpWebRequest) WebRequest.Create(new Uri(url));
+		http.Accept = "application/json";
+		http.ContentType = "application/json";
+		http.Method = method;
+
+		string content = "";
+
+		if(method.Equals("POST") && parameters != null) {
+			ASCIIEncoding encoding = new ASCIIEncoding();
+			Byte[] bytes = encoding.GetBytes(parameters);
+			
+			Stream newStream = http.GetRequestStream();
+			newStream.Write(bytes, 0, bytes.Length);
+			newStream.Close();
+		}
+
+		try {
+			HttpWebResponse response = (HttpWebResponse) http.GetResponse();
+
+			if((int)response.StatusCode != 200) {
+				EditorUtility.DisplayDialog("Error", response.ToString(), "Ok", "Cancel");
+				return "";	
+			}
+			
+			var stream = response.GetResponseStream();
+			var sr = new StreamReader(stream);
+			content = sr.ReadToEnd();
+		}
+		catch (WebException e) {
+			EditorUtility.DisplayDialog("Error: ", e.Message, "Ok", "");
+			return "";	
+		}
+
+		return content;
+
+		/** OLD VERSION
+		string result = "";
+		WebClient client = new WebClient ();
+		
+		try	{
+			client.Headers[HttpRequestHeader.ContentType] = "application/json";
+			result = client.UploadString(url, parameters);
+		}
+		catch (WebException e) {
+			EditorUtility.DisplayDialog("Error", e.Message, "Ok", "");
+		}
+		
+		return result;
+		**/
 	}
 
 	private string createURL(string url) {

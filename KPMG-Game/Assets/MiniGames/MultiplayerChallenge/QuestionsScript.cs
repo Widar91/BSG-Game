@@ -12,64 +12,68 @@ public class QuestionsScript : MonoBehaviour {
 	public Texture2D AnswerButton;
 	public Texture2D AnswerButton_h;
 
-	private int round;
-	private int correctAnswers;
-	private float challengeTime;
-	private bool challengeEnded;
-
-	private ChallengeQuestion[] questions;
+	private static int round;
+	private static int correctAnswers;
+	private static float challengeTime;
+	private static bool challengeEnded;
+	private static MinigameChallenge challenge;
+	private static List<ChallengeQuestion> questions;
 
 	void Start() {
 
 		round = 0;
 		correctAnswers = 0;
-		challengeEnded = false;
 		challengeTime = Time.time;
-
-		try {
-			questions = ServerConnector.getInstance().getNewChallengeQuestions();
-		} catch (System.Net.WebException) {
-			questions = null;
-		}
 
 	}
 	
 	void OnGUI() {
-		if (PreGUI.preFlag) {
-
-						if (questions == null) {
-								ButtonstyleGUI_CS.ChallengeButtonStyle (QuestionButton, QuestionButton_h);
-								GUI.Button (new Rect (Screen.width / 2 - 250, 50, 500, 50), "Error: No connection to the server");
-						}
+		if (MenuGUI.beginChallenge) {
+						
 
 						if (challengeEnded) {
+								
+								round = 0;
+								correctAnswers = 0;
+								challengeTime = 0;
+
+								Time.timeScale = 0;
+
 								ButtonstyleGUI_CS.ChallengeButtonStyle (QuestionButton, QuestionButton_h);
 								GUI.Button (new Rect (Screen.width / 2 - 250, 50, 500, 50), "Correct answers: " + correctAnswers + " (" + challengeTime + " s)");
 								
 								ButtonstyleGUI_CS.ChallengeButtonStyle (QuestionButton, QuestionButton_h);
-								if(GUI.Button (new Rect (Screen.width / 2 - 250, 500, 500, 50), "Return to Office"))
-									Application.LoadLevel("Office");
+								if(GUI.Button (new Rect (Screen.width / 2 - 250, 500, 500, 50), "Return to Lobby")) {
+									MenuGUI.beginChallenge = false;
+									MenuGUI.toogleChallengesWindow = true;
+									challengeEnded = false;
+								}
 
-					
 								return;
+
 						}
 
 						if (round == 5) {
-								challengeEnded = true;
-								challengeTime = Time.time - challengeTime;
 
-								challengeEnded = true;
-								//end timer
+							challengeTime = Time.time - challengeTime;
+							handleResults ();
 
-								handleResults ();
+							challengeEnded = true;
+
 						}
-
+													
 
 						GUI.skin = ChallengeSkin;
 
+						if (questions == null) {
+							ButtonstyleGUI_CS.ChallengeButtonStyle (QuestionButton, QuestionButton_h);
+							GUI.Button (new Rect (Screen.width / 2 - 250, 50, 500, 50), "Error: No connection to the server");
+						return;
+						}
+
 						//Question Button
 						ButtonstyleGUI_CS.ChallengeButtonStyle (QuestionButton, QuestionButton_h);
-						GUI.Button (new Rect (Screen.width / 2 - 250, 50, 500, 50), questions [round].getQuestion ());
+						GUI.Button (new Rect (Screen.width / 2 - 250, 50, 500, 50), questions[round].getQuestion());
 
 						KeyValuePair<string, bool>[] answers = questions [round].getAnswers ();
 
@@ -97,6 +101,11 @@ public class QuestionsScript : MonoBehaviour {
 				}
 	}
 
+	public static void setChallenge(MinigameChallenge c) {
+		challenge = c;
+		questions = c.getChallengeQuestions();
+	}
+
 	private void handleAnswer(bool answer) {
 
 		if(answer)
@@ -109,11 +118,8 @@ public class QuestionsScript : MonoBehaviour {
 
 		Debug.Log("Sending challenge results to the Server: " + correctAnswers.ToString());
 		Debug.Log("Sending challenge time to the Server: " + challengeTime);
-		//send to server answers + challenge time
+		ServerConnector.getInstance().sendMinigameResult(challenge.getId(), correctAnswers, correctAnswers);
 		
 	}
 
-	
-	
-	
 }

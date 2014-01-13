@@ -1,10 +1,19 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+<<<<<<< HEAD
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\CityView\CityGenerator1.5\Scripts\CityGeneratorLowPoly.cs">
     <Files>
       <File FileName="Assets\CityView\CityGenerator1.5\Scripts\CityGeneratorLowPoly.cs" Line="168" Column="2" />
       <File FileName="Assets\Server\ServerConnector.cs" Line="32" Column="29" />
       <File FileName="Assets\Login\Scripts\login_GUI.cs" Line="1" Column="1" />
+=======
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Server/ServerConnector.cs">
+    <Files>
+      <File FileName="Assets/Server/ServerConnector.cs" Line="124" Column="29" />
+      <File FileName="Assets/Server/JSONConverter.cs" Line="102" Column="32" />
+      <File FileName="Assets/MiniGames/MultiplayerChallenge/MenuGUI.cs" Line="118" Column="59" />
+      <File FileName="Assets/MiniGames/MultiplayerChallenge/QuestionsScript.cs" Line="105" Column="11" />
+>>>>>>> multiplayer-implementation
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
