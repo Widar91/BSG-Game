@@ -64,9 +64,28 @@ public class ServerConnector {
 	//{
 	//}
 
+	public IList<Item> GetOfficeObjects() {
+		IList<Item> items = new List<Item> ();
+
+		string url = createURL ("/player/" + this.playerName);
+		string jsonResponseString = sendRequest (url);
+		if (jsonResponseString == "")
+			return items;
+
+		JSONNode jsonPlayer = JSON.Parse (jsonResponseString);
+		JSONArray jsonObjects = jsonPlayer ["sceneObjs"].AsArray;
+		foreach (JSONNode obj in jsonObjects) {
+			Vector3 position = new Vector3(obj["posx"].AsFloat, obj["posy"].AsFloat, obj["posz"].AsFloat);
+			string name = obj["name"].Value;
+			float scale = obj["sclx"].AsFloat;
+			items.Add(new Item(name, position, scale));
+		}
+
+		return items;
+	}
+
 	public IEnumerable<string> GetAchievements() {
-		return new string[]{"Participation", "Beta-testing"};
-		//throw new NotImplementedException ("GetAchievements");
+		return new string[]{"Participation", "Beta-testing"}; // TODO remove mocking
 
 		IList<String> achievements = new List<string> ();
 
@@ -90,8 +109,7 @@ public class ServerConnector {
 	}
 
 	public IEnumerable<string> GetTrophies() {
-		return new string[]{"Participation", "Beta-testing"};
-		//throw new NotImplementedException ("Gettrophies");
+		return new string[]{"Participation", "Beta-testing"}; // TODO remove mocking
 		
 		IList<string> trophies = new List<string> ();
 		
