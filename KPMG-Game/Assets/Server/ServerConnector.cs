@@ -64,16 +64,65 @@ public class ServerConnector {
 	//{
 	//}
 
-	public IEnumerable<String> GetAchievements() {
-		throw new NotImplementedException ("GetAchievements");
+	public IEnumerable<string> GetAchievements() {
+		return new string[]{"Participation", "Beta-testing"};
+		//throw new NotImplementedException ("GetAchievements");
+
+		IList<String> achievements = new List<string> ();
+
+		string url = createURL ("/player/" + this.playerName);
+		string jsonResponseString = sendRequest (url);
+		if (jsonResponseString == "")
+			return achievements;
+
+		JSONNode jsonPlayer = JSON.Parse (jsonResponseString);
+		JSONArray achievementsJson = jsonPlayer ["achievements"].AsArray;
+		for (int i=0; i<achievementsJson.Count; i++) {
+			string achievement = achievementsJson[i]["name"].Value;
+			achievements.Add (achievement);
+		}
+
+		return achievements;
 	}
 
 	public bool SetAchievements(IEnumerable<String> newAchievements) {
 		throw new NotImplementedException("Set achievements");
 	}
 
+	public IEnumerable<string> GetTrophies() {
+		return new string[]{"Participation", "Beta-testing"};
+		//throw new NotImplementedException ("Gettrophies");
+		
+		IList<string> trophies = new List<string> ();
+		
+		string url = createURL ("/player/" + this.playerName);
+		string jsonResponseString = sendRequest (url);
+		if (jsonResponseString == "")
+			return trophies;
+
+		JSONNode jsonPlayer = JSON.Parse (jsonResponseString);
+		JSONArray trophiesJson = jsonPlayer ["trophies"].AsArray;
+		for (int i=0; i<trophiesJson.Count; i++) {
+			string trophy = trophiesJson[i]["name"].Value;
+			trophies.Add (trophy);
+		}
+		
+		return trophies;
+	}
+	
+	public bool SetTrophies(IEnumerable<String> newTrophies) {
+		throw new NotImplementedException("Set trophies");
+	}
+
 	public int GetScore() {
-		throw new NotImplementedException ("get score");
+		string url = createURL("/player/" + this.playerName);
+
+		string jsonResponse = sendRequest(url);
+		if (jsonResponse == "")
+			return 0; // TODO throw exception?
+		
+		JSONNode json = JSON.Parse(jsonResponse);
+		return json["office3DScore"].AsInt;
 	}
 
 	public int SetScore(int inScore) {

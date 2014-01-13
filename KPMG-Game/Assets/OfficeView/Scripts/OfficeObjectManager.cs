@@ -37,19 +37,30 @@ public class OfficeObjectManager : MonoBehaviour
 		
 	}
 
+	public GameObject CreateGameObject (Item item)
+	{
+		GameObject instance = (GameObject)Instantiate (Resources.Load (item.resource));
+		return instance;
+	}
+
+	public void PositionGameObject (Item item, GameObject instance, GameObject inParent = null)
+	{
+		if (inParent != null)
+			instance.transform.parent = inParent.transform;
+		else
+			if (ParentObject != null)
+				instance.transform.parent = ParentObject.transform;
+		instance.transform.localScale = item.scale;
+		instance.transform.localPosition = item.position;
+	}
 
 	public void LoadItem(Item item, GameObject inParent = null)
 	{
-		GameObject instance = (GameObject) Instantiate(Resources.Load(item.resource));
+		var instance = CreateGameObject (item);
 
 		// Place uner another gameobject, if provided
-		if ( inParent != null )
-			instance.transform.parent = inParent.transform;
-		else if ( ParentObject != null )
-			instance.transform.parent = ParentObject.transform;
+		PositionGameObject (item, inParent, instance);
 
-		instance.transform.localScale = item.scale;
-		instance.transform.localPosition = item.position;
 	}
 
 	public void LoadItems(IEnumerable items, Vector3 shift, GameObject inParent = null)
@@ -58,7 +69,7 @@ public class OfficeObjectManager : MonoBehaviour
 		{
 			Vector3 p = item.position;
 			item.position = new Vector3(p.x + shift.x, p.y + shift.y, p.z + shift.z);
-			LoadItem(item, inParent);
+			PositionGameObject(item, inParent);
 		}
 	}
 
@@ -69,4 +80,6 @@ public class OfficeObjectManager : MonoBehaviour
 			LoadItem(item, inParent);
 		}
 	}
+
+ 
 }
