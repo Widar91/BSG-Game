@@ -2,153 +2,63 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class PierreController : MonoBehaviour {
-
-	// Story Tracking variables
-	private StoryController storyController;
-	private int currentAction = 0;
-
-	// Movement variables
-	Vector3 targetPoint = Vector3.zero;
-	float 	moveSpeed = 5f;
-
-	private int wpTarget = -1;
-	private List<Vector3> wpWaypoints;
-	private string wpCallback;
+public class PierreController : PersonController {
 
 	// Audio variables
-	public AudioClip IntroSpeech;
-	public AudioClip TakeASeat;
+	public AudioClip pierre1; // hi, are you ready for the meeting
+	public AudioClip pierre2; // please take a seat
+	public AudioClip pierre3; // okay, let's start
+	public AudioClip pierre4; // *phone rings* I have to take this
+	public AudioClip pierre5; // pierre on the phone talking stock
+	public AudioClip pierre6; // oh hi, let's go back to the meeting
+	public AudioClip pierre7; // i'm sorry for that, let's resume
+	public AudioClip pierre8; // okay, i'll walk you out
 
-	void Start() {
+	protected override void Start() {
+		base.Start ();
+		storyName = "pierre";
+		isAnimated = true;
 
-		// get the game controller
-		GameObject CLI = GameObject.Find ("CompetitionLawInfringeMent");
-		storyController = CLI.GetComponent<StoryController> ();
-
-	}
-
-	void Update() {
-
-		// waypoint reached detector
-		if (wpWaypoints != null && wpTarget > -1 && wpTarget < wpWaypoints.Count) {
-			if (Vector3.Distance (wpWaypoints [wpTarget], transform.position) < 1f)
-				NextWaypoint ();
-			moveToPoint(wpWaypoints[wpTarget]);
-		}
-			
-		// movement
-		if (targetPoint != Vector3.zero) {
-			Vector3 targetDirection = targetPoint - transform.position;
-			Quaternion targetRotation = Quaternion.LookRotation(new Vector3(targetDirection.x, 0, targetDirection.z));
-			transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * moveSpeed);
-			transform.position = Vector3.MoveTowards (transform.position, targetPoint, Time.deltaTime * moveSpeed);
-		}
-
-
-	}
-
-	void OnGUI() {
-
-
-
-	}
-
-	// ------------ Trigger Functions ---------------
-
-	void OnTriggerEnter(Collider col) {
-
-		if (currentAction == 1)
-			ActionReady ();
-
-		if (currentAction == 4)
-			ActionReady ();
-
-	}
-	
-	void OnTriggerExit(Collider col) {
-
-	}
-
-
-	// ------------ Movement Functions ---------------
-
-	void moveToPoint(Vector3 target) {
-		target.y = this.transform.localPosition.y;
-		targetPoint = target;
-	}
-
-	void WalkWaypoints (List<Vector3> waypoints, string callback) {
-		wpTarget = 0;
-		wpWaypoints = waypoints;
-		wpCallback = callback;
-	}
-
-	void NextWaypoint() {
-		if (wpWaypoints != null && wpTarget + 1 < wpWaypoints.Count) {
-			wpTarget++;
-		} else {
-			wpWaypoints = null;
-			wpTarget = -1;
-			if (!wpCallback.Equals(""))
-				Invoke (wpCallback, 0f);
-			wpCallback = "";
-		}
-	}
-
-	// ------------ Actions Functions ---------------
-
-	void ActionReady() {
-		storyController.ActionReady("pierre", currentAction);
-	}
-
-	public int NextAction() {
-		currentAction++;
-		Invoke ("Action" + currentAction, 0f);
-		return currentAction;
-	}
-
-	public int GoToAction(int action) {
-		currentAction = action;
-		Invoke ("Action" + action, 0f);
-		return currentAction;
+		Stand ();
 	}
 
 	// ------------ Actions ---------------
 	
-	// Put pierre in the office and tell the player to go meet
+	// Tell the player to go meet Pierre and wait for him/her to do so
 	public void Action1() {
 
-		this.transform.localPosition = new Vector3 (-10.39676f, 0.8675663f, -20.46594f);
-		this.transform.localRotation = Quaternion.Euler(0f, -5.828735f, 0f);
-
+		// set the objective to meet and wait for that to happen
 		storyController.setObjective("Go and meet Pierre");
+		currentCollideCallback = "Action2";
 
 	}
 
 	// Pierre says hi
 	public void Action2() {
 
-		//storyController.toggleCameraPosition ();
+		currentCollideCallback = "";
 
 		storyController.setObjective("");
-		this.audio.PlayOneShot (IntroSpeech);
+		this.audio.PlayOneShot (pierre1);
 
-		Invoke ("ActionReady", 17f);
+		GoToAction (3, 8f);
 
 	}
 
-	// Pierre moonwalks to the board room awkwardly
+	// Pierre walks to the board room
 	public void Action3() {
+
+		currentCollideCallback = "";
 
 		storyController.setObjective("Follow Pierre to the meeting in the board room");
 
 		List<Vector3> waypoints = new List<Vector3> () {	
 			new Vector3 (-10.76238f, 0f, -41.02417f),
 			new Vector3(-0.8059567f, 0f, -52.51234f),
-			new Vector3(8.253447f, 0f, -50.91179f)
+			new Vector3(10.253447f, 0f, -50.91179f),
+			new Vector3(7.253447f, 0f, -50.91179f)
 		};													
-		WalkWaypoints (waypoints, "ActionReady");
+		WalkWaypoints (waypoints, "Action4");
 
 	}
 
@@ -157,19 +67,147 @@ public class PierreController : MonoBehaviour {
 
 		storyController.setObjective("Meet with Pierre in the board room");
 
-		// the wait for the player to reach Pierre
+		// then wait for the player to reach Pierre
+		currentCollideCallback = "Action5";
 
 	}
 
 	// Pierre demands that the player will sit down
 	public void Action5() {
 
-		this.audio.PlayOneShot (TakeASeat);
-		Invoke ("ActionReady", 3f );
+		currentCollideCallback = "";
+
+		this.audio.PlayOneShot (pierre2);
+		GoToAction ("player", 1, 2f);
+		GoToAction (6, 2f);
 
 	}
 
+	// Walk up to the front of the meeting room
 	public void Action6() {
+
+		List<Vector3> waypoints = new List<Vector3> () {	
+			new Vector3 (10.64957f, 0f, -46.82451f),
+			new Vector3(10.31618f, 0f, -33.39981f),
+			new Vector3(6.579431f, 0f, -32.89644f),
+			new Vector3(6.579431f, 0f, -35.46146f)
+		};													
+		WalkWaypoints (waypoints, "Action7");
+
+	}
+
+	// Just pause for a moment
+	public void Action7() {
+		GoToAction (8, 1f);
+	}
+
+	// Pierre starts the meeting and asks steve to begin	
+	public void Action8() {
+			
+		this.audio.PlayOneShot (pierre3);
+		GoToAction ("steve", 1, 5.5f);
+
+	}
+
+	// Pierre's phone rings and he leaves the meeting to take the call
+	public void Action9() {
+		
+		this.audio.PlayOneShot (pierre4);
+		GoToAction (10, 9f);
+		GoToAction ("john", 1, 12f);
+		
+	}
+
+	// Steve leaves the room to take his phone call
+	public void Action10() {
+		List<Vector3> waypoints = new List<Vector3> () {
+			
+			new Vector3(6.579431f, 0f, -35.46146f),
+			new Vector3(6.579431f, 0f, -32.89644f),
+			new Vector3(10.31618f, 0f, -33.39981f),
+			new Vector3(10.64957f, 0f, -46.82451f),
+			new Vector3(7.253447f, 0f, -50.91179f),
+			new Vector3(-0.8059567f, 0f, -52.51234f),
+			new Vector3(-0.8059567f, 0f, -52.51234f),
+			new Vector3 (-10.76238f, 0f, -41.02417f)
+		};	
+		WalkWaypoints (waypoints, "");
+	}
+
+
+	public void Action11() {
+
+		// wait for the player to reach Pierre
+		storyController.setObjective ("Go to Pierre");
+		currentCollideCallback = "Action12";
+
+	}
+
+	public void Action12() {
+
+		// stop all the colliding part
+		storyController.setObjective ("");
+		currentCollideCallback = "";
+
+		storyController.LockPlayerMovement (true, false);
+
+		this.audio.PlayOneShot (pierre5);
+		GoToAction (13, 13f);
+
+	}
+
+	public void Action13() {
+
+
+		this.transform.Rotate (0f, 180f, 0f);
+		this.audio.PlayOneShot (pierre6);
+		GoToAction (14, 4f);
+
+
+	}
+
+	public void Action14() {
+
+		GoToAction (15, 4f);
+
+		List<Vector3> waypoints = new List<Vector3> () {
+			new Vector3 (-10.76238f, 0f, -41.02417f),
+			new Vector3(-0.8059567f, 0f, -52.51234f),
+			new Vector3(-0.8059567f, 0f, -52.51234f),
+			new Vector3(7.253447f, 0f, -50.91179f),
+			new Vector3(10.64957f, 0f, -46.82451f),
+			new Vector3(10.31618f, 0f, -33.39981f),
+			new Vector3(6.579431f, 0f, -32.89644f),
+			new Vector3(6.579431f, 0f, -35.46146f)
+		};	
+		WalkWaypoints (waypoints, "Action15");
+
+	}
+
+	public void Action15() {
+
+		storyController.setObjective("Follow Pierre back into the meeting room");
+		storyController.LockPlayerMovement (false);
+		currentCollideCallback = "Action16";
+
+	}
+
+	public void Action16() {
+
+		// stop all the colliding part
+		storyController.setObjective ("");
+		currentCollideCallback = "";
+
+		this.audio.PlayOneShot (pierre7);
+		GoToAction("steve", 4, 6f);
+
+	}
+
+
+	public void Action17() {
+
+		this.audio.PlayOneShot (pierre8);
+		GoToAction ("player", 4, 7f);
 
 	}
 

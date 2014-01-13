@@ -12,6 +12,13 @@ public class WorldUIManager : MonoBehaviour {
 	private string searchWord;
 	private Dictionary<string, Vector3> searchResults;
 	private string searchResponse;
+
+	private bool showCountryData = false;
+	private Rect cdRect;
+	private string cdName;
+	private int cdWidth = 350;
+	private int cdHeight = 400;
+
 	
 	// Use this for initialization
 	void Start () {
@@ -27,28 +34,34 @@ public class WorldUIManager : MonoBehaviour {
 		searchWord = "";
 		searchResults = new Dictionary<string, Vector3>();
 		searchResponse = "";
+
+		// set the country data window size
+		cdRect = new Rect (Screen.width / 2 - cdWidth / 2, (Screen.height - 100) / 2 - cdHeight / 2, cdWidth, cdHeight);
 	}
 	
 	void Update () {
 		
 		// check for the tooltip
-		RaycastHit hit;
-		if (Physics.Raycast(camera.ScreenPointToRay(Input.mousePosition), out hit)) {
-			if (hit.collider.gameObject.name.Equals("Earth")) {
-				tooltip = "";
+		if (!showCountryData) {
+				RaycastHit hit;
+				if (Physics.Raycast (camera.ScreenPointToRay (Input.mousePosition), out hit)) {
+						if (hit.collider.gameObject.name.Equals ("Earth")) {
+								tooltip = "";
+								cdName = tooltip;
+						} else {
+								tooltip = hit.collider.gameObject.transform.parent.name;
+								cdName = tooltip;
+		
+								if (Input.GetMouseButtonDown (0)) {
+										showCountryData = true;
+								}
+						}
+				} else {
+						tooltip = "";
+				}
 			} else {
-				tooltip = hit.collider.gameObject.transform.parent.name;
-
-				//TODO: This instruction loads the neighbourhood view
-				//when a city is clicked. Later it will have to
-				//be adapted to distinguish between player's city
-				//or an external one.
-				if(Input.GetMouseButtonDown(0))
-					Application.LoadLevel("CityView");
+				tooltip = "";
 			}
-		} else {
-			tooltip = "";
-		}
 		
 	}
 	
@@ -84,7 +97,54 @@ public class WorldUIManager : MonoBehaviour {
 		
 		// show tooltip if neccesary
 		showCountryTooltip();
+
+		// show the country info if neccesary
+		if (showCountryData) {
+			cdRect = GUI.Window (0, cdRect, countryDataScreen, cdName);
+		}
 		
+	}
+
+	private void countryDataScreen(int windowID) {
+
+		// get the country object
+		WorldCountry country = data.Countries [cdName];
+
+		// create the labels
+		List<string> labels = new List<string> () {
+			"Country",
+			"Number of Offices",
+			""
+		};
+
+		// create the values
+		List<string> values = new List<string> () {
+			cdName,
+			country.Cities.Count.ToString(),
+			""
+		};
+
+		// add building scores to labels and values
+		List<WorldBuilding> buildings = new List<WorldBuilding> (country.Buildings.Values);
+		foreach (WorldBuilding building in buildings) {
+			labels.Add(building.Category + " score");
+			values.Add(building.Score.ToString());
+		}
+
+		// display labels and values
+		int top = 50;
+		int offset = 25;
+		for (int i = 0; i < labels.Count; i++) {
+			GUI.Label (new Rect ( 50, top + i * offset, cdWidth - 100, 25), labels[i]);
+			GUI.Label (new Rect (200, top + i * offset, cdWidth - 100, 25), values[i]);
+		}
+
+		// display close button
+		if (GUI.Button(new Rect(cdWidth / 2 - 75, cdHeight - 75, 150, 25), "Close")) {
+			showCountryData = false;
+			cdName = "";
+		}
+
 	}
 	
 	void showCountryTooltip() {

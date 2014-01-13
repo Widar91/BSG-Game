@@ -3,130 +3,217 @@ using System.Collections;
 using System.Collections.Generic;
 [RequireComponent (typeof (CharacterMotor))]
 
-public class PlayerController : MonoBehaviour {
-	
-	// Story Tracking variables
-	private StoryController storyController;
-	private int currentAction = 0;
-	
-	// Movement variables
-	Vector3 targetPoint = Vector3.zero;
-	float 	moveSpeed = 5f;
-	
-	private int wpTarget = -1;
-	private List<Vector3> wpWaypoints;
-	private string wpCallback;
+public class PlayerController : PersonController {
 
-	
-	void Start() {
-		
-		// get the game controller
-		GameObject CLI = GameObject.Find ("CompetitionLawInfringeMent");
-		storyController = CLI.GetComponent<StoryController> ();
-		
-	}
-	
-	void Update() {
+	private bool sitStandToggle = true;
 
-		// waypoint reached detector
-		if (wpWaypoints != null && wpTarget > -1 && wpTarget < wpWaypoints.Count) {
-			if (Vector3.Distance (wpWaypoints [wpTarget], transform.position) < 2f)
-				NextWaypoint ();
-			moveToPoint(wpWaypoints[wpTarget]);
-		}
-		
-		// movement
-		if (targetPoint != Vector3.zero) {
-			Vector3 targetDirection = targetPoint - transform.position;
-			if (!targetDirection.Equals(Vector3.zero)) {
-				Quaternion targetRotation = Quaternion.LookRotation(new Vector3(targetDirection.x, 0, targetDirection.z));
-				transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * moveSpeed);
-			}
-			transform.position = Vector3.MoveTowards (transform.position, targetPoint, Time.deltaTime * moveSpeed);
-		}
-		
-		
+	protected override void Start() {
+		base.Start ();
+		storyName = "player";
 	}
-	
-	void OnGUI() {
-		
-		
-		
-	}
-	
-	// ------------ Movement Functions ---------------
-	
-	void moveToPoint(Vector3 target) {
-		target.y = this.transform.localPosition.y;
-		targetPoint = target;
-	}
-	
-	void WalkWaypoints (List<Vector3> waypoints, string callback) {
-		wpTarget = 0;
-		wpWaypoints = waypoints;
-		wpCallback = callback;
-	}
-	
-	void NextWaypoint() {
-		if (wpWaypoints != null && wpTarget + 1 < wpWaypoints.Count) {
-			wpTarget++;
-		} else {
-			wpWaypoints = null;
-			wpTarget = -1;
-			if (!wpCallback.Equals(""))
-				Invoke (wpCallback, 0f);
-			wpCallback = "";
-		}
-	}
+
+	// ------------ Movement Locking Function ---------------
 
 	public void LockMovementAndMouse(bool doLock) {
+			LockMovementAndMouse (doLock, doLock);
+	}
+
+	public void LockMovementAndMouse(bool doLockMove, bool doLockLook) {
+
 		CharacterController wasd = this.GetComponent<CharacterController>();	
-		wasd.enabled = false;
+		wasd.enabled = !doLockMove;
+
 		MouseLook mouseLookX = this.GetComponent<MouseLook>();
-		mouseLookX.enabled = false;	
+		mouseLookX.enabled = !doLockLook;	
 		MouseLook mouseLookY = Camera.main.GetComponent<MouseLook> ();
-		mouseLookY.enabled = false;
+		mouseLookY.enabled = !doLockLook;
+
 	}
-	
-	// ------------ Actions Functions ---------------
-	
-	void ActionReady() {
-		storyController.ActionReady("player", currentAction);
-	}
-	
-	public int NextAction() {
-		currentAction++;
-		Invoke ("Action" + currentAction, 0f);
-		return currentAction;
-	}
-	
-	public int GoToAction(int action) {
-		currentAction = action;
-		Invoke ("Action" + action, 0f);
-		return currentAction;
+
+	private void ToggleSitStand() {
+		float yTransf = 0.7f;
+		if (sitStandToggle)
+			yTransf *= -1;
+		Camera.main.transform.Translate(0f, yTransf, 0f);
+		sitStandToggle = !sitStandToggle;
 	}
 	
 	// ------------ Actions ---------------
-	
-	// Put pierre in the office and tell the player to go meet
+
+	// Let the player read a message
+	public void Action0() {
+
+		string message = @"You are an KPMG employee that is about to have a meeting with a company called CleanIt. As part of the CleanIt team, you are asked to attend the meeting. Two KPMG colleagues are joining you: Pierre, the engagement partner; and Mia, an advisor. Steve and John will attend the meeting as representatives of CleanIt. 
+
+Go and meet with Pierre.";
+
+
+		storyController.showMessage(message, new Action("pierre", 1));
+	}
+
+	// Seats the player
 	public void Action1() {
 
 		List<Vector3> waypoints = new List<Vector3> () {	
 			new Vector3(2.020578f, 0f, -50.56942f),
 			new Vector3(1.768536f, 0f, -39.07871f),
-			new Vector3(3.712274f, 0f, -36.39474f)
+			new Vector3(4.712274f, 0f, -35.89474f)
 		};													
-		WalkWaypoints (waypoints, "ActionReady");
+		WalkWaypoints (waypoints, "Action2");
 		
 	}
 	
 	public void Action2() {
 
-		GameObject tv = GameObject.FindGameObjectWithTag ("BoardRoomTV");
-		Camera.main.transform.LookAt (tv.transform);
-		LockMovementAndMouse (true);	
+		ToggleSitStand ();
+		storyController.LockPlayerMovement (true, false);	
 
-		ActionReady ();
+	}
+
+	public void Action3() {
+		
+		ToggleSitStand ();
+		storyController.LockPlayerMovement (false, false);	
+		
+	}
+
+	public void Action4() {
+
+		string message = "This is the end of the situation simulation. You will now receive four questions reagarding the situation that you justed experienced.";
+		storyController.showMessage ("Einde training", new Action ("player", 5));
+
+	}
+
+
+
+	public void Action5() {
+
+		string question = "Pierre left the office during the meeting. What will you do about this?";
+		List<string> answers = new List<string> ()
+		{
+			"Confront Pierre about this",
+			"Report to the engagement partner (Pierre)",
+			"Report Pierre to the risk management partner",
+			"Report Pierre to the senior partner",
+			"Nothing, the call must have been important"
+		};
+		List<Action> callbacks = new List<Action> ()
+		{
+			new Action("player", 6),
+			new Action("player", 6),
+			new Action("player", 6),
+			new Action("player", 6),
+			new Action("player", 6)
+		};
+		List<int> scores = new List<int> ()
+		{
+			5,
+			0,
+			0,
+			0,
+			25
+		};
+		
+		storyController.askQuestion (question, answers, callbacks, scores);
+
+	}
+
+	public void Action6() {
+		
+		string question = "Pierre was giving stock information to someone on the phone when he was out of the meeting. What will you do about this?";
+		List<string> answers = new List<string> ()
+		{
+			"Report to the engagement partner (Pierre)",
+			"Report Pierre to the risk management partner",
+			"Report Pierre to the senior partner",
+			"Nothing, it was probably unrelated information"
+		};
+		List<Action> callbacks = new List<Action> ()
+		{
+			new Action("player", 7),
+			new Action("player", 7),
+			new Action("player", 7),
+			new Action("player", 7)
+		};
+		List<int> scores = new List<int> ()
+		{
+			0,
+			25,
+			0,
+			0
+		};
+		
+		storyController.askQuestion (question, answers, callbacks, scores);
+		
+	}
+
+	public void Action7() {
+		
+		string question = "Someone in CleanIt went to the super bowl with a client. What will you do with this information?";
+		List<string> answers = new List<string> ()
+		{
+			"Report to the engagement partner (Pierre)",
+			"Report Pierre to the risk management partner",
+			"Report Pierre to the senior partner",
+			"Nothing, it was probably an innocent gift	"
+		};
+		List<Action> callbacks = new List<Action> ()
+		{
+			new Action("player", 8),
+			new Action("player", 8),
+			new Action("player", 8),
+			new Action("player", 8)
+		};
+		List<int> scores = new List<int> ()
+		{
+			0,
+			0,
+			0,
+			25
+		};
+		
+		storyController.askQuestion (question, answers, callbacks, scores);
+		
+	}
+
+	public void Action8() {
+		
+		string question = "CleanIt is not going to bid on the new contract because TRID is going to. What will you do with this information?";
+		List<string> answers = new List<string> ()
+		{
+			"Report to the engagement partner (Pierre)",
+			"Report Pierre to the risk management partner",
+			"Report Pierre to the senior partner",
+			"Nothing, the companies just respect each other"
+		};
+		List<Action> callbacks = new List<Action> ()
+		{
+			new Action("player", 98),
+			new Action("player", 98),
+			new Action("player", 98),
+			new Action("player", 98)
+		};
+		List<int> scores = new List<int> ()
+		{
+			25,
+			0,
+			0,
+			0
+		};
+		
+		storyController.askQuestion (question, answers, callbacks, scores);
+		
+	}
+
+
+
+
+	public void Action98() {
+		storyController.showMessage("End of training. Your score is: " + storyController.Score, new Action("player", 99));
+	}
+
+	public void Action99() {
+		Application.LoadLevel("Office");
 	}
 
 	
