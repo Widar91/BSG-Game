@@ -7,10 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-
-import nl.tudelft.bsg.kpmgcities.model.Player;
 
 @Entity
 public class MinigameChallenge implements Serializable {
@@ -24,7 +22,7 @@ public class MinigameChallenge implements Serializable {
 	private String player2;
 	@Enumerated
 	private MinigameChallengeStatus status;
-	@OneToMany
+	@ManyToMany
 	private List<ChallengeQuestion> questions;
 	@ManyToOne
 	private ChallengeResult result1;

@@ -37,16 +37,17 @@ public class MinigameChallengeResource extends Resource{
     public Response requestMinigameChallenge(@QueryParam(value = "players") final List<String> players) {
 			MinigameChallenge c = new MinigameChallenge();
 			
-			System.err.println("creating Challenge");
 			
 			Player p1 = DBConnector.getInstance().getPlayer(players.get(0), "");
 			Player p2 = DBConnector.getInstance().getPlayer(players.get(1), "");
+
+			System.err.println("creating Challenge + " + p1.getName() + ", " + p2.getName());
 			
 			if(p1 == null || p2 == null)
 				return simpleResponse(HTTP_NOT_FOUND, "Opponent not existing.");
 			
 			c.setPlayer1(players.get(0));
-			c.setPlayer2(players.get(0));
+			c.setPlayer2(players.get(1));
 			
 			c.setQuestions(getRandomChallengeQuestions());
 			c.setStatus(MinigameChallengeStatus.WAITING_FOR_OPPONENT);
@@ -78,7 +79,7 @@ public class MinigameChallengeResource extends Resource{
     			c.setStatus(MinigameChallengeStatus.TERMINATED);
     		
             DBConnector.getInstance().save(c);
-            return c;
+            return DBConnector.getInstance().getMinigameChallenge(cid);
     }
 	
 	
