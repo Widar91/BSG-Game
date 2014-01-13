@@ -22,7 +22,7 @@ public class WorldData : MonoBehaviour {
 			"Compliance", 
 			"Management", 
 			"Tax", 
-			"Audit"
+			"Integrity"
 		};
 		
 		List<string> countryNames = new List<string>();

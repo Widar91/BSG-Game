@@ -69,7 +69,8 @@ public class WorldUIManager : MonoBehaviour {
 	void OnGUI () {
 	
 		// execute a search on enter
-		searchWord = GUI.TextField(new Rect(25, 25, 125, 25), searchWord);
+		GUI.Label (new Rect(25, 25, 50, 25), "Search:");
+		searchWord = GUI.TextField(new Rect(90, 25, 125, 25), searchWord);
 		if (Event.current.keyCode == KeyCode.Return) {
 			searchResults = data.findPlaces(searchWord);
 		
@@ -114,13 +115,15 @@ public class WorldUIManager : MonoBehaviour {
 		List<string> labels = new List<string> () {
 			"Country",
 			"Number of Offices",
-			""
+			"",
+			"Average Scores:"
 		};
 
 		// create the values
 		List<string> values = new List<string> () {
 			cdName,
 			country.Cities.Count.ToString(),
+			"",
 			""
 		};
 

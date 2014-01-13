@@ -80,7 +80,7 @@ Go and meet with Pierre.";
 	public void Action4() {
 
 		string message = "This is the end of the situation simulation. You will now receive four questions reagarding the situation that you justed experienced.";
-		storyController.showMessage ("Einde training", new Action ("player", 5));
+		storyController.showMessage (message, new Action ("player", 5));
 
 	}
 
