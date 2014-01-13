@@ -114,7 +114,7 @@ public class ServerConnector {
 
 		string url = createURL("/minigamechallenge/new?players=" + playerName + "&players=" + p2);
 		string jsonResponse = sendRequest("PUT", url, "");
-
+		Debug.Log("challenge: "+jsonResponse);
 		return jsonResponse;
 
 	}

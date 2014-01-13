@@ -63,7 +63,7 @@ public class JSONConverter {
 			for(int j = 0; j < answers.Length; j++) {
 				if(questionsArray[i]["answers"].Count > j) {
 					var ans = questionsArray[i]["answers"][j]["answer"].ToString();
-					bool correct = questionsArray[i]["answers"][j]["correct"].AsInt == 0? false : true;
+					bool correct = questionsArray[i]["answers"][j]["correct"].AsBool;
 					answers[j] = new KeyValuePair<string, bool> (ans, correct);
 				}
 				else 
