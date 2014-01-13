@@ -15,7 +15,7 @@ public class QuestionsScript : MonoBehaviour {
 	private static int round;
 	private static int correctAnswers;
 	private static float challengeTime;
-	private static bool challengeEnded;
+	private static bool challengeEnded = false;
 	private static MinigameChallenge challenge;
 	private static List<ChallengeQuestion> questions;
 
@@ -32,12 +32,6 @@ public class QuestionsScript : MonoBehaviour {
 						
 
 						if (challengeEnded) {
-								
-								round = 0;
-								correctAnswers = 0;
-								challengeTime = 0;
-
-								Time.timeScale = 0;
 
 								ButtonstyleGUI_CS.ChallengeButtonStyle (QuestionButton, QuestionButton_h);
 								GUI.Button (new Rect (Screen.width / 2 - 250, 50, 500, 50), "Correct answers: " + correctAnswers + " (" + challengeTime + " s)");
@@ -47,6 +41,11 @@ public class QuestionsScript : MonoBehaviour {
 									MenuGUI.beginChallenge = false;
 									MenuGUI.toogleChallengesWindow = true;
 									challengeEnded = false;
+									correctAnswers = 0;
+									challengeTime = Time.time;
+					
+									MenuGUI.challenges = new List<MinigameChallenge>();
+									Time.timeScale = 0;
 								}
 
 								return;
@@ -54,11 +53,13 @@ public class QuestionsScript : MonoBehaviour {
 						}
 
 						if (round == 5) {
-
 							challengeTime = Time.time - challengeTime;
 							handleResults ();
 
+							round = 0;
 							challengeEnded = true;
+
+							return;
 
 						}
 													
@@ -72,8 +73,10 @@ public class QuestionsScript : MonoBehaviour {
 						}
 
 						//Question Button
-						ButtonstyleGUI_CS.ChallengeButtonStyle (QuestionButton, QuestionButton_h);
-						GUI.Button (new Rect (Screen.width / 2 - 250, 50, 500, 50), questions[round].getQuestion());
+						if(round < 5) {
+							ButtonstyleGUI_CS.ChallengeButtonStyle (QuestionButton, QuestionButton_h);
+							GUI.Button (new Rect (Screen.width / 2 - 250, 50, 500, 50), questions[round].getQuestion());
+						}
 
 						KeyValuePair<string, bool>[] answers = questions [round].getAnswers ();
 
@@ -118,7 +121,7 @@ public class QuestionsScript : MonoBehaviour {
 
 		Debug.Log("Sending challenge results to the Server: " + correctAnswers.ToString());
 		Debug.Log("Sending challenge time to the Server: " + challengeTime);
-		ServerConnector.getInstance().sendMinigameResult(challenge.getId(), correctAnswers, correctAnswers);
+		ServerConnector.getInstance().sendMinigameResult(challenge.getId(), correctAnswers, challengeTime);
 		
 	}
 

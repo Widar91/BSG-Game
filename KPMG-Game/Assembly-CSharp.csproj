@@ -100,7 +100,6 @@
      <Compile Include="Assets\Neighbourhood-Scene\Scripts\RTS-Scripts\BuildingCollision.cs" />
      <Compile Include="Assets\Neighbourhood-Scene\Scripts\RTS-Scripts\BuildingList.cs" />
      <Compile Include="Assets\Neighbourhood-Scene\Scripts\RTS-Scripts\RTSGUIScript.cs" />
-     <Compile Include="Assets\Neighbourhood-Scene\Scripts\ShopGUI\ShopGUI.cs" />
      <Compile Include="Assets\OfficeView\Leaderboard\Leaderboard.cs" />
      <Compile Include="Assets\OfficeView\Player Profile\Profile.cs" />
      <Compile Include="Assets\OfficeView\Scripts\CameraBehaviour.cs" />
@@ -112,6 +111,7 @@
      <Compile Include="Assets\OfficeView\Scripts\Trophy.cs" />
      <Compile Include="Assets\OfficeView\Scripts\TrophyManager.cs" />
      <Compile Include="Assets\OfficeView\Scripts\Window.cs" />
+     <Compile Include="Assets\OfficeView\ShopGUI\ShopGUI.cs" />
      <Compile Include="Assets\Server\JSONConverter.cs" />
      <Compile Include="Assets\Server\JSONPlugin\SimpleJSON.cs" />
      <Compile Include="Assets\Server\Model\ChallengeQuestion.cs" />

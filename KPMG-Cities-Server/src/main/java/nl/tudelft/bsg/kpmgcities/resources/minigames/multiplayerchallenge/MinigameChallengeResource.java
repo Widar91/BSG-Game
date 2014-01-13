@@ -34,7 +34,7 @@ public class MinigameChallengeResource extends Resource{
 	
 	@PUT
 	@Path("/new")
-    public Response requestMinigameChallenge(@QueryParam(value = "players") final List<String> players) {
+    public MinigameChallenge requestMinigameChallenge(@QueryParam(value = "players") final List<String> players) {
 			MinigameChallenge c = new MinigameChallenge();
 			
 			
@@ -44,17 +44,17 @@ public class MinigameChallengeResource extends Resource{
 			System.err.println("creating Challenge + " + p1.getName() + ", " + p2.getName());
 			
 			if(p1 == null || p2 == null)
-				return simpleResponse(HTTP_NOT_FOUND, "Opponent not existing.");
+				return null;
 			
 			c.setPlayer1(players.get(0));
 			c.setPlayer2(players.get(1));
 			
 			c.setQuestions(getRandomChallengeQuestions());
-			c.setStatus(MinigameChallengeStatus.WAITING_FOR_OPPONENT);
+			c.setStatus(MinigameChallengeStatus.ACTIVE);
 			
 			DBConnector.getInstance().save(c);
 			
-			return simpleResponse(200);
+			return DBConnector.getInstance().getMinigameChallenge(c.getId());
     }
 	
     @POST
@@ -70,10 +70,14 @@ public class MinigameChallengeResource extends Resource{
     		
     		MinigameChallenge c = DBConnector.getInstance().getMinigameChallenge(cid);
     		
-    		if(c.getPlayer1().equalsIgnoreCase(pl))
+    		if(c.getPlayer1().equalsIgnoreCase(pl)) {
     			c.setResult1(cr);
-    		else 
+    			c.setStatus(MinigameChallengeStatus.WAITING_FOR_OPPONENT);
+    		}
+    		else {
     			c.setResult2(cr);
+    			c.setStatus(MinigameChallengeStatus.WAITING_FOR_RESULTS);
+    		}
     		
     		if(c.getResult1() != null && c.getResult2() != null)
     			c.setStatus(MinigameChallengeStatus.TERMINATED);

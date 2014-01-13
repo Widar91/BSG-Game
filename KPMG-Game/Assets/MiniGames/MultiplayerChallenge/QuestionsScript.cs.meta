@@ -2,7 +2,12 @@ fileFormatVersion: 2
 guid: ddd07c91855d747c394cffce1e33de9e
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - ChallengeSkin: {fileID: 11400000, guid: fe1440707143b42daa3f01e6959e1dd2, type: 2}
+  - QuestionButton: {instanceID: 0}
+  - QuestionButton_h: {instanceID: 0}
+  - AnswerButton: {instanceID: 0}
+  - AnswerButton_h: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

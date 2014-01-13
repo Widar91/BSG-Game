@@ -207,7 +207,6 @@ public class TestDB {
 			
 			
 			//Create 1 challenge
-			/*
 			MinigameChallenge c = new MinigameChallenge();
 			c.setPlayer1(pl2.getName());
 			c.setPlayer2(pl.getName());
@@ -219,7 +218,6 @@ public class TestDB {
 			c.setStatus(MinigameChallengeStatus.WAITING_FOR_OPPONENT);
 			
 			DBConnector.getInstance().save(c);
-			*/
 		}
 	}
 	

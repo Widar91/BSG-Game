@@ -123,7 +123,7 @@ public class ServerConnector {
 
 		string url = createURL("/minigamechallenge/result/"+ cid + "/" + playerName);
 
-		string jsonResponse = sendRequest("POST", url, "[{\"id\":1,\"time\":"+ time +",\"correctAnswers\":"+ ans +"}]");
+		string jsonResponse = sendRequest("POST", url, "{\"id\":1,\"time\":"+ time +",\"correctAnswers\":"+ ans +"}");
 
 	}
 	
@@ -136,23 +136,33 @@ public class ServerConnector {
 	private string sendRequest(string method, string url, string parameters) {
 
 		HttpWebRequest http = (HttpWebRequest) WebRequest.Create(new Uri(url));
-		http.Accept = "application/json";
+		http.Accept = "*/*";
 		http.ContentType = "application/json";
 		http.Method = method;
 
 		string content = "";
 
 		if(method.Equals("POST") && parameters != null) {
+			/**
 			ASCIIEncoding encoding = new ASCIIEncoding();
 			Byte[] bytes = encoding.GetBytes(parameters);
 			
 			Stream newStream = http.GetRequestStream();
 			newStream.Write(bytes, 0, bytes.Length);
 			newStream.Close();
+			**/
+
+			StreamWriter streamWriter = new StreamWriter(http.GetRequestStream());
+			streamWriter.Write(parameters);
+			streamWriter.Flush();
+			streamWriter.Close();
+
 		}
 
 		try {
+			Debug.Log("Request - " + url);
 			HttpWebResponse response = (HttpWebResponse) http.GetResponse();
+
 
 			if((int)response.StatusCode != 200) {
 				EditorUtility.DisplayDialog("Error", response.ToString(), "Ok", "Cancel");
@@ -164,7 +174,8 @@ public class ServerConnector {
 			content = sr.ReadToEnd();
 		}
 		catch (WebException e) {
-			EditorUtility.DisplayDialog("Error: ", e.Message, "Ok", "");
+			//EditorUtility.DisplayDialog("Error: ", e.Message, "Ok", "");
+			Debug.Log(e.Message);
 			return "";	
 		}
 
