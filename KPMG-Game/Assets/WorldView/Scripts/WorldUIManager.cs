@@ -127,7 +127,7 @@ public class WorldUIManager : MonoBehaviour {
 		// add building scores to labels and values
 		List<WorldBuilding> buildings = new List<WorldBuilding> (country.Buildings.Values);
 		foreach (WorldBuilding building in buildings) {
-			labels.Add(building.Color + " score");
+			labels.Add(building.Category + " score");
 			values.Add(building.Score.ToString());
 		}
 
