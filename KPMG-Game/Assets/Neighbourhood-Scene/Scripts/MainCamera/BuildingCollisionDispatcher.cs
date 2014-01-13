@@ -20,9 +20,6 @@ public class BuildingCollisionDispatcher : MonoBehaviour {
 					case "Office":
 						Application.LoadLevel("Office");
 						break;
-					case "Shop":
-						ShopGUI.displayShop();
-						break;
 					default:
 						break;
 				}
