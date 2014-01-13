@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 
 public class Item
@@ -37,12 +38,23 @@ public class OfficeObjectManager : MonoBehaviour
 		
 	}
 
+	/// <summary>
+	/// Instantiate the item
+	/// </summary>
+	/// <returns>The game object.</returns>
+	/// <param name="item">Item.</param>
 	public GameObject CreateGameObject (Item item)
 	{
 		GameObject instance = (GameObject)Instantiate (Resources.Load (item.resource));
 		return instance;
 	}
 
+	/// <summary>
+	/// Positions the game object.
+	/// </summary>
+	/// <param name="item">The Item object that contains the position and scale for the object</param>
+	/// <param name="instance">Instance to be positioned.</param>
+	/// <param name="inParent">The parent for the instance.</param>
 	public void PositionGameObject (Item item, GameObject instance, GameObject inParent = null)
 	{
 		if (inParent != null)
@@ -54,31 +66,63 @@ public class OfficeObjectManager : MonoBehaviour
 		instance.transform.localPosition = item.position;
 	}
 
-	public void LoadItem(Item item, GameObject inParent = null)
+
+	/// <summary>
+	/// Loads the item.
+	/// </summary>
+	/// <returns>The GameObject instance</returns>
+	/// <param name="item">The item to instantiate ad position</param>
+	/// <param name="inParent">The parent object for the item</param>
+	public GameObject LoadItem(Item item, GameObject inParent = null)
 	{
 		var instance = CreateGameObject (item);
 
 		// Place uner another gameobject, if provided
 		PositionGameObject (item, instance, inParent);
 
+		return instance;
 	}
 
-	public void LoadItems(IEnumerable items, Vector3 shift, GameObject inParent = null)
+	/// <summary>
+	/// Loads the items.
+	/// </summary>
+	/// <returns>The instantiated gameobjects.</returns>
+	/// <param name="items">Items.</param>
+	/// <param name="shift">Shift within the parent.</param>
+	/// <param name="inParent">The parent gameobject.</param>
+	public List<GameObject> LoadItems(IEnumerable items, Vector3 shift, GameObject inParent = null)
 	{
+		List<GameObject> gos = new List<GameObject> ();
+
 		foreach (Item item in items) 
 		{
 			Vector3 p = item.position;
 			item.position = new Vector3(p.x + shift.x, p.y + shift.y, p.z + shift.z);
-			LoadItem(item, inParent);
+			GameObject go = LoadItem(item, inParent);
+
+			gos.Add(go);
 		}
+
+		return gos;
 	}
 
-	public void LoadItems(IEnumerable items, GameObject inParent = null)
+	/// <summary>
+	/// Loads the items.
+	/// </summary>
+	/// <returns>The instantiated and positioned GameObjects</returns>
+	/// <param name="items">Items.</param>
+	/// <param name="inParent">In parent.</param>
+	public List<GameObject> LoadItems(IEnumerable items, GameObject inParent = null)
 	{
+		List<GameObject> gos = new List<GameObject> ();
+
 		foreach (Item item in items)
 		{
-			LoadItem(item, inParent);
+			GameObject go = LoadItem(item, inParent);
+			gos.Add(go);
 		}
+
+		return gos;
 	}
 
  

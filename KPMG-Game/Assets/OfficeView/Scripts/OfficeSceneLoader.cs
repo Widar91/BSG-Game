@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
+using System.Collections.Generic;
 
 public class OfficeSceneLoader : MonoBehaviour 
 {
@@ -9,8 +11,12 @@ public class OfficeSceneLoader : MonoBehaviour
 	OfficeObjectManager manager = null;
 	public Vector3 shift = new Vector3(0,0,0);
 
+	public ICollection<GameObject> loadedGameObjects = new List<GameObject> ();
 
-	public Item[] items = 
+	/// <summary>
+	/// A basic setup for the office, mocked
+	/// </summary>
+	public Item[] defaultScene = 
 	{
 		new Item("TableSimple", 	new Vector3(-3.97f, 1.04f, -9.741f) , 	5),
 		new Item("VintagePC", 		new Vector3(-9.50f, 0.29f, -10.24f), 	5),
@@ -31,16 +37,37 @@ public class OfficeSceneLoader : MonoBehaviour
 	void Start ()
 	{
 		if ( deamon==null ) 
-			this.deamon = this.gameObject; // If no deamon supplied, assume this s the deamon
-
+			this.deamon = this.gameObject; // If no deamon supplied, assume this is the deamon
 		manager = deamon.GetComponent<OfficeObjectManager> ();	
-		//manager.LoadItems (items, shift);
-		manager.LoadItems (items, shift, OfficeParentObject);
+
+		this.ReloadScene ();
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
 	
+	}
+
+	/// <summary>
+	/// Destroys all the previously loaded objects and loads them anew
+	/// </summary>
+	public void ReloadScene()
+	{
+		this.UnloadScene ();
+		//IEnumerable<Item> items = ServerConnector.getInstance ().GetOfficeObjects ();
+		IEnumerable<Item> items = defaultScene;
+		this.loadedGameObjects = new List<GameObject>(manager.LoadItems (items, shift, OfficeParentObject));
+	}
+
+	/// <summary>
+	/// Destroys all the previously GameObjects
+	/// </summary>
+	public void UnloadScene()
+	{
+		foreach ( GameObject go in this.loadedGameObjects )
+		{
+			UnityEngine.Object.Destroy(go);
+		}
 	}
 }
