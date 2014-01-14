@@ -27,7 +27,7 @@ public class Main {
 	public static final Properties Configuration = loadProperties();
 	
 	// Base URI the Grizzly HTTP server will listen on
-	public static final String BASE_URI = (String) Configuration.get("BASE_URI_TEST"); 
+	public static final String BASE_URI = (String) Configuration.get("BASE_URI"); 
 
 
 	public static void main(String[] args) throws IOException {
