@@ -24,7 +24,7 @@ public class EnvironmentGUI_CS : MonoBehaviour {
 		
 		currentLevel = Application.loadedLevelName;
 
-		GUI.DrawTexture(new Rect(Screen.width-100,0,100,69), kpmg, ScaleMode.StretchToFill, true, 0);
+		GUI.DrawTexture(new Rect(Screen.width-100,0,100,50), kpmg, ScaleMode.StretchToFill, true, 0);
 		
 		GUI.BeginGroup (new Rect (10,Screen.height-130,Screen.width-20,120), "");
 		
