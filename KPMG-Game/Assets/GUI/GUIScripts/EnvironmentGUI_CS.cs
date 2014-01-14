@@ -30,22 +30,21 @@ public class EnvironmentGUI_CS : MonoBehaviour {
 		
 		//Call HUD skin.
 		GUI.skin = hudskin;
-		GUI.Box(new Rect(0,20,Screen.width-20,100),"");
+		GUI.Box(new Rect(175,20,Screen.width/2 + 350,100),"");
 		
 		//Additive images
-		if (currentLevel == "WorldView") {
-						GUI.DrawTexture (new Rect (Screen.width / 2 - 50, 0, 266, 109), midtex, ScaleMode.StretchToFill, true, 0);
-				}
-		else {
-						GUI.DrawTexture (new Rect (Screen.width / 2 - 50, 0, 132, 109), midtex, ScaleMode.StretchToFill, true, 0);
-				}
-		
+		if (currentLevel == "WorldView") 
+			GUI.DrawTexture (new Rect (Screen.width/2 - midtex.width/2 - 35, -20, 300, 150), midtex, ScaleMode.StretchToFill, true, 0);
+		else if (currentLevel == "CityView") 
+			GUI.DrawTexture (new Rect ((Screen.width/2) - midtex.width - 45, -100, 275, 225), midtex, ScaleMode.StretchToFill, true, 0);
+		else  
+			GUI.DrawTexture (new Rect ((Screen.width/2) - midtex.width - 7, -25, 235, 185), midtex, ScaleMode.StretchToFill, true, 0);
 		
 		// Make the first button and first skin. 
 		ButtonstyleGUI_CS.buttonstyle(button4,button4_h);
 		
 
-		if(GUI.Button (new Rect (Screen.width - 100,30,70,70), "")){
+		if(GUI.Button (new Rect (Screen.width/2 + 330,38,85,85), "")){
 				
 				if(currentLevel != "Office"){
 					Application.LoadLevel("Office");        
@@ -58,7 +57,7 @@ public class EnvironmentGUI_CS : MonoBehaviour {
 		// Make Second button and switch to second skin.
 		ButtonstyleGUI_CS.buttonstyle(button3,button3_h);
 
-		if(GUI.Button (new Rect (Screen.width-250,30,93,70), "")){
+		if(GUI.Button (new Rect (Screen.width/2 + 180,40,85,70), "")){
 				
 				if(currentLevel != "Neighbourhood"){
 					Application.LoadLevel("Neighbourhood");        
@@ -68,7 +67,7 @@ public class EnvironmentGUI_CS : MonoBehaviour {
 
 		// Make Second button and switch to second skin.
 		ButtonstyleGUI_CS.buttonstyle(button2,button2_h);
-		if(GUI.Button (new Rect (250,30,93,70), "")){
+		if(GUI.Button (new Rect (Screen.width/2 - 300,40,85,70), "")){
 				
 				if(currentLevel != "CityView"){
 				Application.LoadLevel("CityView");        
@@ -79,7 +78,7 @@ public class EnvironmentGUI_CS : MonoBehaviour {
 		// Make Second button and switch to second skin.
 		ButtonstyleGUI_CS.buttonstyle(button1,button1_h);
 
-		if(GUI.Button (new Rect (100,30,70,70), "")){
+		if(GUI.Button (new Rect (Screen.width/2 - 450,40,70,70), "")){
 				
 				if(currentLevel != "WorldView"){
 					Application.LoadLevel("WorldView");        
