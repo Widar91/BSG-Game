@@ -20,28 +20,10 @@ public class TestDB {
 			//Mock 2 scene objects
 			SceneObj o1 = new SceneObj();
 			o1.setName("o1");
-			o1.setPosx(0);
-			o1.setPosy(0);
-			o1.setPosz(0);
-			o1.setRotx(0);
-			o1.setRoty(0);
-			o1.setRotz(0);
-			o1.setSclx(1);
-			o1.setScly(1);
-			o1.setSclz(1);
 			DBConnector.getInstance().save(o1);
 			
 			SceneObj o2 = new SceneObj();
 			o2.setName("o2");
-			o2.setPosx(1);
-			o2.setPosy(1);
-			o2.setPosz(1);
-			o2.setRotx(1);
-			o2.setRoty(1);
-			o2.setRotz(1);
-			o2.setSclx(10);
-			o2.setScly(10);
-			o2.setSclz(10);
 			DBConnector.getInstance().save(o2);
 			
 			

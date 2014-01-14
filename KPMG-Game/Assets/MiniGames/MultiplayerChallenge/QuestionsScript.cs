@@ -45,7 +45,7 @@ public class QuestionsScript : MonoBehaviour {
 									challengeTime = Time.time;
 					
 									MenuGUI.challenges = new List<MinigameChallenge>();
-									Time.timeScale = 0;
+									//Time.timeScale = 0;
 								}
 
 								return;
@@ -107,6 +107,9 @@ public class QuestionsScript : MonoBehaviour {
 	public static void setChallenge(MinigameChallenge c) {
 		challenge = c;
 		questions = c.getChallengeQuestions();
+		round = 0;
+		correctAnswers = 0;
+		challengeTime = Time.time;
 	}
 
 	private void handleAnswer(bool answer) {

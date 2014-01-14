@@ -210,6 +210,7 @@ Go and meet with Pierre.";
 
 	public void Action98() {
 		storyController.showMessage("End of training. Your score is: " + storyController.Score, new Action("player", 99));
+		ServerConnector.getInstance().setOffice3DScore(storyController.Score);
 	}
 
 	public void Action99() {

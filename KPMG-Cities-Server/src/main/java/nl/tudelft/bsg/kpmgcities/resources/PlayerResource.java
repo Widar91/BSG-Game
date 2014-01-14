@@ -38,9 +38,13 @@ public class PlayerResource extends Resource {
     }
     
     @POST
-    @Consumes(MediaType.APPLICATION_JSON)
-    public Response updatePlayer(Player p) {
+    @Path("/{username}/setscore/{score}")
+    public Response updateOffice3DScore(@PathParam("username") String username, @PathParam("score") String score) {
+            Player p = DBConnector.getInstance().getPlayer(username, "");
+            p.setOffice3DScore(Integer.parseInt(score));
+            
             DBConnector.getInstance().save(p);
+            
             return simpleResponse(200);
     }
     

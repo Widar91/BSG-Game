@@ -53,6 +53,13 @@ public class ServerConnector {
 
 	}
 
+	public void setOffice3DScore(int score) {
+		
+		string url = createURL("/player/" + playerName + "/setscore/" + score);
+		string jsonResponse = sendRequest("POST", url, "");
+		
+	}
+
 	public bool RemoveOfficeObject(long id) {
 		throw new NotImplementedException ("Remove office object");
 	}
@@ -74,14 +81,6 @@ public class ServerConnector {
 
 	public bool SetAchievements(IEnumerable<String> newAchievements) {
 		throw new NotImplementedException("Set achievements");
-	}
-
-	public int GetScore() {
-		throw new NotImplementedException ("get score");
-	}
-
-	public int SetScore(int inScore) {
-		throw new NotImplementedException ("set score");
 	}
 
 	public List<MinigameChallenge> getMinigameChallenges() {

@@ -38,7 +38,7 @@ public class MenuGUI : MonoBehaviour {
 			}
 
 			GUI.Window (0, new Rect (Screen.width*0.2f, 30, Screen.width*0.6f, Screen.height*0.75f), ChallengesWindow, "Challenges");
-			Time.timeScale = 0;
+			//Time.timeScale = 0;
 		}
 		if (toogleNewChallengeWindow) {
 			if(players.Count == 0) {
@@ -47,7 +47,7 @@ public class MenuGUI : MonoBehaviour {
 				Debug.Log("ps2: " + players.Count);
 			}
 			GUI.Window (0, new Rect (Screen.width * 0.2f, 30, Screen.width * 0.6f, Screen.height * 0.75f), NewChallengeWindow, "Pick Opponent");
-			Time.timeScale = 0;
+			//Time.timeScale = 0;
 		}
 	}
 
@@ -141,7 +141,13 @@ public class MenuGUI : MonoBehaviour {
 		ButtonstyleGUI_CS.buttonstyle (backButton, backButton_h);
 		if (GUI.Button (new Rect (Screen.width * 0.05f, Screen.height * 0.7f, 200, 30), "Return to the Office")) {
 			challenges = new List<MinigameChallenge>();
+			toogleChallengesWindow = false;
+			toogleNewChallengeWindow = false;
+			beginChallenge = false;
+			Time.timeScale = 1;
 			Application.LoadLevel("Office");
+			toogleChallengesWindow = true;
+			return;
 		}
 	}
 
