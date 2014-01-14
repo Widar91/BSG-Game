@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Person
 {
@@ -114,10 +115,12 @@ public class Leaderboard : MonoBehaviour {
 	//string[] temp = {"Good","BAD","NICE"};
 
 
+	Person[] scoresCache = new Person[0];
+
 
 	// Use this for initialization
 	void Start () {
-	
+		InvokeRepeating("LoadScores", 0.0f, 10.0f);
 	}
 	
 	// Update is called once per frame
@@ -153,30 +156,8 @@ public class Leaderboard : MonoBehaviour {
 	//GUI Window
 	void leaderWindow (int windowID) {
 
-		Person[] peopleArray = new Person[20]
-		{
-			new Person ("John", 789, 1, "1001"),
-			new Person ("Jim", 456, 2, "1000"),
-			new Person ("Sue", 123, 3, "0100"),
-			new Person ("Sue", 123, 3, "0100"),
-			new Person ("Sue", 123, 3, "0100"),
-			new Person ("Sue", 123, 3, "0100"),
-			new Person ("Sue", 123, 3, "0100"),
-			new Person ("Sue", 123, 3, "0100"),
-			new Person ("Sue", 123, 3, "0100"),
-			new Person ("Sue", 123, 3, "0100"),
-			new Person ("Sue", 123, 3, "0100"),
-			new Person ("Sue", 123, 3, "0100"),
-			new Person ("Sue", 123, 3, "0100"),
-			new Person ("Sue", 123, 3, "0100"),
-			new Person ("Sue", 123, 3, "0100"),
-			new Person ("Sue", 123, 3, "0100"),
-			new Person ("Sue", 123, 3, "0100"),
-			new Person ("Sue", 123, 3, "0100"),
-			new Person ("Sue", 123, 3, "0100"),
-			new Person ("Sue", 123, 3, "0100"),
 
-		};
+		Person[] peopleArray = this.scoresCache;
 		People peopleList = new People(peopleArray);
 
 
@@ -237,6 +218,61 @@ public class Leaderboard : MonoBehaviour {
 		//GUI.EndGroup();
 
 				
+	}
+
+	public void LoadScores() {
+
+		// ---MOCK----   // TODO unmock
+		scoresCache = new Person[]
+		{
+			new Person ("John", 789, 1, "1001"),
+			new Person ("Jim", 456, 2, "1000"),
+			new Person ("Sue", 123, 3, "0100"),
+			new Person ("Sue", 123, 3, "0100"),
+			new Person ("Sue", 123, 3, "0100"),
+			new Person ("Sue", 123, 3, "0100"),
+			new Person ("Sue", 123, 3, "0100"),
+			new Person ("Sue", 123, 3, "0100"),
+			new Person ("Sue", 123, 3, "0100"),
+			new Person ("Sue", 123, 3, "0100"),
+			new Person ("Sue", 123, 3, "0100"),
+			new Person ("Sue", 123, 3, "0100"),
+			new Person ("Sue", 123, 3, "0100"),
+			new Person ("Sue", 123, 3, "0100"),
+			new Person ("Sue", 123, 3, "0100"),
+			new Person ("Sue", 123, 3, "0100"),
+			new Person ("Sue", 123, 3, "0100"),
+			new Person ("Sue", 123, 3, "0100"),
+			new Person ("Sue", 123, 3, "0100"),
+			new Person ("Sue", 123, 3, "0100"),
+		};
+		return;
+		//------------
+
+		// Get scores from server
+		IDictionary<string, int> scores = ServerConnector.getInstance ().getOffice3DScores ();
+		
+		// Sort scores
+		List<KeyValuePair<string, int>> sorter = new List<KeyValuePair<string, int>> ();
+		foreach (KeyValuePair<string, int> kv in scores) {
+			sorter.Add (kv);
+		}
+		sorter.Sort(
+			delegate(KeyValuePair<string, int> firstPair,
+		         KeyValuePair<string, int> nextPair)
+				{
+					return firstPair.Value.CompareTo(nextPair.Value);
+				}
+			);
+
+		// Create people
+		int rank = 1;
+		List<Person> people = new List<Person> ();
+		foreach (KeyValuePair<string, int> kv in sorter) {
+			people.Add(new Person(kv.Key, kv.Value, rank++, "0000"));
+		}
+
+		scoresCache = people.ToArray ();
 	}
 
 

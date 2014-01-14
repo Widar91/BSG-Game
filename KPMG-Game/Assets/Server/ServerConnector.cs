@@ -42,9 +42,9 @@ public class ServerConnector {
 		return true;
 	}
 
-	public int getOffice3DScore() {
+	public int getOffice3DScore(string player=null) {
 	
-		string url = createURL("/player/" + playerName);
+		string url = createURL("/player/" + ((player==null) ? playerName : player));
 		string jsonResponse = sendRequest("GET", url, "");
 
 		JSONNode json = JSON.Parse(jsonResponse);
@@ -60,6 +60,10 @@ public class ServerConnector {
 			
 	}
 
+	public void AddOfficeObject(string itemname) {
+		throw new NotImplementedException ("Add office object");
+	}
+
 	public bool RemoveOfficeObject(string itemName) {
 		throw new NotImplementedException ("Remove office object");
 	}
@@ -68,10 +72,6 @@ public class ServerConnector {
 		throw new NotImplementedException ("Remove neighbourhood object");
 	}
 
-	public void AddOfficeObject(string itemname) {
-		throw new NotImplementedException ("Add office object");
-	}
-	
 	// public [objects] AddNeighbourhoodObject(Item item)
 	//{
 	//}
@@ -189,6 +189,20 @@ public class ServerConnector {
 
 		string jsonResponse = sendRequest("POST", url, "{\"id\":1,\"time\":"+ time +",\"correctAnswers\":"+ ans +"}");
 
+	}
+
+	public Dictionary<String, int> getOffice3DScores() {
+		throw new NotImplementedException ("get minigame scores");
+
+		Dictionary<string, int> scores = new Dictionary<string, int> ();
+
+		IEnumerable<string> players = this.getPlayersNames ();
+		foreach (string player in players) {
+			int score = this.getOffice3DScore(player);
+			scores.Add (player, score);
+		}
+
+		return scores;
 	}
 	
 
