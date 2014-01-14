@@ -16,11 +16,13 @@ public class TrophyManager : MonoBehaviour {
 
 	public class OfficeTrophy : Item
 	{
-		public OfficeTrophy(Vector3 position)
+		public string label;
+		public OfficeTrophy(Vector3 position, string inLabel = "This is not your trophy")
 			: base("TrophyCup", position, 0.01f)
 		{
+			label = inLabel;
 		}
-	}
+	}	
 
 	
 	GUITextBehaviour gui;
@@ -28,20 +30,18 @@ public class TrophyManager : MonoBehaviour {
 	//GameObject lastTrophy = null;
 	
 	// Use this for initialization
-	void Start () {
-		//GameObject ogo = GameObject.Find ("GUI Text");
+	void Start () 
+	{
 		gui = devgui.GetComponent<GUITextBehaviour> ();
-
-		//GameObject deamon = GameObject.Find ("Deamon");
 		manager = deamon.GetComponent<OfficeObjectManager> ();
 
-		//lastTrophy = GameObject.Find ("TrophyCup");
-
-		this.displayTrophies (showCount);
+		IEnumerable<string> trophies = ServerConnector.getInstance ().GetTrophies ();
+		this.displayTrophies (trophies);
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update () 
+	{
 	
 	}
 
@@ -50,23 +50,26 @@ public class TrophyManager : MonoBehaviour {
 		manager.LoadItems (trophies);
 	}
 
-	public void displayTrophies(int count)
+	public void displayTrophies(IEnumerable<string> trophyNames)
 	{
 		Vector3 pos = startingPosition;
 		ICollection<OfficeTrophy> trophies = new List<OfficeTrophy>();
-		for (int i=0; i<count; i++) 
+
+		foreach ( string trophyName in trophyNames )
+		//for (int i=0; i<count; i++) 
 		{
-			OfficeTrophy trophy = new OfficeTrophy(pos);
+			OfficeTrophy trophy = new OfficeTrophy(pos, trophyName);
 			trophies.Add(trophy);
 			pos.x += distanceBetweenTrophies;
 		}
-		displayTrophies (trophies);
-	}
+//		displayTrophies (trophies);
+		foreach (OfficeTrophy trophy in trophies)
+		{
 
-	public void createAnother()
-	{
-//		Vector3 newpos = lastTrophy.transform.position;
-//		newpos.x += 0.27f;
-//		lastTrophy = (GameObject) GameObject.Instantiate(lastTrophy, newpos, lastTrophy.transform.rotation);
+			GameObject trophyGO = manager.CreateGameObject(trophy);
+			TicklesBehaviour tick = trophyGO.GetComponent<TicklesBehaviour>();
+			tick.tickleMessage = trophy.label;
+			manager.PositionGameObject(trophy, trophyGO);
+		}
 	}
 }

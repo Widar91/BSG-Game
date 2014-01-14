@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// Marked for delete
+/// </summary>
 public class Trophy : MonoBehaviour {
 
 	GUITextBehaviour gui;

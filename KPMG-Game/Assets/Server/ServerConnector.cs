@@ -20,7 +20,7 @@ public class ServerConnector {
 		return instance;
 	}
 
-	public string playerName; 
+	public string playerName;
 	private string loginname;
 	private string loginpass;
 
@@ -54,13 +54,13 @@ public class ServerConnector {
 	}
 
 	public void setOffice3DScore(int score) {
-		
+			
 		string url = createURL("/player/" + playerName + "/setscore/" + score);
 		string jsonResponse = sendRequest("POST", url, "");
-		
+			
 	}
 
-	public bool RemoveOfficeObject(long id) {
+	public bool RemoveOfficeObject(string itemName) {
 		throw new NotImplementedException ("Remove office object");
 	}
 
@@ -68,19 +68,84 @@ public class ServerConnector {
 		throw new NotImplementedException ("Remove neighbourhood object");
 	}
 
-	// public [objects] AddOfficeObject(Item item)
-	//{
-	//}
+	public void AddOfficeObject(string itemname) {
+		throw new NotImplementedException ("Add office object");
+	}
+	
 	// public [objects] AddNeighbourhoodObject(Item item)
 	//{
 	//}
+	
+	public IList<string> GetOfficeObjects() {
+		//IList<Item> items = new List<Item> ();
+		IList<string> items = new List<string> ();
 
-	public IEnumerable<String> GetAchievements() {
-		throw new NotImplementedException ("GetAchievements");
+		string url = createURL ("/player/" + this.playerName);
+		string jsonResponseString = sendRequest ("GET", url, null);
+		if (jsonResponseString == "")
+			return items;
+
+		JSONNode jsonPlayer = JSON.Parse (jsonResponseString);
+		JSONArray jsonObjects = jsonPlayer ["sceneObjs"].AsArray;
+		foreach (JSONNode obj in jsonObjects) {
+//			Vector3 position = new Vector3(obj["posx"].AsFloat, obj["posy"].AsFloat, obj["posz"].AsFloat);
+//			string name = obj["name"].Value;
+//			float scale = obj["sclx"].AsFloat;
+//			items.Add(new Item(name, position, scale));
+
+			string itemname = obj.Value;
+			items.Add(itemname);
+		}
+
+		return items;
+	}
+
+	public IEnumerable<string> GetAchievements() {
+		return new string[]{"Participation", "Beta-testing"}; // TODO remove mocking
+
+		IList<String> achievements = new List<string> ();
+
+		string url = createURL ("/player/" + this.playerName);
+		string jsonResponseString = sendRequest ("GET", url, null);
+		if (jsonResponseString == "")
+			return achievements;
+
+		JSONNode jsonPlayer = JSON.Parse (jsonResponseString);
+		JSONArray achievementsJson = jsonPlayer ["achievements"].AsArray;
+		for (int i=0; i<achievementsJson.Count; i++) {
+			string achievement = achievementsJson[i]["name"].Value;
+			achievements.Add (achievement);
+		}
+
+		return achievements;
 	}
 
 	public bool SetAchievements(IEnumerable<String> newAchievements) {
 		throw new NotImplementedException("Set achievements");
+	}
+	
+	public IEnumerable<string> GetTrophies() {
+		return new string[]{"Participation", "Beta-testing"}; // TODO remove mocking
+		
+		IList<string> trophies = new List<string> ();
+		
+		string url = createURL ("/player/" + this.playerName);
+		string jsonResponseString = sendRequest ("GET", url, null);
+		if (jsonResponseString == "")
+			return trophies;
+
+		JSONNode jsonPlayer = JSON.Parse (jsonResponseString);
+		JSONArray trophiesJson = jsonPlayer ["trophies"].AsArray;
+		for (int i=0; i<trophiesJson.Count; i++) {
+			string trophy = trophiesJson[i]["name"].Value;
+			trophies.Add (trophy);
+		}
+		
+		return trophies;
+	}
+	
+	public bool SetTrophies(IEnumerable<String> newTrophies) {
+		throw new NotImplementedException("Set trophies");
 	}
 
 	public List<MinigameChallenge> getMinigameChallenges() {
@@ -164,8 +229,8 @@ public class ServerConnector {
 
 
 			if((int)response.StatusCode != 200) {
-				EditorUtility.DisplayDialog("Error", response.ToString(), "Ok", "Cancel");
-				return "";	
+					EditorUtility.DisplayDialog("Error", response.ToString(), "Ok", "Cancel");
+					return "";        
 			}
 			
 			var stream = response.GetResponseStream();
@@ -175,7 +240,7 @@ public class ServerConnector {
 		catch (WebException e) {
 			//EditorUtility.DisplayDialog("Error: ", e.Message, "Ok", "");
 			Debug.Log(e.Message);
-			return "";	
+			return "";        
 		}
 
 		return content;
@@ -184,12 +249,12 @@ public class ServerConnector {
 		string result = "";
 		WebClient client = new WebClient ();
 		
-		try	{
-			client.Headers[HttpRequestHeader.ContentType] = "application/json";
-			result = client.UploadString(url, parameters);
+		try        {
+				client.Headers[HttpRequestHeader.ContentType] = "application/json";
+				result = client.UploadString(url, parameters);
 		}
 		catch (WebException e) {
-			EditorUtility.DisplayDialog("Error", e.Message, "Ok", "");
+				EditorUtility.DisplayDialog("Error", e.Message, "Ok", "");
 		}
 		
 		return result;
@@ -198,9 +263,9 @@ public class ServerConnector {
 
 	private string createURL(string url) {
 		if (url.StartsWith ("/"))
-			return BASE_URL + url;
+				return BASE_URL + url;
 		else
-			return BASE_URL + "/" + url;
+				return BASE_URL + "/" + url;
 	}
 
 }
