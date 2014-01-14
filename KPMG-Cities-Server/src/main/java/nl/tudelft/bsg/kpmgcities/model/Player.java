@@ -3,9 +3,13 @@ package nl.tudelft.bsg.kpmgcities.model;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CollectionTable;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 
@@ -22,9 +26,11 @@ public class Player implements Serializable {
 	private String office;
 	private String department;
 	private int office3DScore;
-
-	@OneToMany
-	private List<SceneObj> sceneObjs;
+	
+	@ElementCollection
+	@CollectionTable(name="SceneObjs", joinColumns=@JoinColumn(name="user_id"))
+	@Column(name="sceneobjs")
+	private List<String> sceneObjs;
 	
 	@OneToMany
 	private List<Achievement> achievements;
@@ -56,10 +62,10 @@ public class Player implements Serializable {
 	public void setDepartment(String department) {
 		this.department = department;
 	}
-	public List<SceneObj> getSceneObjs() {
+	public List<String> getSceneObjs() {
 		return sceneObjs;
 	}
-	public void setSceneObjs(List<SceneObj> sceneObjs) {
+	public void setSceneObjs(List<String> sceneObjs) {
 		this.sceneObjs = sceneObjs;
 	}
 	public int getOffice3DScore() {

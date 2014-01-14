@@ -17,44 +17,52 @@ public class TestDB {
 	public static void populateTestDB() {
 		if(DBConnector.getInstance().getPlayers().size() == 0) {
 			
-			//Mock 2 scene objects
-			SceneObj o1 = new SceneObj();
-			o1.setName("o1");
-			DBConnector.getInstance().save(o1);
+			/*PLAYERS*/
+			Player eddy = new Player();
+			eddy.setName("Eddy");
+			eddy.setOffice("Amsterdam");
+			eddy.setDepartment("IT");
+			eddy.setOffice3DScore(90);
+			List<String> l= new ArrayList<String>();
+			l.add("o1");
+			l.add("o2");
+			eddy.setSceneObjs(l);
+			DBConnector.getInstance().save(eddy);
 			
-			SceneObj o2 = new SceneObj();
-			o2.setName("o2");
-			DBConnector.getInstance().save(o2);
+			Player rambo = new Player();
+			rambo.setName("Rambo");
+			rambo.setOffice("Amsterdam");
+			rambo.setDepartment("IT");
+			rambo.setOffice3DScore(10);
+			rambo.setSceneObjs(new ArrayList<String>());
+			DBConnector.getInstance().save(rambo);
+			
+			Player p1 = new Player();
+			p1.setName("Player1");
+			p1.setOffice("Amsterdam");
+			p1.setDepartment("IT");
+			p1.setOffice3DScore(80);
+			p1.setSceneObjs(new ArrayList<String>());
+			DBConnector.getInstance().save(p1);
+			
+			Player p2 = new Player();
+			p2.setName("Player2");
+			p2.setOffice("Amsterdam");
+			p2.setDepartment("IT");
+			p2.setOffice3DScore(70);
+			p2.setSceneObjs(new ArrayList<String>());
+			DBConnector.getInstance().save(p2);
+			
+			Player p3 = new Player();
+			p3.setName("Player3");
+			p3.setOffice("Amsterdam");
+			p3.setDepartment("IT");
+			p3.setOffice3DScore(50);
+			p3.setSceneObjs(new ArrayList<String>());
+			DBConnector.getInstance().save(p3);
 			
 			
-			//Create 2 mock players
-			List<SceneObj> l= new ArrayList<SceneObj>();
-			l.add(o1);
-			l.add(o2);
-			
-			Player pl = new Player();
-			pl.setName("Eddy");
-			pl.setOffice("Amsterdam");
-			pl.setDepartment("IT");
-			pl.setOffice3DScore(90);
-			pl.setSceneObjs(l);
-			DBConnector.getInstance().save(pl);
-			
-			Player pl2 = new Player();
-			pl2.setName("Rambo");
-			pl2.setOffice("Amsterdam");
-			pl2.setDepartment("IT");
-			pl2.setOffice3DScore(10);
-			pl2.setSceneObjs(new ArrayList<SceneObj>());
-			DBConnector.getInstance().save(pl2);
-			
-			
-			
-			
-			
-			
-			
-			//Create 10 mock answers
+			/* Q&A CHALLENGE */
 			ChallengeAnswer a1 = new ChallengeAnswer();
 			a1.setAnswer("a1");
 			a1.setCorrect(true);
@@ -190,8 +198,8 @@ public class TestDB {
 			
 			//Create 1 challenge
 			MinigameChallenge c = new MinigameChallenge();
-			c.setPlayer1(pl2.getName());
-			c.setPlayer2(pl.getName());
+			c.setPlayer1(rambo.getName());
+			c.setPlayer2(eddy.getName());
 			
 			List<ChallengeQuestion> qs = new ArrayList<ChallengeQuestion>();
 			qs.add(q1); qs.add(q2); qs.add(q3); qs.add(q4); qs.add(q5);

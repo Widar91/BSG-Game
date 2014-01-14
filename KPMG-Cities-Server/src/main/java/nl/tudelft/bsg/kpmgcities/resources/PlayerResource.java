@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -14,6 +15,7 @@ import javax.ws.rs.core.Response;
 
 import nl.tudelft.bsg.kpmgcities.db.DBConnector;
 import nl.tudelft.bsg.kpmgcities.model.Player;
+import nl.tudelft.bsg.kpmgcities.model.SceneObj;
 import nl.tudelft.bsg.kpmgcities.utils.JaxbString;
 
 @Path("kpmgcities/player")
@@ -43,6 +45,30 @@ public class PlayerResource extends Resource {
             Player p = DBConnector.getInstance().getPlayer(username, "");
             p.setOffice3DScore(Integer.parseInt(score));
             
+            DBConnector.getInstance().save(p);
+            
+            return simpleResponse(200);
+    }
+    
+    @POST
+    @Path("/{username}/office/add_obj/{object}")
+    public Response addOfficeObject(@PathParam("username") String username, @PathParam("object") String obj) {
+
+    		Player p = DBConnector.getInstance().getPlayer(username, "");
+            List<String> l = p.getSceneObjs();
+            l.add(obj);
+            DBConnector.getInstance().save(p);
+            
+            return simpleResponse(200);
+    }
+    
+    @DELETE
+    @Path("/{username}/office/del_obj/{object}")
+    public Response deleteOfficeObject(@PathParam("username") String username, @PathParam("object") String obj) {
+            
+            Player p = DBConnector.getInstance().getPlayer(username, "");
+            List<String> l = p.getSceneObjs();
+            l.remove(obj);
             DBConnector.getInstance().save(p);
             
             return simpleResponse(200);

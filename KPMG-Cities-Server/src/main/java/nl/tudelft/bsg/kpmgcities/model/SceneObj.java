@@ -37,4 +37,12 @@ public class SceneObj implements Serializable {
 		this.scene = scene;
 	}
 	
+	@Override
+	public boolean equals(Object o) {
+		if(this.getName() == ((SceneObj) o).getName() && this.getScene() == ((SceneObj)  o).getScene())
+			return true;
+		
+		return false;
+	}
+	
 }
