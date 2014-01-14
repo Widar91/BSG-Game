@@ -117,8 +117,8 @@ public class TestDB {
 			ans.add(a10);
 			q2.setAnswers(ans);
 			DBConnector.getInstance().save(q2);
-			ans = new ArrayList<ChallengeAnswer>(); 
 			
+			ans = new ArrayList<ChallengeAnswer>(); 
 			ChallengeQuestion q3 = new ChallengeQuestion();
 			q3.setQuestion("Which of the following does KPMG not consider a bribe?");
 			ans.add(a11);
@@ -126,7 +126,7 @@ public class TestDB {
 			ans.add(a13);
 			ans.add(a14);
 			ans.add(a15);
-			//q3.setAnswers(ans);
+			q3.setAnswers(ans);
 			DBConnector.getInstance().save(q3);
 			
 			ans = new ArrayList<ChallengeAnswer>(); 
@@ -137,7 +137,7 @@ public class TestDB {
 			ans.add(a18);
 			ans.add(a19);
 			ans.add(a20);
-			//q4.setAnswers(ans);
+			q4.setAnswers(ans);
 			DBConnector.getInstance().save(q4);
 			
 			ans = new ArrayList<ChallengeAnswer>(); 
@@ -148,7 +148,7 @@ public class TestDB {
 			ans.add(a23);
 			ans.add(a24);
 			ans.add(a25);
-			//q5.setAnswers(ans);
+			q5.setAnswers(ans);
 			DBConnector.getInstance().save(q5);			
 			
 			
