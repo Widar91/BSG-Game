@@ -12,7 +12,7 @@ import javax.ws.rs.core.MediaType;
 import nl.tudelft.bsg.kpmgcities.db.DBConnector;
 import nl.tudelft.bsg.kpmgcities.model.minigames.multiplayerchallenge.ChallengeQuestion;
 
-@Path("challengequestions")
+@Path("kpmgcities/challengequestions")
 public class ChallengeQuestionsResource {
 	
 	@GET

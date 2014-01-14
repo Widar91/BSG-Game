@@ -16,7 +16,7 @@ import nl.tudelft.bsg.kpmgcities.db.DBConnector;
 import nl.tudelft.bsg.kpmgcities.model.Player;
 import nl.tudelft.bsg.kpmgcities.utils.JaxbString;
 
-@Path("player")
+@Path("kpmgcities/player")
 public class PlayerResource extends Resource {
 	
     @GET

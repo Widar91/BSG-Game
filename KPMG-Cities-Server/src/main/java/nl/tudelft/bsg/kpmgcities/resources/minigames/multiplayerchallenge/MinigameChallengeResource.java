@@ -22,7 +22,7 @@ import nl.tudelft.bsg.kpmgcities.model.minigames.multiplayerchallenge.MinigameCh
 import nl.tudelft.bsg.kpmgcities.model.minigames.multiplayerchallenge.MinigameChallengeStatus;
 import nl.tudelft.bsg.kpmgcities.resources.Resource;
 
-@Path("minigamechallenge")
+@Path("kpmgcities/minigamechallenge")
 public class MinigameChallengeResource extends Resource{
 		
 	
