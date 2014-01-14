@@ -63,52 +63,42 @@ public class TestDB {
 			
 			
 			/* Q&A CHALLENGE */
-			ChallengeAnswer a1 = new ChallengeAnswer();
-			a1.setAnswer("a1");
-			a1.setCorrect(true);
-			DBConnector.getInstance().save(a1);
-			ChallengeAnswer a2 = new ChallengeAnswer();
-			a2.setAnswer("a2");
-			a2.setCorrect(true);
-			DBConnector.getInstance().save(a2);
-			ChallengeAnswer a3 = new ChallengeAnswer();
-			a3.setAnswer("a3");
-			a3.setCorrect(true);
-			DBConnector.getInstance().save(a3);
-			ChallengeAnswer a4 = new ChallengeAnswer();
-			a4.setAnswer("a4");
-			a4.setCorrect(true);
-			DBConnector.getInstance().save(a4);
-			ChallengeAnswer a5 = new ChallengeAnswer();
-			a5.setAnswer("a5");
-			a5.setCorrect(true);
-			DBConnector.getInstance().save(a5);
-			ChallengeAnswer a6 = new ChallengeAnswer();
-			a6.setAnswer("a6");
-			a6.setCorrect(false);
-			DBConnector.getInstance().save(a6);
-			ChallengeAnswer a7 = new ChallengeAnswer();
-			a7.setAnswer("a7");
-			a7.setCorrect(false);
-			DBConnector.getInstance().save(a7);
-			ChallengeAnswer a8 = new ChallengeAnswer();
-			a8.setAnswer("a8");
-			a8.setCorrect(false);
-			DBConnector.getInstance().save(a8);
-			ChallengeAnswer a9 = new ChallengeAnswer();
-			a9.setAnswer("a9");
-			a9.setCorrect(false);
-			DBConnector.getInstance().save(a9);
-			ChallengeAnswer a10 = new ChallengeAnswer();
-			a10.setAnswer("a10");
-			a10.setCorrect(false);
-			DBConnector.getInstance().save(a10);
+			ChallengeAnswer a1 = createAnswer("Leading by example", false);
+			ChallengeAnswer a2 = createAnswer("Working together", false);
+			ChallengeAnswer a3 = createAnswer("Everything for the client", true);
+			ChallengeAnswer a4 = createAnswer("Seeking the facts", false);
+			ChallengeAnswer a5 = createAnswer("Communicating openly and honestly", false);
 			
+			ChallengeAnswer a6 = createAnswer("Raise issues if something doesn’t seem right", false);
+			ChallengeAnswer a7 = createAnswer("Uphold exemplary standards", true);
+			ChallengeAnswer a8 = createAnswer("Consult with others if in doubt", false);
+			ChallengeAnswer a9 = createAnswer("Stay informed about relevant laws", false);
+			ChallengeAnswer a10 = createAnswer("Take ownership over the global code", false);
+			
+			ChallengeAnswer a11 = createAnswer("A bottle of wine", false);
+			ChallengeAnswer a12 = createAnswer("One euro", false);
+			ChallengeAnswer a13 = createAnswer("Free use of a country house for a weekend", false);
+			ChallengeAnswer a14 = createAnswer("VIP tickets to a soccer match", false);
+			ChallengeAnswer a15 = createAnswer("Cup of coffee during a meeting", true);
+			
+			ChallengeAnswer a16 = createAnswer("A payment used to secure or expedite a routine action", true);
+			ChallengeAnswer a17 = createAnswer("A standard payment for the use of a certain facility", false);
+			ChallengeAnswer a18 = createAnswer("An undue benefit offered or made to influence the conduct of someone", false);
+			ChallengeAnswer a19 = createAnswer("The cost a client makes for using KPMG facilities", false);
+			ChallengeAnswer a20 = createAnswer("A special payment KPMG gives to exemplary employees", false);
+			
+			ChallengeAnswer a21 = createAnswer("Your engagement partner", true);
+			ChallengeAnswer a22 = createAnswer("The receptionist", false);
+			ChallengeAnswer a23 = createAnswer("The security official at work in the hall", false);
+			ChallengeAnswer a24 = createAnswer("Your senior partner", false);
+			ChallengeAnswer a25 = createAnswer("Your Risk management partner", false);
+			
+			
+			
+			/*QUESTIONS*/
 			List<ChallengeAnswer> ans = new ArrayList<ChallengeAnswer>(); 
-			
-			//create 8 questions (2 with answers)
 			ChallengeQuestion q1 = new ChallengeQuestion();
-			q1.setQuestion("wtf?");
+			q1.setQuestion("Which of the following values is not one of the main KPMG values?");
 			ans.add(a1);
 			ans.add(a2);
 			ans.add(a3);
@@ -119,7 +109,7 @@ public class TestDB {
 			
 			ans = new ArrayList<ChallengeAnswer>(); 
 			ChallengeQuestion q2 = new ChallengeQuestion();
-			q2.setQuestion("wtf2?");
+			q2.setQuestion("Which of the following responsibilities is only a leader’s responsibility?");
 			ans.add(a6);
 			ans.add(a7);
 			ans.add(a8);
@@ -130,85 +120,56 @@ public class TestDB {
 			ans = new ArrayList<ChallengeAnswer>(); 
 			
 			ChallengeQuestion q3 = new ChallengeQuestion();
-			q3.setQuestion("wtf3?");
-			ans.add(a9);
-			ans.add(a8);
-			ans.add(a7);
-			ans.add(a5);
-			ans.add(a2);
+			q3.setQuestion("Which of the following does KPMG not consider a bribe?");
+			ans.add(a11);
+			ans.add(a12);
+			ans.add(a13);
+			ans.add(a14);
+			ans.add(a15);
 			//q3.setAnswers(ans);
 			DBConnector.getInstance().save(q3);
 			
 			ans = new ArrayList<ChallengeAnswer>(); 
 			ChallengeQuestion q4 = new ChallengeQuestion();
-			q4.setQuestion("wtf4?");
-			ans.add(a1);
-			ans.add(a5);
-			ans.add(a4);
-			ans.add(a10);
-			ans.add(a3);
+			q4.setQuestion("A facilitation payment is:");
+			ans.add(a16);
+			ans.add(a17);
+			ans.add(a18);
+			ans.add(a19);
+			ans.add(a20);
 			//q4.setAnswers(ans);
 			DBConnector.getInstance().save(q4);
 			
 			ans = new ArrayList<ChallengeAnswer>(); 
 			ChallengeQuestion q5 = new ChallengeQuestion();
-			q5.setQuestion("wtf5?");
-			ans.add(a1);
-			ans.add(a7);
-			ans.add(a2);
-			ans.add(a4);
-			ans.add(a8);
+			q5.setQuestion("During lunch at the café next to the office, someone tries to bribe you to let him into the building. When you get back, you immediately report this to:");
+			ans.add(a21);
+			ans.add(a22);
+			ans.add(a23);
+			ans.add(a24);
+			ans.add(a25);
 			//q5.setAnswers(ans);
-			DBConnector.getInstance().save(q5);
-			
-			ans = new ArrayList<ChallengeAnswer>(); 
-			ChallengeQuestion q6 = new ChallengeQuestion();
-			q6.setQuestion("wtf6?");
-			ans.add(a10);
-			ans.add(a9);
-			ans.add(a4);
-			ans.add(a2);
-			ans.add(a1);
-			//q6.setAnswers(ans);
-			DBConnector.getInstance().save(q6);
-			
-			ans = new ArrayList<ChallengeAnswer>(); 
-			ChallengeQuestion q7 = new ChallengeQuestion();
-			q7.setQuestion("wtf7?");
-			ans.add(a3);
-			ans.add(a8);
-			ans.add(a7);
-			ans.add(a5);
-			ans.add(a2);
-			//q7.setAnswers(ans);
-			DBConnector.getInstance().save(q7);
-			
-			ans = new ArrayList<ChallengeAnswer>(); 
-			ChallengeQuestion q8 = new ChallengeQuestion();
-			q8.setQuestion("wtf8?");
-			ans.add(a10);
-			ans.add(a8);
-			ans.add(a3);
-			ans.add(a6);
-			ans.add(a1);
-			//q8.setAnswers(ans);
-			DBConnector.getInstance().save(q8);
+			DBConnector.getInstance().save(q5);			
 			
 			
-			
-			//Create 1 challenge
+			/* CHALLENGE */
 			MinigameChallenge c = new MinigameChallenge();
 			c.setPlayer1(rambo.getName());
 			c.setPlayer2(eddy.getName());
-			
 			List<ChallengeQuestion> qs = new ArrayList<ChallengeQuestion>();
 			qs.add(q1); qs.add(q2); qs.add(q3); qs.add(q4); qs.add(q5);
-			
 			c.setQuestions(qs);
 			c.setStatus(MinigameChallengeStatus.WAITING_FOR_OPPONENT);
-			
 			DBConnector.getInstance().save(c);
 		}
+	}
+
+	private static ChallengeAnswer createAnswer(String a, boolean c) {
+		ChallengeAnswer a1 = new ChallengeAnswer();
+		a1.setAnswer(a);
+		a1.setCorrect(c);
+		DBConnector.getInstance().save(a1);
+		return a1;
 	}
 	
 }
