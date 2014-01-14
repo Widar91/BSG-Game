@@ -16,7 +16,7 @@ public class OfficeSceneLoader : MonoBehaviour
 	{
 		{1, "TableSimple"}
 	};
-	public IDictionary<string, GameObject> singletons = new Dictionary<string, GameObject>
+	public IDictionary<string, Item> singletons = new Dictionary<string, Item>
 	{
 		{"TableSimple", 	new Item("TableSimple", 	new Vector3(-3.97f, 1.04f, -9.741f) , 	5)},
 		{"VintagePC", 		new Item("VintagePC", 		new Vector3(-9.50f, 0.29f, -10.24f), 	5)},
@@ -133,7 +133,18 @@ public class OfficeSceneLoader : MonoBehaviour
 
 		ICollection<Item> items = new List<Item> ();
 
-		IEnumerable<string> objectnames = ServerConnector.getInstance ().GetOfficeObjects ();
+		// Get scene from server
+		IList<string> objectnames = ServerConnector.getInstance ().GetOfficeObjects ();
+
+		// If scene is empty, load default scene
+		if (objectnames.Count == 0) {
+			Debug.Log("Scene from server was empty. Loading default scene");
+			foreach ( Item item in this.defaultScene )
+				this.AddObject(item.resource, false);
+			return this.defaultScene;
+		}
+
+		// Load scene
 		foreach (string objectname in objectnames)
 		{
 			items.Add(this.singletons[objectname]);
