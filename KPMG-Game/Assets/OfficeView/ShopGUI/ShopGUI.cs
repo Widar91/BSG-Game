@@ -1,7 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class ShopGUI : MonoBehaviour {
+
+	public bool Enabled = true;
+	
+	public GameObject deamon;
+	public OfficeObjectManager manager;
+	public OfficeSceneLoader sceneLoader;
 
 	//Shop values
 	public GUISkin ShopSkin;
@@ -15,11 +22,16 @@ public class ShopGUI : MonoBehaviour {
 
 	void Start() {
 		//camMouse = GameObject.Find("CameraController").GetComponent("WorldCamera");
+
+		if (deamon == null) 
+			this.deamon = GameObject.Find ("Deamon");
+		this.manager = deamon.GetComponent<OfficeObjectManager> ();	
+		this.sceneLoader = deamon.GetComponent<OfficeSceneLoader> ();
 	}
 
 	void OnMouseDown(){
 		
-		toggleShop = true;
+		toggleShop = true && Enabled;
 		
 	}
 
@@ -29,8 +41,6 @@ public class ShopGUI : MonoBehaviour {
 			toggleShop = false;
 			Time.timeScale = 1;
 		}
-
-
 
 
 
@@ -45,18 +55,32 @@ public class ShopGUI : MonoBehaviour {
 	//Shop Window displays al items on sale.
 	void shopWindow (int windowID) {
 
+		int count = 0;
+		foreach (KeyValuePair<int, string> kv in sceneLoader.objects) {
+			string objectName  = kv.Value;
+			int    objectIndex = kv.Key;
+
+			ButtonstyleGUI_CS.buttonstyle(ShopItemsTexture[0] , ShopItemsTextureHover[0]);
+			if ( GUI.Button (new Rect ((count * 110f), 30f, 100f, 70f), objectName) ) {
+				this.sceneLoader.ToggleObject(objectName);
+			};
+
+			// Iteration stuff
+			count++;
+		}
 
 		for (int i = 0; i < ShopItemsTexture.Length; i++) {
+			int index = i+1;
+			string itemName = sceneLoader.objects[index];
 
-			ButtonstyleGUI_CS.buttonstyle(ShopItemsTexture[i] , ShopItemsTextureHover[i]);
-			GUI.Button (new Rect ((i * 110f), 30f, 100f, 70f), "Element_" + i);
+
 
 		}
 
 		ButtonstyleGUI_CS.buttonstyle (close, close_h);
 		if (GUI.Button (new Rect (Screen.width - 80, 0, 40, 40), "")) {
 			toggleShop=false;
-				}
+		}
 
 	}
 }

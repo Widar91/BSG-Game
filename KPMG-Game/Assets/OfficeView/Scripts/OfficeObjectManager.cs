@@ -37,6 +37,8 @@ public class OfficeObjectManager : MonoBehaviour
 	void Update () {
 		
 	}
+	
+	
 
 	/// <summary>
 	/// Instantiate the item
@@ -48,6 +50,8 @@ public class OfficeObjectManager : MonoBehaviour
 		GameObject instance = (GameObject)Instantiate (Resources.Load (item.resource));
 		return instance;
 	}
+	
+	
 
 	/// <summary>
 	/// Positions the game object.
@@ -57,14 +61,16 @@ public class OfficeObjectManager : MonoBehaviour
 	/// <param name="inParent">The parent for the instance.</param>
 	public void PositionGameObject (Item item, GameObject instance, GameObject inParent = null)
 	{
+		if (inParent == null)
+			inParent = ParentObject;
+		
 		if (inParent != null)
 			instance.transform.parent = inParent.transform;
-		else
-			if (ParentObject != null)
-				instance.transform.parent = ParentObject.transform;
+			
 		instance.transform.localScale = item.scale;
 		instance.transform.localPosition = item.position;
 	}
+	
 
 
 	/// <summary>
@@ -82,6 +88,8 @@ public class OfficeObjectManager : MonoBehaviour
 
 		return instance;
 	}
+	
+	
 
 	/// <summary>
 	/// Loads the items.
@@ -105,6 +113,8 @@ public class OfficeObjectManager : MonoBehaviour
 
 		return gos;
 	}
+	
+	
 
 	/// <summary>
 	/// Loads the items.

@@ -192,11 +192,15 @@ public class ServerConnector {
 	}
 
 	public Dictionary<String, int> getOffice3DScores() {
-		throw new NotImplementedException ("get minigame scores");
+		//throw new NotImplementedException ("getOffice3DScores");
 
 		Dictionary<string, int> scores = new Dictionary<string, int> ();
 
 		IEnumerable<string> players = this.getPlayersNames ();
+		if ( players==null ) {
+			Debug.LogWarning ("ServerConnector.getplayerNames() returned nothing");
+			return scores;
+		} 
 		foreach (string player in players) {
 			int score = this.getOffice3DScore(player);
 			scores.Add (player, score);

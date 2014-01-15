@@ -120,7 +120,8 @@ public class Leaderboard : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		InvokeRepeating("LoadScores", 0.0f, 10.0f);
+		// Automatically refresh the leaderboard every 2 minutes
+		InvokeRepeating("LoadScores", 0.0f, 120.0f);
 	}
 	
 	// Update is called once per frame
@@ -144,12 +145,9 @@ public class Leaderboard : MonoBehaviour {
 		//point.y = Event.current.mousePosition.y;
 
 		if (toggleLeader == 1) {
-						Time.timeScale = 0; //Remember to set 1 for resuming.
-			GUI.Window (0, new Rect (Screen.width*0.1f, 30, Screen.width*0.75f, Screen.height*0.75f), leaderWindow, "Leader Boards");
-						
-				}
-
-
+			Time.timeScale = 0; //Remember to set 1 for resuming.
+			GUI.Window (0, new Rect (Screen.width*0.1f, 30, Screen.width*0.75f, Screen.height*0.75f), leaderWindow, "Leader Boards");		
+		}
 	}
 
 
@@ -223,30 +221,30 @@ public class Leaderboard : MonoBehaviour {
 	public void LoadScores() {
 
 		// ---MOCK----   // TODO unmock
-		scoresCache = new Person[]
-		{
-			new Person ("John", 789, 1, "1001"),
-			new Person ("Jim", 456, 2, "1000"),
-			new Person ("Sue", 123, 3, "0100"),
-			new Person ("Sue", 123, 3, "0100"),
-			new Person ("Sue", 123, 3, "0100"),
-			new Person ("Sue", 123, 3, "0100"),
-			new Person ("Sue", 123, 3, "0100"),
-			new Person ("Sue", 123, 3, "0100"),
-			new Person ("Sue", 123, 3, "0100"),
-			new Person ("Sue", 123, 3, "0100"),
-			new Person ("Sue", 123, 3, "0100"),
-			new Person ("Sue", 123, 3, "0100"),
-			new Person ("Sue", 123, 3, "0100"),
-			new Person ("Sue", 123, 3, "0100"),
-			new Person ("Sue", 123, 3, "0100"),
-			new Person ("Sue", 123, 3, "0100"),
-			new Person ("Sue", 123, 3, "0100"),
-			new Person ("Sue", 123, 3, "0100"),
-			new Person ("Sue", 123, 3, "0100"),
-			new Person ("Sue", 123, 3, "0100"),
-		};
-		return;
+//		scoresCache = new Person[]
+//		{
+//			new Person ("John", 789, 1, "1001"),
+//			new Person ("Jim", 456, 2, "1000"),
+//			new Person ("Sue", 123, 3, "0100"),
+//			new Person ("Sue", 123, 3, "0100"),
+//			new Person ("Sue", 123, 3, "0100"),
+//			new Person ("Sue", 123, 3, "0100"),
+//			new Person ("Sue", 123, 3, "0100"),
+//			new Person ("Sue", 123, 3, "0100"),
+//			new Person ("Sue", 123, 3, "0100"),
+//			new Person ("Sue", 123, 3, "0100"),
+//			new Person ("Sue", 123, 3, "0100"),
+//			new Person ("Sue", 123, 3, "0100"),
+//			new Person ("Sue", 123, 3, "0100"),
+//			new Person ("Sue", 123, 3, "0100"),
+//			new Person ("Sue", 123, 3, "0100"),
+//			new Person ("Sue", 123, 3, "0100"),
+//			new Person ("Sue", 123, 3, "0100"),
+//			new Person ("Sue", 123, 3, "0100"),
+//			new Person ("Sue", 123, 3, "0100"),
+//			new Person ("Sue", 123, 3, "0100"),
+//		};
+		//return;
 		//------------
 
 		// Get scores from server
@@ -261,7 +259,7 @@ public class Leaderboard : MonoBehaviour {
 			delegate(KeyValuePair<string, int> firstPair,
 		         KeyValuePair<string, int> nextPair)
 				{
-					return firstPair.Value.CompareTo(nextPair.Value);
+			return nextPair.Value.CompareTo(firstPair.Value);
 				}
 			);
 
