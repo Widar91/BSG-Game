@@ -10,7 +10,7 @@ using SimpleJSON;
 public class ServerConnector {
 
 	//private static string BASE_URL = "http://localhost:8080/kpmgcities";
-	private static string BASE_URL = "http://ec2-54-201-204-95.us-west-2.compute.amazonaws.com:8080/kpmgcities";
+	private static string BASE_URL = "http://ec2-54-201-143-206.us-west-2.compute.amazonaws.com:8080/kpmgcities";
 
 	private static ServerConnector instance;
 	public static ServerConnector getInstance() {
