@@ -74,8 +74,8 @@ public class QuestionsScript : MonoBehaviour {
 
 						//Question Button
 						if(round < 5) {
-							ButtonstyleGUI_CS.ChallengeButtonStyle (QuestionButton, QuestionButton_h);
-							GUI.Button (new Rect (Screen.width / 2 - 250, 50, 500, 50), questions[round].getQuestion());
+							ButtonstyleGUI_CS.ChallengeButtonStyle (QuestionButton, QuestionButton);
+							GUI.Button (new Rect (Screen.width / 2 - 250, 50, 500, 75), questions[round].getQuestion());
 						}
 
 						KeyValuePair<string, bool>[] answers = questions [round].getAnswers ();

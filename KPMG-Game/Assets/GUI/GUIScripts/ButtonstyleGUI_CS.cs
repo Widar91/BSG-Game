@@ -28,7 +28,7 @@ public class ButtonstyleGUI_CS : MonoBehaviour {
 
 		buttonstyle(norm, hov);
 
-		GUI.skin.button.fontSize = 25;
+		GUI.skin.button.fontSize = 17;
 		
 	}
 }
