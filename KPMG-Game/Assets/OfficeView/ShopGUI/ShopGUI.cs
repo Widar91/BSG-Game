@@ -31,7 +31,7 @@ public class ShopGUI : MonoBehaviour {
 
 	void OnMouseDown(){
 		
-		toggleShop = true && Enabled;
+		toggleShop = this.Enabled;
 		
 	}
 
@@ -39,15 +39,12 @@ public class ShopGUI : MonoBehaviour {
 
 		if (Input.GetKeyDown (KeyCode.Escape)) {
 			toggleShop = false;
-			Time.timeScale = 1;
 		}
 
 
 
 		if (toggleShop) {
 			GUI.Window (0, new Rect (10, 100, Screen.width - 20, Screen.height - 250), shopWindow, "Shop");
-			//(camMouse as Behaviour).enabled = !((camMouse as Behaviour).enabled);
-			Time.timeScale = 0;
 		}
 	}
 
@@ -56,7 +53,7 @@ public class ShopGUI : MonoBehaviour {
 	void shopWindow (int windowID) {
 
 		int count = 0;
-		foreach (KeyValuePair<int, string> kv in sceneLoader.objects) {
+		foreach (KeyValuePair<int, string> kv in OfficeSceneLoader.objects) {
 			string objectName  = kv.Value;
 			int    objectIndex = kv.Key;
 
@@ -71,10 +68,7 @@ public class ShopGUI : MonoBehaviour {
 
 		for (int i = 0; i < ShopItemsTexture.Length; i++) {
 			int index = i+1;
-			string itemName = sceneLoader.objects[index];
-
-
-
+			string itemName = OfficeSceneLoader.objects[index];
 		}
 
 		ButtonstyleGUI_CS.buttonstyle (close, close_h);
