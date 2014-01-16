@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEditor;
 using System;
 using System.Text;
 using System.Net;
@@ -247,7 +246,7 @@ public class ServerConnector {
 
 
 			if((int)response.StatusCode != 200) {
-					EditorUtility.DisplayDialog("Error", response.ToString(), "Ok", "Cancel");
+					//EditorUtility.DisplayDialog("Error", response.ToString(), "Ok", "Cancel");
 					return "";        
 			}
 			

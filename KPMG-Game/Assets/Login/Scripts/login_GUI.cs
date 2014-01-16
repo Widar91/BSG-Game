@@ -31,7 +31,8 @@ public class login_GUI : MonoBehaviour {
 				Application.LoadLevel("Office");
 			}
 			else {
-				UnityEditor.EditorUtility.DisplayDialog("Login failed", "The user does not exit", "OK", null);
+				uname = "User does not exist";
+				upass = "";
 			}
 		}
 
