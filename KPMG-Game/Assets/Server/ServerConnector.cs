@@ -102,7 +102,7 @@ public class ServerConnector {
 	}
 
 	public IEnumerable<string> GetAchievements() {
-		return new string[]{"Participation", "Beta-testing"}; // TODO remove mocking
+		//return new string[]{"Participation", "Beta-testing"}; // TODO remove mocking
 
 		IList<String> achievements = new List<string> ();
 
@@ -126,7 +126,7 @@ public class ServerConnector {
 	}
 	
 	public IEnumerable<string> GetTrophies() {
-		return new string[]{"Participation", "Beta-testing"}; // TODO remove mocking
+		//return new string[]{"Participation", "Beta-testing"}; // TODO remove mocking
 		
 		IList<string> trophies = new List<string> ();
 		
@@ -206,9 +206,8 @@ public class ServerConnector {
 	}
 
 	public Dictionary<String, int> getOffice3DScores() {
-		//throw new NotImplementedException ("getOffice3DScores");
 
-		Dictionary<string, int> scores = new Dictionary<string, int> ();
+				Dictionary<string, int> scores = new Dictionary<string, int> ();
 
 		IEnumerable<string> players = this.getAllPlayersNames ();
 		if ( players==null ) {
