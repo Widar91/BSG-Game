@@ -59,12 +59,14 @@ public class ServerConnector {
 			
 	}
 
-	public void AddOfficeObject(string itemname) {
-		throw new NotImplementedException ("Add office object");
+	public void AddOfficeObject(string itemName) {
+		string url = createURL("/player/" + playerName + "/add_obj/" + itemName);
+		string jsonResponse = sendRequest("POST", url, "");
 	}
 
 	public bool RemoveOfficeObject(string itemName) {
-		throw new NotImplementedException ("Remove office object");
+		string url = createURL("/player/" + playerName + "/del_obj/" + itemName);
+		string jsonResponse = sendRequest("POST", url, "");
 	}
 
 	public bool RemoveNeighbourhoodObject(long id) {
