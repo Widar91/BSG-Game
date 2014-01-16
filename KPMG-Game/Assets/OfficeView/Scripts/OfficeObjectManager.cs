@@ -10,6 +10,13 @@ public class Item
 	public Vector3 scale;
 	public Vector3 rotation;
 
+	public Item(Item item)
+	{
+		this.resource = item.resource;
+		this.position = item.position;
+		this.rotation = item.rotation;
+		this.scale = item.scale;
+	}
 	public Item(string name, Vector3 position, float scale)
 	{
 		this.resource = name;
@@ -98,7 +105,7 @@ public class OfficeObjectManager : MonoBehaviour
 	/// <param name="items">Items.</param>
 	/// <param name="shift">Shift within the parent.</param>
 	/// <param name="inParent">The parent gameobject.</param>
-	public List<GameObject> LoadItems(IEnumerable items, Vector3 shift, GameObject inParent = null)
+	public List<GameObject> LoadItems(IEnumerable<Item> items, Vector3 shift, GameObject inParent = null)
 	{
 		List<GameObject> gos = new List<GameObject> ();
 

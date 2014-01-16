@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEditor;
 using System;
 using System.Text;
 using System.Net;
@@ -10,7 +9,7 @@ using SimpleJSON;
 public class ServerConnector {
 
 	//private static string BASE_URL = "http://localhost:8080/kpmgcities";
-	private static string BASE_URL = "http://ec2-54-201-143-206.us-west-2.compute.amazonaws.com:8080/kpmgcities";
+	private static string BASE_URL = "http://ec2-54-200-36-218.us-west-2.compute.amazonaws.com:8080/kpmgcities";
 
 	private static ServerConnector instance;
 	public static ServerConnector getInstance() {
@@ -247,7 +246,7 @@ public class ServerConnector {
 
 
 			if((int)response.StatusCode != 200) {
-					EditorUtility.DisplayDialog("Error", response.ToString(), "Ok", "Cancel");
+					//EditorUtility.DisplayDialog("Error", response.ToString(), "Ok", "Cancel");
 					return "";        
 			}
 			
