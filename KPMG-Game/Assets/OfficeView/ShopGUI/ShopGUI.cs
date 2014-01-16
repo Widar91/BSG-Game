@@ -57,7 +57,7 @@ public class ShopGUI : MonoBehaviour {
 			string objectName  = kv.Value;
 			int    objectIndex = kv.Key;
 
-			ButtonstyleGUI_CS.buttonstyle(ShopItemsTexture[0] , ShopItemsTextureHover[0]);
+			ButtonstyleGUI_CS.buttonstyle(ShopItemsTexture[objectIndex] , ShopItemsTextureHover[objectIndex]);
 			if ( GUI.Button (new Rect ((count * 110f), 30f, 100f, 70f), objectName) ) {
 				this.sceneLoader.ToggleObject(objectName);
 			};

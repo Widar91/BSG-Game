@@ -155,7 +155,7 @@ public class OfficeSceneLoader : MonoBehaviour
 	/// <param name="reload">If set to <c>true</c> reload to show the changes.</param>
 	public void RemoveObject(string objectName, bool reload = true)
 	{
-		Debug.Log("Removing " + objectName);
+		//Debug.Log("Removing " + objectName);
 		
 		// Update local cache
 		loadedObjectNames.Remove(objectName);
@@ -178,7 +178,7 @@ public class OfficeSceneLoader : MonoBehaviour
 	/// <param name="reload">If set to <c>true</c> reload the scene to show changes.</param>
 	public void AddObject(string objectName, bool reload = true)
 	{
-		Debug.Log ("Adding " + objectName);
+		//Debug.Log ("Adding " + objectName);
 	
 		// Update local cache
 		loadedObjectNames.Add(objectName);
@@ -224,14 +224,23 @@ public class OfficeSceneLoader : MonoBehaviour
 		// Get scene from server
 		if ( this.GoingLive )
 		{
+			// get objects from server
 			loadedObjectNames = ServerConnector.getInstance ().GetOfficeObjects ();
 			
-			string s = "[";
-			foreach ( string n in loadedObjectNames )
-			{
-				s += n + ", ";
+			// Remove Eddy's dummies
+			foreach ( string name in loadedObjectNames )
+			{				
+				if ( !singletons.ContainsKey(name) )
+				{
+					Debug.LogWarning("Removing invalid object from server: " + name);
+					this.RemoveObject(name);
+				}
 			}
-			s += "]";
+			
+			string s = "[";
+			foreach ( string n in loadedObjectNames ) {
+				s += n + ", ";
+			} s += "]";
 			Debug.Log("Loaded " + loadedObjectNames.Count + " objects from server: " + s);
 		}
 
