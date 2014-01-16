@@ -60,13 +60,13 @@ public class ServerConnector {
 	}
 
 	public void AddOfficeObject(string itemName) {
-		string url = createURL("/player/" + playerName + "/add_obj/" + itemName);
+		string url = createURL("/player/" + playerName + "/office/add_obj/" + itemName);
 		string jsonResponse = sendRequest("POST", url, "");
 	}
 
-	public bool RemoveOfficeObject(string itemName) {
-		string url = createURL("/player/" + playerName + "/del_obj/" + itemName);
-		string jsonResponse = sendRequest("POST", url, "");
+	public void RemoveOfficeObject(string itemName) {
+		string url = createURL("/player/" + playerName + "/office/del_obj/" + itemName);
+		string jsonResponse = sendRequest("DELETE", url, "");
 	}
 
 	public bool RemoveNeighbourhoodObject(long id) {
@@ -174,6 +174,19 @@ public class ServerConnector {
 		return result;
 
 	}
+	
+	public List<string> getAllPlayersNames(){
+		
+		string url = createURL("/player/list/all");
+		string jsonResponse = sendRequest("GET", url, "");
+		
+		if(jsonResponse.Equals(""))
+			return null;
+		
+		List<string> result = JSONConverter.getInstance().convertPlayersNames(jsonResponse);
+		return result;
+		
+	}
 
 	public string newMinigameChallenge(string p2) {
 
@@ -197,7 +210,7 @@ public class ServerConnector {
 
 		Dictionary<string, int> scores = new Dictionary<string, int> ();
 
-		IEnumerable<string> players = this.getPlayersNames ();
+		IEnumerable<string> players = this.getAllPlayersNames ();
 		if ( players==null ) {
 			Debug.LogWarning ("ServerConnector.getplayerNames() returned nothing");
 			return scores;
