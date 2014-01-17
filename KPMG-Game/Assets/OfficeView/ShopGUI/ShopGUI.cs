@@ -66,10 +66,10 @@ public class ShopGUI : MonoBehaviour {
 			count++;
 		}
 
-		for (int i = 0; i < ShopItemsTexture.Length; i++) {
-			int index = i+1;
-			string itemName = OfficeSceneLoader.objects[index];
-		}
+//		for (int i = 0; i < ShopItemsTexture.Length; i++) {
+//			int index = i+1;
+//			string itemName = OfficeSceneLoader.objects[index];
+//		}
 
 		ButtonstyleGUI_CS.buttonstyle (close, close_h);
 		if (GUI.Button (new Rect (Screen.width - 80, 0, 40, 40), "")) {
