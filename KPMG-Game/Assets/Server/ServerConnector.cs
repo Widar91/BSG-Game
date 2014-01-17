@@ -222,6 +222,24 @@ public class ServerConnector {
 		return scores;
 	}
 	
+	public IDictionary<string,string> GetProfile(string name = null) {
+		
+		IDictionary<string,string> profile = new Dictionary<string, string>();
+		
+		string url = createURL("/player/" + ((name!=null) ? name : this.playerName));
+		string jsonResponse = sendRequest("GET", url, "");
+		
+		if (jsonResponse.Equals(""))
+			return profile;
+		
+		JSONNode json = JSON.Parse(jsonResponse);
+		
+		profile["name"] = json ["name"].Value;
+		profile["office"] = json["office"].Value;
+		profile["department"] = json["department"].Value;
+		
+		return profile;
+	}
 
 
 

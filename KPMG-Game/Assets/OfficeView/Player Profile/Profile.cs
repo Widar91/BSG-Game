@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 //using UnityEditor;
 
 public class myscore
@@ -134,7 +135,10 @@ public class Profile : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-		
+		IDictionary<string,string> profile = ServerConnector.getInstance().GetProfile();
+		this.fname = profile["name"];
+		this.dept = profile["department"];
+		this.office = profile["office"];
 	}
 	
 	// Update is called once per frame
@@ -213,7 +217,7 @@ public class Profile : MonoBehaviour {
 		
 		//Titles
 		GUI.Label (new Rect (Screen.width*0.1f+180, 0, 100, 50),"Name : " + fname );
-		GUI.Label (new Rect (Screen.width*0.1f+180, 30, 100, 50),"ID : " + id);
+//		GUI.Label (new Rect (Screen.width*0.1f+180, 30, 100, 50),"ID : " + id);
 
 		//GUI.Label (new Rect (Screen.width*0.1f+180, 60, 90, 50),"Achievements : ");
 
@@ -239,35 +243,35 @@ public class Profile : MonoBehaviour {
 		GUI.Label (new Rect (Screen.width*0.45f, 0, 120, 50), "Department : " + dept);
 		GUI.Label (new Rect (Screen.width*0.45f, 30, 120, 50), "Office : " + office);
 
-		GUI.Label (new Rect (Screen.width*0.1f+180, 130, 100, 50),"Ranks");
-		GUI.Label (new Rect (Screen.width*0.15f+180, 130, 100, 50),"Daily : " + dRank);
-		GUI.Label (new Rect (Screen.width*0.25f+180, 130, 100, 50),"Weekly : " + wRank);
-		GUI.Label (new Rect (Screen.width*0.35f+180, 130, 100, 50),"Monthly : " + mRank);
+//		GUI.Label (new Rect (Screen.width*0.1f+180, 130, 100, 50),"Ranks");
+//		GUI.Label (new Rect (Screen.width*0.15f+180, 130, 100, 50),"Daily : " + dRank);
+//		GUI.Label (new Rect (Screen.width*0.25f+180, 130, 100, 50),"Weekly : " + wRank);
+//		GUI.Label (new Rect (Screen.width*0.35f+180, 130, 100, 50),"Monthly : " + mRank);
 		
 		//Content
-		GUI.Label (new Rect (Screen.width*0.1f, 200, 60, 50), "S.No");
-		GUI.Label (new Rect (Screen.width*0.15f, 200, 120, 50), "Date & Time");
-		GUI.Label (new Rect (Screen.width*0.25f, 200, 60, 50), "Duration");
-		GUI.Label (new Rect (Screen.width*0.35f, 200, 120, 50), "Progress");
-		GUI.Label (new Rect (Screen.width*0.45f, 200, 120, 50), "Score");
-
-		//GUI.BeginGroup(new Rect (0, 200, Screen.width*0.75f, Screen.height*0.75f), "");
-		//vscrollPos = GUI.VerticalScrollbar(new Rect(0, 200, 100, 30), vscrollPos, 1, 0, 100);
-		scrollPosition = GUI.BeginScrollView (new Rect (0, 220, Screen.width*0.52f, Screen.height*0.25f),
-		                                      scrollPosition, new Rect (0, 0, Screen.width*0.52f-100, Screen.height*0.25f+(20* allscoreArray.Length )));
-
-		int i = 0;
-		foreach (myscore p in allscoreList) {
-
-			
-						GUI.Label (new Rect (Screen.width * 0.1f, (i + 1) * 30, 60, 50), (i+1).ToString());
-						GUI.Label (new Rect (Screen.width * 0.15f, (i + 1) * 30, 120, 50), p.date);
-						GUI.Label (new Rect (Screen.width * 0.25f, (i + 1) * 30, 60, 50), p.duration);
-						GUI.Label (new Rect (Screen.width * 0.35f, (i + 1) * 30, 120, 50), p.progress);
-						GUI.Label (new Rect (Screen.width * 0.45f, (i + 1) * 30, 120, 50), p.score);
-						i++;
-				}
-		GUI.EndScrollView ();
+//		GUI.Label (new Rect (Screen.width*0.1f, 200, 60, 50), "S.No");
+//		GUI.Label (new Rect (Screen.width*0.15f, 200, 120, 50), "Date & Time");
+//		GUI.Label (new Rect (Screen.width*0.25f, 200, 60, 50), "Duration");
+//		GUI.Label (new Rect (Screen.width*0.35f, 200, 120, 50), "Progress");
+//		GUI.Label (new Rect (Screen.width*0.45f, 200, 120, 50), "Score");
+//
+//		//GUI.BeginGroup(new Rect (0, 200, Screen.width*0.75f, Screen.height*0.75f), "");
+//		//vscrollPos = GUI.VerticalScrollbar(new Rect(0, 200, 100, 30), vscrollPos, 1, 0, 100);
+//		scrollPosition = GUI.BeginScrollView (new Rect (0, 220, Screen.width*0.52f, Screen.height*0.25f),
+//		                                      scrollPosition, new Rect (0, 0, Screen.width*0.52f-100, Screen.height*0.25f+(20* allscoreArray.Length )));
+//
+//		int i = 0;
+//		foreach (myscore p in allscoreList) {
+//
+//			
+//						GUI.Label (new Rect (Screen.width * 0.1f, (i + 1) * 30, 60, 50), (i+1).ToString());
+//						GUI.Label (new Rect (Screen.width * 0.15f, (i + 1) * 30, 120, 50), p.date);
+//						GUI.Label (new Rect (Screen.width * 0.25f, (i + 1) * 30, 60, 50), p.duration);
+//						GUI.Label (new Rect (Screen.width * 0.35f, (i + 1) * 30, 120, 50), p.progress);
+//						GUI.Label (new Rect (Screen.width * 0.45f, (i + 1) * 30, 120, 50), p.score);
+//						i++;
+//				}
+//		GUI.EndScrollView ();
 		GUI.EndGroup ();
 		//Close Button
 		ButtonstyleGUI_CS.buttonstyle(Close,Close_h);
