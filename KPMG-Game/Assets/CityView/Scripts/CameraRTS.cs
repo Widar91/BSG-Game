@@ -17,7 +17,7 @@ public class CameraRTS : MonoBehaviour {
 	public int PanAngleMin = 25;
 	public int PanAngleMax = 80;
 
-    public int speed = 75.0;
+    public int speed = 75;
 	
 	// Update is called once per frame
 	void Update()
@@ -92,7 +92,7 @@ public class CameraRTS : MonoBehaviour {
 		// Finally move camera parallel to world axis
 		camera.transform.position += translation;
 
-		//Vector3 v3 = Vector3(Input.GetAxis("Vertical"), Input.GetAxis("Horizontal"), 0.0);
+		//Vector3 v3 = new Vector3(Input.GetAxis("Vertical"), Input.GetAxis("Horizontal"), 0.0f);
 		//transform.Rotate(v3 * speed * Time.deltaTime); 
 	}
 }
