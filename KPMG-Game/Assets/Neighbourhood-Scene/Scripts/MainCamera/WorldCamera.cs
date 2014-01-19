@@ -31,7 +31,7 @@ public class WorldCamera : MonoBehaviour {
 	public static BoxLimit mouseScrollLimits  = new BoxLimit();
 	public static WorldCamera Instance;
 
-	private float cameraMoveSpeed = 60f;
+	private float cameraMoveSpeed = 30f;
 	private float shiftBonus      = 45f;
 	private float mouseBoundary   = 25f;
 

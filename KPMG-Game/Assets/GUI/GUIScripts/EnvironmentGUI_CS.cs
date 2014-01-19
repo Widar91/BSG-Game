@@ -30,7 +30,7 @@ public class EnvironmentGUI_CS : MonoBehaviour {
 		
 		//Call HUD skin.
 		GUI.skin = hudskin;
-		GUI.Box(new Rect(175,20,Screen.width*0.85f,100),"");
+		GUI.Box(new Rect(175,20,Screen.width/2 + 350,100),"");
 		
 		//Additive images
 		if (currentLevel == "WorldView") 

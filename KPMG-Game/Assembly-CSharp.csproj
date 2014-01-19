@@ -76,6 +76,7 @@
      <Compile Include="Assets\CityView\CityGenerator1.5\Scripts\SelectionButtonsHighPoly.cs" />
      <Compile Include="Assets\CityView\CityGenerator1.5\Scripts\SelectionButtonsLowPoly.cs" />
      <Compile Include="Assets\CityView\CityGenerator1.5\Scripts\trigger.cs" />
+     <Compile Include="Assets\CityView\Scripts\CameraRTS.cs" />
      <Compile Include="Assets\CityView\Scripts\CityCamera.cs" />
      <Compile Include="Assets\CityView\Scripts\OnDistrictHovering.cs" />
      <Compile Include="Assets\GUI\GUIScripts\ButtonstyleGUI_CS.cs" />
@@ -97,7 +98,6 @@
      <Compile Include="Assets\Neighbourhood-Scene\Scripts\MainCamera\BuildingCollisionDispatcher.cs" />
      <Compile Include="Assets\Neighbourhood-Scene\Scripts\MainCamera\WorldCamera.cs" />
      <Compile Include="Assets\Neighbourhood-Scene\Scripts\RTS-Scripts\BuildManager.cs" />
-     <Compile Include="Assets\Neighbourhood-Scene\Scripts\RTS-Scripts\BuildingCollision.cs" />
      <Compile Include="Assets\Neighbourhood-Scene\Scripts\RTS-Scripts\BuildingList.cs" />
      <Compile Include="Assets\Neighbourhood-Scene\Scripts\RTS-Scripts\RTSGUIScript.cs" />
      <Compile Include="Assets\OfficeView\Leaderboard\Leaderboard.cs" />
@@ -129,7 +129,7 @@
      <None Include="Assets\Standard Assets\Hard Surface Free\HardSurface Shaders\HardSurfacePro Hidden Front Transparent Specular.shader" />
      <None Include="Assets\Standard Assets\Hard Surface Free\HardSurface Shaders\HardSurface Free Transparent Specular.shader" />
      <None Include="Assets\Standard Assets\Hard Surface Free\HardSurface Shaders\HardSurface Free Transparent Bump.shader" />
-     <None Include="Assets\OfficeView\Chairs and sofas pack\Readme.txt" />
+     <None Include="Assets\OfficeView\Models\Chairs and sofas pack\Readme.txt" />
      <None Include="Assets\Standard Assets\Hard Surface Free\HardSurface Shaders\HardSurfacePro Hidden Front Cut Out Opaque Bump.shader" />
      <None Include="Assets\Standard Assets\Hard Surface Free\HardSurface Shaders\HardSurface Free Opaque.shader" />
      <None Include="Assets\Standard Assets\Hard Surface Free\HardSurface Shaders\HardSurface Free Cut Out Diffuse.shader" />
