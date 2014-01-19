@@ -55,13 +55,13 @@ public class ServerConnector {
 	public void setOffice3DScore(int score) {
 			
 		string url = createURL("/player/" + playerName + "/setscore/" + score);
-		string jsonResponse = sendRequest("POST", url, "");
+		string jsonResponse = sendRequest("POST", url, null);
 			
 	}
 
 	public void AddOfficeObject(string itemName) {
 		string url = createURL("/player/" + playerName + "/office/add_obj/" + itemName);
-		string jsonResponse = sendRequest("POST", url, "");
+		string jsonResponse = sendRequest("POST", url, null);
 	}
 
 	public void RemoveOfficeObject(string itemName) {
